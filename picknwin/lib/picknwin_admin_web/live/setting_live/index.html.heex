@@ -1,0 +1,253 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <!-- Header -->
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-gray-900">Settings</h1>
+      <p class="mt-2 text-sm text-gray-700">
+        Configure your Dream11 platform settings and preferences.
+      </p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none space-x-3">
+      <button
+        type="button"
+        phx-click="export_settings"
+        class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+      >
+        <.icon name="hero-arrow-down-tray" class="h-4 w-4 mr-2" />
+        Export
+      </button>
+      <button
+        type="button"
+        class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        <.icon name="hero-arrow-up-tray" class="h-4 w-4 mr-2" />
+        Import
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-8 grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+    <!-- Settings Categories Sidebar -->
+    <div class="px-4 sm:px-0">
+      <nav class="space-y-1">
+        <%= for {name, category, icon} <- setting_categories() do %>
+          <button
+            phx-click="select_category"
+            phx-value-category={category}
+            class={[
+              "group flex items-center rounded-md px-3 py-2 text-sm font-medium w-full text-left",
+              if(@selected_category == category,
+                do: "bg-indigo-50 border-indigo-500 text-indigo-700 border-l-4",
+                else: "text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+              )
+            ]}
+          >
+            <.icon name={icon} class={[
+              "flex-shrink-0 -ml-1 mr-3 h-6 w-6",
+              if(@selected_category == category,
+                do: "text-indigo-500",
+                else: "text-gray-400 group-hover:text-gray-500"
+              )
+            ]} />
+            <span class="truncate"><%= name %></span>
+          </button>
+        <% end %>
+      </nav>
+    </div>
+
+    <!-- Settings Form -->
+    <div class="md:col-span-2">
+      <div class="bg-white shadow sm:rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="text-base font-semibold leading-6 text-gray-900">
+                <%= String.replace(@selected_category, "_", " ") |> String.capitalize() %> Settings
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">
+                Configure <%= String.replace(@selected_category, "_", " ") %> related settings for your platform.
+              </p>
+            </div>
+            <button
+              type="button"
+              phx-click="reset_settings"
+              phx-value-category={@selected_category}
+              class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+              <.icon name="hero-arrow-path" class="h-4 w-4 mr-1" />
+              Reset
+            </button>
+          </div>
+
+          <%= if assigns[:category_settings] do %>
+            <form phx-submit="save_settings" phx-change="validate_settings">
+              <div class="space-y-6">
+                <%= for {key, value} <- @category_settings do %>
+                  <div>
+                    <label for={key} class="block text-sm font-medium leading-6 text-gray-900">
+                      <%= String.replace(key, "_", " ") |> String.capitalize() %>
+                    </label>
+                    <div class="mt-2">
+                      <%= case get_setting_field_type(key) do %>
+                        <% "checkbox" -> %>
+                          <div class="flex items-center">
+                            <input
+                              id={key}
+                              name={"settings[#{key}]"}
+                              type="checkbox"
+                              checked={value}
+                              class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                            <label for={key} class="ml-3 text-sm leading-6 text-gray-600">
+                              Enable <%= String.replace(key, "_", " ") |> String.downcase() %>
+                            </label>
+                          </div>
+                        
+                        <% "number" -> %>
+                          <input
+                            type="number"
+                            name={"settings[#{key}]"}
+                            id={key}
+                            value={value}
+                            step={if String.contains?(key, "percentage") or String.contains?(key, "amount"), do: "0.01", else: "1"}
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          />
+                        
+                        <% "email" -> %>
+                          <input
+                            type="email"
+                            name={"settings[#{key}]"}
+                            id={key}
+                            value={value}
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          />
+                        
+                        <% "select" -> %>
+                          <select
+                            id={key}
+                            name={"settings[#{key}]"}
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          >
+                            <%= for {option_name, option_value} <- get_select_options(key) do %>
+                              <option value={option_value} selected={value == option_value}>
+                                <%= option_name %>
+                              </option>
+                            <% end %>
+                          </select>
+                        
+                        <% "textarea" -> %>
+                          <textarea
+                            id={key}
+                            name={"settings[#{key}]"}
+                            rows="3"
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          ><%= value %></textarea>
+                        
+                        <% _ -> %>
+                          <input
+                            type="text"
+                            name={"settings[#{key}]"}
+                            id={key}
+                            value={value}
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          />
+                      <% end %>
+                    </div>
+                    <%= if key in ["platform_fee_percentage", "min_deposit_amount", "session_timeout_minutes"] do %>
+                      <p class="mt-1 text-sm text-gray-500">
+                        <%= case key do %>
+                          <% "platform_fee_percentage" -> %>
+                            Percentage fee charged on contest entries (e.g., 15 means 15%)
+                          <% "min_deposit_amount" -> %>
+                            Minimum amount users can deposit into their wallet
+                          <% "session_timeout_minutes" -> %>
+                            Time in minutes before user sessions expire
+                          <% _ -> %>
+                            
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="mt-6 flex items-center justify-end gap-x-6">
+                <button
+                  type="button"
+                  phx-click="reset_settings"
+                  phx-value-category={@selected_category}
+                  class="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Reset to Defaults
+                </button>
+                <button
+                  type="submit"
+                  disabled={@saving}
+                  class={[
+                    "rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+                    if(@saving,
+                      do: "bg-gray-400 cursor-not-allowed",
+                      else: "bg-indigo-600 hover:bg-indigo-500"
+                    )
+                  ]}
+                >
+                  <%= if @saving do %>
+                    <.icon name="hero-arrow-path" class="animate-spin h-4 w-4 mr-2" />
+                    Saving...
+                  <% else %>
+                    Save Changes
+                  <% end %>
+                </button>
+              </div>
+            </form>
+          <% else %>
+            <div class="text-center py-12">
+              <.icon name="hero-cog-6-tooth" class="mx-auto h-12 w-12 text-gray-400" />
+              <h3 class="mt-2 text-sm font-semibold text-gray-900">No settings available</h3>
+              <p class="mt-1 text-sm text-gray-500">Select a category to view and edit settings.</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Settings Information Cards -->
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <.icon name="hero-information-circle" class="h-5 w-5 text-blue-400" />
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-blue-800">Configuration Tips</h3>
+              <div class="mt-2 text-sm text-blue-700">
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Always test settings in a staging environment first</li>
+                  <li>Export settings before making major changes</li>
+                  <li>Monitor system performance after configuration updates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <.icon name="hero-exclamation-triangle" class="h-5 w-5 text-yellow-400" />
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-yellow-800">Important Notes</h3>
+              <div class="mt-2 text-sm text-yellow-700">
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Some changes may require application restart</li>
+                  <li>Payment settings affect live transactions</li>
+                  <li>Security changes impact all user sessions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

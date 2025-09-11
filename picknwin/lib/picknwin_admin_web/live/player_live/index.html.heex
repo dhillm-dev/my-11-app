@@ -1,0 +1,518 @@
+<.header>
+  Players Management
+  <:subtitle>Manage player profiles, statistics, and pricing for fantasy sports</:subtitle>
+  <:actions>
+    <.link patch={~p"/admin/players/new"}>
+      <.button class="bg-indigo-600 hover:bg-indigo-700">
+        <.icon name="hero-plus" class="-ml-1 mr-2 h-4 w-4" />
+        Add Player
+      </.button>
+    </.link>
+  </:actions>
+</.header>
+
+<!-- Stats Cards -->
+<div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-user-group" class="h-6 w-6 text-gray-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Total Players</dt>
+            <dd class="text-lg font-medium text-gray-900"><%= @total_count %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-check-circle" class="h-6 w-6 text-green-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Active Players</dt>
+            <dd class="text-lg font-medium text-gray-900">0</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-trophy" class="h-6 w-6 text-yellow-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Top Performers</dt>
+            <dd class="text-lg font-medium text-gray-900">0</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-currency-dollar" class="h-6 w-6 text-blue-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Avg Price</dt>
+            <dd class="text-lg font-medium text-gray-900">$0</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Filters and Search -->
+<div class="mt-8 bg-white shadow rounded-lg">
+  <div class="px-6 py-4 border-b border-gray-200">
+    <div class="flex flex-col space-y-4">
+      <!-- Search -->
+      <div class="flex-1">
+        <.form for={%{}} as={:search} phx-change="search" class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <.icon name="hero-magnifying-glass" class="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            name="search[query]"
+            value={@search_query}
+            placeholder="Search players by name, team, or position..."
+            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </.form>
+      </div>
+      
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-3">
+        <select
+          phx-change="filter_sport"
+          name="sport"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@sport_filter == "all"}>All Sports</option>
+          <option value="cricket" selected={@sport_filter == "cricket"}>Cricket</option>
+          <option value="football" selected={@sport_filter == "football"}>Football</option>
+          <option value="basketball" selected={@sport_filter == "basketball"}>Basketball</option>
+          <option value="baseball" selected={@sport_filter == "baseball"}>Baseball</option>
+        </select>
+        
+        <select
+          phx-change="filter_team"
+          name="team"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@team_filter == "all"}>All Teams</option>
+          <!-- Dynamic team options would be loaded here -->
+        </select>
+        
+        <select
+          phx-change="filter_position"
+          name="position"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@position_filter == "all"}>All Positions</option>
+          <option value="batsman" selected={@position_filter == "batsman"}>Batsman</option>
+          <option value="bowler" selected={@position_filter == "bowler"}>Bowler</option>
+          <option value="all_rounder" selected={@position_filter == "all_rounder"}>All Rounder</option>
+          <option value="wicket_keeper" selected={@position_filter == "wicket_keeper"}>Wicket Keeper</option>
+        </select>
+        
+        <select
+          phx-change="filter_status"
+          name="status"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@status_filter == "all"}>All Status</option>
+          <option value="active" selected={@status_filter == "active"}>Active</option>
+          <option value="inactive" selected={@status_filter == "inactive"}>Inactive</option>
+          <option value="injured" selected={@status_filter == "injured"}>Injured</option>
+          <option value="retired" selected={@status_filter == "retired"}>Retired</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bulk Actions -->
+<div class="mt-4 bg-white shadow rounded-lg" :if={length(@selected_players) > 0}>
+  <div class="px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <span class="text-sm text-gray-700">
+          <%= length(@selected_players) %> player(s) selected
+        </span>
+      </div>
+      <div class="flex space-x-2">
+        <button
+          phx-click="bulk_action"
+          phx-value-action="activate"
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        >
+          <.icon name="hero-check" class="-ml-0.5 mr-2 h-4 w-4" />
+          Activate
+        </button>
+        <button
+          phx-click="bulk_action"
+          phx-value-action="deactivate"
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+        >
+          <.icon name="hero-pause" class="-ml-0.5 mr-2 h-4 w-4" />
+          Deactivate
+        </button>
+        <button
+          phx-click="bulk_action"
+          phx-value-action="update_prices"
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <.icon name="hero-currency-dollar" class="-ml-0.5 mr-2 h-4 w-4" />
+          Update Prices
+        </button>
+        <button
+          phx-click="bulk_action"
+          phx-value-action="export"
+          class="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <.icon name="hero-arrow-down-tray" class="-ml-0.5 mr-2 h-4 w-4" />
+          Export
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Players Table -->
+<div class="mt-4 bg-white shadow overflow-hidden sm:rounded-md">
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left">
+            <input
+              type="checkbox"
+              phx-click="select_all_players"
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+          </th>
+          <th
+            phx-click="sort"
+            phx-value-field="name"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+          >
+            Player
+            <%= if @sort_by == "name" do %>
+              <.icon name={if @sort_order == "asc", do: "hero-chevron-up", else: "hero-chevron-down"} class="inline h-4 w-4" />
+            <% end %>
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Team & Position
+          </th>
+          <th
+            phx-click="sort"
+            phx-value-field="price"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+          >
+            Price
+            <%= if @sort_by == "price" do %>
+              <.icon name={if @sort_order == "asc", do: "hero-chevron-up", else: "hero-chevron-down"} class="inline h-4 w-4" />
+            <% end %>
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Stats
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody id="players" phx-update="stream" class="bg-white divide-y divide-gray-200">
+        <tr :for={{dom_id, player} <- @streams.players} id={dom_id} class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <input
+              type="checkbox"
+              phx-click="select_player"
+              phx-value-id={player.id}
+              checked={player.id in @selected_players}
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center cursor-pointer" phx-click="show_player_details" phx-value-id={player.id}>
+              <div class="flex-shrink-0 h-10 w-10">
+                <%= if player.image_url do %>
+                  <img class="h-10 w-10 rounded-full" src={player.image_url} alt={player.name} />
+                <% else %>
+                  <div class="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+                    <span class="text-sm font-medium text-gray-700">
+                      <%= String.first(player.name) |> String.upcase() %>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
+              <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900"><%= player.name %></div>
+                <div class="text-sm text-gray-500">
+                  <%= player.sport |> String.capitalize() %>
+                  <%= if player.jersey_number do %>
+                    • #<%= player.jersey_number %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900"><%= player.team %></div>
+            <div class="text-sm text-gray-500">
+              <span class={"inline-flex items-center px-2 py-0.5 rounded text-xs font-medium #{Player.position_badge_class(player)}"}>
+                <%= String.capitalize(player.position) %>
+              </span>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm font-medium text-gray-900">$<%= player.price %></div>
+            <%= if player.price_change do %>
+              <div class={"text-xs #{if player.price_change > 0, do: "text-green-600", else: "text-red-600"}"}>
+                <%= if player.price_change > 0, do: "+", else: "" %><%= player.price_change %>%
+              </div>
+            <% end %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <div class="space-y-1">
+              <%= if player.total_points do %>
+                <div>Points: <%= player.total_points %></div>
+              <% end %>
+              <%= if player.matches_played do %>
+                <div>Matches: <%= player.matches_played %></div>
+              <% end %>
+              <%= if player.avg_points do %>
+                <div>Avg: <%= Float.round(player.avg_points, 1) %></div>
+              <% end %>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Player.status_badge_class(player)}"}>
+              <%= String.capitalize(player.status || "active") %>
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <div class="flex space-x-2">
+              <.link patch={~p"/admin/players/#{player}/edit"} class="text-indigo-600 hover:text-indigo-900">
+                <.icon name="hero-pencil" class="h-4 w-4" />
+              </.link>
+              <button
+                phx-click="sync_player_stats"
+                phx-value-id={player.id}
+                class="text-blue-600 hover:text-blue-900"
+                title="Sync Stats"
+              >
+                <.icon name="hero-arrow-path" class="h-4 w-4" />
+              </button>
+              <.link
+                phx-click={JS.push("delete", value: %{id: player.id}) |> hide("##{dom_id}")}
+                data-confirm="Are you sure you want to delete this player?"
+                class="text-red-600 hover:text-red-900"
+              >
+                <.icon name="hero-trash" class="h-4 w-4" />
+              </.link>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="mt-4 bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 rounded-lg shadow">
+  <div class="flex-1 flex justify-between sm:hidden">
+    <button
+      :if={@page > 1}
+      phx-click="paginate"
+      phx-value-page={@page - 1}
+      class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+    >
+      Previous
+    </button>
+    <button
+      :if={@page * @per_page < @total_count}
+      phx-click="paginate"
+      phx-value-page={@page + 1}
+      class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+    >
+      Next
+    </button>
+  </div>
+  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+        Showing
+        <span class="font-medium"><%= (@page - 1) * @per_page + 1 %></span>
+        to
+        <span class="font-medium"><%= min(@page * @per_page, @total_count) %></span>
+        of
+        <span class="font-medium"><%= @total_count %></span>
+        results
+      </p>
+    </div>
+    <div>
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        <button
+          :if={@page > 1}
+          phx-click="paginate"
+          phx-value-page={@page - 1}
+          class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+        >
+          <.icon name="hero-chevron-left" class="h-5 w-5" />
+        </button>
+        
+        <%= for page_num <- max(1, @page - 2)..min(@page + 2, ceil(@total_count / @per_page)) do %>
+          <button
+            phx-click="paginate"
+            phx-value-page={page_num}
+            class={[
+              "relative inline-flex items-center px-4 py-2 border text-sm font-medium",
+              if(page_num == @page,
+                do: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600",
+                else: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+              )
+            ]}
+          >
+            <%= page_num %>
+          </button>
+        <% end %>
+        
+        <button
+          :if={@page * @per_page < @total_count}
+          phx-click="paginate"
+          phx-value-page={@page + 1}
+          class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+        >
+          <.icon name="hero-chevron-right" class="h-5 w-5" />
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Player Details Drawer -->
+<div
+  :if={@show_player_drawer}
+  class="fixed inset-0 overflow-hidden z-50"
+  phx-click-away="close_player_drawer"
+>
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
+      <div class="w-screen max-w-md">
+        <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
+          <div class="px-4 py-6 bg-gray-50 sm:px-6">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-medium text-gray-900">Player Details</h2>
+              <button
+                phx-click="close_player_drawer"
+                class="rounded-md bg-gray-50 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <.icon name="hero-x-mark" class="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+          
+          <%= if @selected_player do %>
+            <div class="px-4 py-5 sm:px-6">
+              <div class="flex items-center mb-4">
+                <%= if @selected_player.image_url do %>
+                  <img class="h-16 w-16 rounded-full" src={@selected_player.image_url} alt={@selected_player.name} />
+                <% else %>
+                  <div class="h-16 w-16 rounded-full bg-gray-300 flex items-center justify-center">
+                    <span class="text-xl font-medium text-gray-700">
+                      <%= String.first(@selected_player.name) |> String.upcase() %>
+                    </span>
+                  </div>
+                <% end %>
+                <div class="ml-4">
+                  <h3 class="text-lg font-medium text-gray-900"><%= @selected_player.name %></h3>
+                  <p class="text-sm text-gray-500"><%= @selected_player.team %> • <%= String.capitalize(@selected_player.position) %></p>
+                </div>
+              </div>
+              
+              <dl class="space-y-4">
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Price</dt>
+                  <dd class="mt-1 text-sm text-gray-900">$<%= @selected_player.price %></dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Sport</dt>
+                  <dd class="mt-1 text-sm text-gray-900"><%= String.capitalize(@selected_player.sport) %></dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Jersey Number</dt>
+                  <dd class="mt-1 text-sm text-gray-900"><%= @selected_player.jersey_number || "N/A" %></dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Status</dt>
+                  <dd class="mt-1">
+                    <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Player.status_badge_class(@selected_player)}"}>
+                      <%= String.capitalize(@selected_player.status || "active") %>
+                    </span>
+                  </dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Total Points</dt>
+                  <dd class="mt-1 text-sm text-gray-900"><%= @selected_player.total_points || 0 %></dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Matches Played</dt>
+                  <dd class="mt-1 text-sm text-gray-900"><%= @selected_player.matches_played || 0 %></dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Average Points</dt>
+                  <dd class="mt-1 text-sm text-gray-900">
+                    <%= if @selected_player.avg_points, do: Float.round(@selected_player.avg_points, 1), else: "0.0" %>
+                  </dd>
+                </div>
+              </dl>
+              
+              <div class="mt-6 flex space-x-3">
+                <.link patch={~p"/admin/players/#{@selected_player}/edit"} class="flex-1">
+                  <.button class="w-full bg-indigo-600 hover:bg-indigo-700">
+                    <.icon name="hero-pencil" class="-ml-1 mr-2 h-4 w-4" />
+                    Edit Player
+                  </.button>
+                </.link>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<.modal :if={@live_action in [:new, :edit]} id="player-modal" show on_cancel={JS.patch(~p"/admin/players")}>
+  <.live_component
+    module={PicknwinAdminWeb.PlayerLive.FormComponent}
+    id={@player.id || :new}
+    title={@page_title}
+    action={@live_action}
+    player={@player}
+    patch={~p"/admin/players"}
+  />
+</.modal>

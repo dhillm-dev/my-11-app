@@ -1,0 +1,188 @@
+<.header>
+  Match Details
+  <:subtitle>This is a match record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/admin/matches/#{@match}/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit match</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<div class="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+      <%= @match.home_team %> vs <%= @match.away_team %>
+    </h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+      <%= @match.league %> • <%= String.capitalize(@match.sport) %>
+    </p>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">External ID</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-mono">
+          <%= @match.external_id %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Status</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Match.status_badge_class(@match)}"}>
+            <%= String.capitalize(@match.status) %>
+          </span>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Curation Status</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Match.curation_badge_class(@match)}"}>
+            <%= String.capitalize(@match.curation_status) %>
+          </span>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Kickoff Time</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= Calendar.strftime(@match.kickoff, "%B %d, %Y at %I:%M %p %Z") %>
+          <%= if Match.is_upcoming?(@match) do %>
+            <span class="ml-2 text-xs text-gray-500">
+              (in <%= Match.time_until_kickoff(@match) %>)
+            </span>
+          <% end %>
+        </dd>
+      </div>
+      <%= if @match.venue do %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Venue</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @match.venue %>
+          </dd>
+        </div>
+      <% end %>
+      <%= if @match.weather do %>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Weather</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @match.weather %>
+          </dd>
+        </div>
+      <% end %>
+      <%= if @match.home_score || @match.away_score do %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Score</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div class="flex items-center space-x-4">
+              <div class="text-center">
+                <div class="text-lg font-semibold"><%= @match.home_score || 0 %></div>
+                <div class="text-xs text-gray-500"><%= @match.home_team %></div>
+              </div>
+              <div class="text-gray-400">-</div>
+              <div class="text-center">
+                <div class="text-lg font-semibold"><%= @match.away_score || 0 %></div>
+                <div class="text-xs text-gray-500"><%= @match.away_team %></div>
+              </div>
+            </div>
+          </dd>
+        </div>
+      <% end %>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Created</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= Calendar.strftime(@match.inserted_at, "%B %d, %Y at %I:%M %p") %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Last Updated</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= Calendar.strftime(@match.updated_at, "%B %d, %Y at %I:%M %p") %>
+        </dd>
+      </div>
+      <%= if @match.curated_by_id do %>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Curated By</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            Admin ID: <%= @match.curated_by_id %>
+            <%= if @match.curated_at do %>
+              <br>
+              <span class="text-xs text-gray-500">
+                on <%= Calendar.strftime(@match.curated_at, "%B %d, %Y at %I:%M %p") %>
+              </span>
+            <% end %>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+</div>
+
+<!-- Curation Actions -->
+<div class="mt-8 bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 sm:p-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Curation Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <%= if @match.curation_status == "pending" do %>
+        <button
+          phx-click="curate"
+          phx-value-status="curated"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        >
+          <.icon name="hero-check" class="-ml-1 mr-2 h-4 w-4" />
+          Curate Match
+        </button>
+        <button
+          phx-click="curate"
+          phx-value-status="blacklisted"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+        >
+          <.icon name="hero-x-mark" class="-ml-1 mr-2 h-4 w-4" />
+          Blacklist Match
+        </button>
+      <% else %>
+        <button
+          phx-click="curate"
+          phx-value-status="pending"
+          class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <.icon name="hero-arrow-path" class="-ml-1 mr-2 h-4 w-4" />
+          Reset to Pending
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Actions -->
+<div class="mt-8 flex justify-between">
+  <.back navigate={~p"/admin/matches"}>Back to matches</.back>
+  
+  <div class="flex space-x-3">
+    <.link patch={~p"/admin/matches/#{@match}/edit"}>
+      <.button class="bg-indigo-600 hover:bg-indigo-700">
+        <.icon name="hero-pencil" class="-ml-1 mr-2 h-4 w-4" />
+        Edit
+      </.button>
+    </.link>
+    
+    <.link
+      phx-click={JS.push("delete", value: %{id: @match.id}) |> hide("#match-#{@match.id}")}
+      data-confirm="Are you sure you want to delete this match?"
+    >
+      <.button class="bg-red-600 hover:bg-red-700">
+        <.icon name="hero-trash" class="-ml-1 mr-2 h-4 w-4" />
+        Delete
+      </.button>
+    </.link>
+  </div>
+</div>
+
+<.modal :if={@live_action == :edit} id="match-modal" show on_cancel={JS.patch(~p"/admin/matches/#{@match}")}>
+  <.live_component
+    module={PicknwinAdminWeb.MatchLive.FormComponent}
+    id={@match.id}
+    title={@page_title}
+    action={@live_action}
+    match={@match}
+    patch={~p"/admin/matches/#{@match}"}
+  />
+</.modal>

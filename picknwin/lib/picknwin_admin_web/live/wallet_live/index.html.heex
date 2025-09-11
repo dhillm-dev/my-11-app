@@ -1,0 +1,554 @@
+<.header>
+  Wallet Management
+  <:subtitle>Manage user wallets, transactions, and financial operations</:subtitle>
+  <:actions>
+    <.link patch={~p"/admin/wallets/new"}>
+      <.button class="bg-indigo-600 hover:bg-indigo-700">
+        <.icon name="hero-plus" class="-ml-1 mr-2 h-4 w-4" />
+        Add Wallet
+      </.button>
+    </.link>
+  </:actions>
+</.header>
+
+<!-- Stats Cards -->
+<div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-wallet" class="h-6 w-6 text-gray-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Total Wallets</dt>
+            <dd class="text-lg font-medium text-gray-900"><%= @total_count %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-currency-dollar" class="h-6 w-6 text-green-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Total Balance</dt>
+            <dd class="text-lg font-medium text-gray-900">$0</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-arrow-trending-up" class="h-6 w-6 text-blue-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Today's Transactions</dt>
+            <dd class="text-lg font-medium text-gray-900">0</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white overflow-hidden shadow rounded-lg">
+    <div class="p-5">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <.icon name="hero-exclamation-triangle" class="h-6 w-6 text-red-400" />
+        </div>
+        <div class="ml-5 w-0 flex-1">
+          <dl>
+            <dt class="text-sm font-medium text-gray-500 truncate">Frozen Wallets</dt>
+            <dd class="text-lg font-medium text-gray-900">0</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Filters and Search -->
+<div class="mt-8 bg-white shadow rounded-lg">
+  <div class="px-6 py-4 border-b border-gray-200">
+    <div class="flex flex-col space-y-4">
+      <!-- Search -->
+      <div class="flex-1">
+        <.form for={%{}} as={:search} phx-change="search" class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <.icon name="hero-magnifying-glass" class="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            name="search[query]"
+            value={@search_query}
+            placeholder="Search by user email, wallet ID, or transaction reference..."
+            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </.form>
+      </div>
+      
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-3">
+        <select
+          phx-change="filter_status"
+          name="status"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@status_filter == "all"}>All Status</option>
+          <option value="active" selected={@status_filter == "active"}>Active</option>
+          <option value="frozen" selected={@status_filter == "frozen"}>Frozen</option>
+          <option value="suspended" selected={@status_filter == "suspended"}>Suspended</option>
+        </select>
+        
+        <select
+          phx-change="filter_transaction_type"
+          name="transaction_type"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@transaction_type_filter == "all"}>All Transactions</option>
+          <option value="deposit" selected={@transaction_type_filter == "deposit"}>Deposits</option>
+          <option value="withdrawal" selected={@transaction_type_filter == "withdrawal"}>Withdrawals</option>
+          <option value="contest_entry" selected={@transaction_type_filter == "contest_entry"}>Contest Entries</option>
+          <option value="winnings" selected={@transaction_type_filter == "winnings"}>Winnings</option>
+          <option value="refund" selected={@transaction_type_filter == "refund"}>Refunds</option>
+        </select>
+        
+        <select
+          phx-change="filter_date_range"
+          name="date_range"
+          class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="all" selected={@date_range_filter == "all"}>All Time</option>
+          <option value="today" selected={@date_range_filter == "today"}>Today</option>
+          <option value="week" selected={@date_range_filter == "week"}>This Week</option>
+          <option value="month" selected={@date_range_filter == "month"}>This Month</option>
+          <option value="quarter" selected={@date_range_filter == "quarter"}>This Quarter</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bulk Actions -->
+<div class="mt-4 bg-white shadow rounded-lg" :if={length(@selected_wallets) > 0}>
+  <div class="px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <span class="text-sm text-gray-700">
+          <%= length(@selected_wallets) %> wallet(s) selected
+        </span>
+      </div>
+      <div class="flex space-x-2">
+        <button
+          phx-click="bulk_action"
+          phx-value-action="freeze"
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+        >
+          <.icon name="hero-lock-closed" class="-ml-0.5 mr-2 h-4 w-4" />
+          Freeze
+        </button>
+        <button
+          phx-click="bulk_action"
+          phx-value-action="unfreeze"
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        >
+          <.icon name="hero-lock-open" class="-ml-0.5 mr-2 h-4 w-4" />
+          Unfreeze
+        </button>
+        <button
+          phx-click="bulk_action"
+          phx-value-action="export"
+          class="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <.icon name="hero-arrow-down-tray" class="-ml-0.5 mr-2 h-4 w-4" />
+          Export
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Wallets Table -->
+<div class="mt-4 bg-white shadow overflow-hidden sm:rounded-md">
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left">
+            <input
+              type="checkbox"
+              phx-click="select_all_wallets"
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+          </th>
+          <th
+            phx-click="sort"
+            phx-value-field="user_email"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+          >
+            User
+            <%= if @sort_by == "user_email" do %>
+              <.icon name={if @sort_order == "asc", do: "hero-chevron-up", else: "hero-chevron-down"} class="inline h-4 w-4" />
+            <% end %>
+          </th>
+          <th
+            phx-click="sort"
+            phx-value-field="balance"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+          >
+            Balance
+            <%= if @sort_by == "balance" do %>
+              <.icon name={if @sort_order == "asc", do: "hero-chevron-up", else: "hero-chevron-down"} class="inline h-4 w-4" />
+            <% end %>
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Recent Activity
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+          </th>
+          <th
+            phx-click="sort"
+            phx-value-field="updated_at"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+          >
+            Last Updated
+            <%= if @sort_by == "updated_at" do %>
+              <.icon name={if @sort_order == "asc", do: "hero-chevron-up", else: "hero-chevron-down"} class="inline h-4 w-4" />
+            <% end %>
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody id="wallets" phx-update="stream" class="bg-white divide-y divide-gray-200">
+        <tr :for={{dom_id, wallet} <- @streams.wallets} id={dom_id} class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <input
+              type="checkbox"
+              phx-click="select_wallet"
+              phx-value-id={wallet.id}
+              checked={wallet.id in @selected_wallets}
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center cursor-pointer" phx-click="show_wallet_details" phx-value-id={wallet.id}>
+              <div class="flex-shrink-0 h-10 w-10">
+                <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                  <.icon name="hero-wallet" class="h-5 w-5 text-indigo-600" />
+                </div>
+              </div>
+              <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900"><%= wallet.user_email || "N/A" %></div>
+                <div class="text-sm text-gray-500">ID: <%= wallet.id %></div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm font-medium text-gray-900">$<%= wallet.balance || "0.00" %></div>
+            <%= if wallet.bonus_balance && wallet.bonus_balance > 0 do %>
+              <div class="text-xs text-green-600">Bonus: $<%= wallet.bonus_balance %></div>
+            <% end %>
+            <%= if wallet.locked_balance && wallet.locked_balance > 0 do %>
+              <div class="text-xs text-yellow-600">Locked: $<%= wallet.locked_balance %></div>
+            <% end %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <%= if wallet.last_transaction_at do %>
+              <div><%= wallet.last_transaction_type || "N/A" %></div>
+              <div class="text-xs"><%= Calendar.strftime(wallet.last_transaction_at, "%m/%d %H:%M") %></div>
+            <% else %>
+              <div>No transactions</div>
+            <% end %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{wallet_status_badge_class(wallet)}"}>
+              <%= String.capitalize(wallet.status || "active") %>
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <%= if wallet.updated_at do %>
+              <%= Calendar.strftime(wallet.updated_at, "%m/%d/%Y %H:%M") %>
+            <% else %>
+              N/A
+            <% end %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <div class="flex space-x-2">
+              <.link patch={~p"/admin/wallets/#{wallet}/edit"} class="text-indigo-600 hover:text-indigo-900">
+                <.icon name="hero-pencil" class="h-4 w-4" />
+              </.link>
+              <%= if wallet.status == "frozen" do %>
+                <button
+                  phx-click="unfreeze_wallet"
+                  phx-value-id={wallet.id}
+                  class="text-green-600 hover:text-green-900"
+                  title="Unfreeze Wallet"
+                >
+                  <.icon name="hero-lock-open" class="h-4 w-4" />
+                </button>
+              <% else %>
+                <button
+                  phx-click="freeze_wallet"
+                  phx-value-id={wallet.id}
+                  class="text-red-600 hover:text-red-900"
+                  title="Freeze Wallet"
+                >
+                  <.icon name="hero-lock-closed" class="h-4 w-4" />
+                </button>
+              <% end %>
+              <.link
+                phx-click={JS.push("delete", value: %{id: wallet.id}) |> hide("##{dom_id}")}
+                data-confirm="Are you sure you want to delete this wallet?"
+                class="text-red-600 hover:text-red-900"
+              >
+                <.icon name="hero-trash" class="h-4 w-4" />
+              </.link>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="mt-4 bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 rounded-lg shadow">
+  <div class="flex-1 flex justify-between sm:hidden">
+    <button
+      :if={@page > 1}
+      phx-click="paginate"
+      phx-value-page={@page - 1}
+      class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+    >
+      Previous
+    </button>
+    <button
+      :if={@page * @per_page < @total_count}
+      phx-click="paginate"
+      phx-value-page={@page + 1}
+      class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+    >
+      Next
+    </button>
+  </div>
+  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+        Showing
+        <span class="font-medium"><%= (@page - 1) * @per_page + 1 %></span>
+        to
+        <span class="font-medium"><%= min(@page * @per_page, @total_count) %></span>
+        of
+        <span class="font-medium"><%= @total_count %></span>
+        results
+      </p>
+    </div>
+    <div>
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        <button
+          :if={@page > 1}
+          phx-click="paginate"
+          phx-value-page={@page - 1}
+          class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+        >
+          <.icon name="hero-chevron-left" class="h-5 w-5" />
+        </button>
+        
+        <%= for page_num <- max(1, @page - 2)..min(@page + 2, ceil(@total_count / @per_page)) do %>
+          <button
+            phx-click="paginate"
+            phx-value-page={page_num}
+            class={[
+              "relative inline-flex items-center px-4 py-2 border text-sm font-medium",
+              if(page_num == @page,
+                do: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600",
+                else: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+              )
+            ]}
+          >
+            <%= page_num %>
+          </button>
+        <% end %>
+        
+        <button
+          :if={@page * @per_page < @total_count}
+          phx-click="paginate"
+          phx-value-page={@page + 1}
+          class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+        >
+          <.icon name="hero-chevron-right" class="h-5 w-5" />
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Wallet Details Drawer -->
+<div
+  :if={@show_wallet_drawer}
+  class="fixed inset-0 overflow-hidden z-50"
+  phx-click-away="close_wallet_drawer"
+>
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
+      <div class="w-screen max-w-md">
+        <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
+          <div class="px-4 py-6 bg-gray-50 sm:px-6">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-medium text-gray-900">Wallet Details</h2>
+              <button
+                phx-click="close_wallet_drawer"
+                class="rounded-md bg-gray-50 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <.icon name="hero-x-mark" class="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+          
+          <%= if @selected_wallet do %>
+            <div class="px-4 py-5 sm:px-6">
+              <div class="mb-6">
+                <h3 class="text-lg font-medium text-gray-900">Wallet Information</h3>
+                <dl class="mt-4 space-y-4">
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">User Email</dt>
+                    <dd class="mt-1 text-sm text-gray-900"><%= @selected_wallet.user_email || "N/A" %></dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Balance</dt>
+                    <dd class="mt-1 text-sm text-gray-900">$<%= @selected_wallet.balance || "0.00" %></dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Bonus Balance</dt>
+                    <dd class="mt-1 text-sm text-gray-900">$<%= @selected_wallet.bonus_balance || "0.00" %></dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Locked Balance</dt>
+                    <dd class="mt-1 text-sm text-gray-900">$<%= @selected_wallet.locked_balance || "0.00" %></dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Status</dt>
+                    <dd class="mt-1">
+                      <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{wallet_status_badge_class(@selected_wallet)}"}>
+                        <%= String.capitalize(@selected_wallet.status || "active") %>
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              
+              <!-- Quick Actions -->
+              <div class="mb-6">
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Quick Actions</h4>
+                <div class="space-y-3">
+                  <div class="flex space-x-2">
+                    <input
+                      type="number"
+                      id="add-funds-amount"
+                      placeholder="Amount"
+                      step="0.01"
+                      class="flex-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                    <button
+                      phx-click="add_funds"
+                      phx-value-id={@selected_wallet.id}
+                      phx-value-amount={JS.call("getValue", to: "#add-funds-amount")}
+                      class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                    >
+                      Add Funds
+                    </button>
+                  </div>
+                  
+                  <div class="flex space-x-2">
+                    <input
+                      type="number"
+                      id="deduct-funds-amount"
+                      placeholder="Amount"
+                      step="0.01"
+                      class="flex-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                    <button
+                      phx-click="deduct_funds"
+                      phx-value-id={@selected_wallet.id}
+                      phx-value-amount={JS.call("getValue", to: "#deduct-funds-amount")}
+                      class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
+                    >
+                      Deduct Funds
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recent Transactions -->
+              <div>
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Recent Transactions</h4>
+                <%= if @selected_wallet.transactions && length(@selected_wallet.transactions) > 0 do %>
+                  <div class="space-y-3">
+                    <%= for transaction <- Enum.take(@selected_wallet.transactions, 5) do %>
+                      <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <div class="text-sm font-medium text-gray-900">
+                            <%= String.capitalize(transaction.type) %>
+                          </div>
+                          <div class="text-xs text-gray-500">
+                            <%= Calendar.strftime(transaction.inserted_at, "%m/%d/%Y %H:%M") %>
+                          </div>
+                        </div>
+                        <div class={"text-sm font-medium #{if transaction.amount > 0, do: "text-green-600", else: "text-red-600"}"}>
+                          <%= if transaction.amount > 0, do: "+", else: "" %>$<%= transaction.amount %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <p class="text-sm text-gray-500">No transactions found</p>
+                <% end %>
+              </div>
+              
+              <div class="mt-6">
+                <.link patch={~p"/admin/wallets/#{@selected_wallet}/edit"} class="w-full">
+                  <.button class="w-full bg-indigo-600 hover:bg-indigo-700">
+                    <.icon name="hero-pencil" class="-ml-1 mr-2 h-4 w-4" />
+                    Edit Wallet
+                  </.button>
+                </.link>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<.modal :if={@live_action in [:new, :edit]} id="wallet-modal" show on_cancel={JS.patch(~p"/admin/wallets")}>
+  <.live_component
+    module={PicknwinAdminWeb.WalletLive.FormComponent}
+    id={@wallet.id || :new}
+    title={@page_title}
+    action={@live_action}
+    wallet={@wallet}
+    patch={~p"/admin/wallets"}
+  />
+</.modal>
+
+<script>
+  window.getValue = function(selector) {
+    return document.querySelector(selector).value;
+  }
+</script>

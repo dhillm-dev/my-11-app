@@ -1,0 +1,150 @@
+<div>
+  <.header>
+    <%= @title %>
+    <:subtitle>Use this form to manage match records in your database.</:subtitle>
+  </.header>
+
+  <.simple_form
+    for={@form}
+    id="match-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <.input field={@form[:external_id]} type="text" label="External ID" required />
+      
+      <.input
+        field={@form[:sport]}
+        type="select"
+        label="Sport"
+        prompt="Choose a sport"
+        options={[
+          {"Football", "football"},
+          {"Cricket", "cricket"},
+          {"Basketball", "basketball"},
+          {"Baseball", "baseball"},
+          {"Hockey", "hockey"},
+          {"Soccer", "soccer"}
+        ]}
+        required
+      />
+    </div>
+
+    <.input field={@form[:league]} type="text" label="League" required />
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <.input field={@form[:home_team]} type="text" label="Home Team" required />
+      <.input field={@form[:away_team]} type="text" label="Away Team" required />
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <.input field={@form[:home_score]} type="number" label="Home Score" min="0" />
+      <.input field={@form[:away_score]} type="number" label="Away Score" min="0" />
+    </div>
+
+    <.input
+      field={@form[:kickoff]}
+      type="datetime-local"
+      label="Kickoff Time"
+      required
+    />
+
+    <.input field={@form[:venue]} type="text" label="Venue" />
+    <.input field={@form[:weather]} type="text" label="Weather Conditions" />
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <.input
+        field={@form[:status]}
+        type="select"
+        label="Status"
+        prompt="Choose status"
+        options={[
+          {"Upcoming", "upcoming"},
+          {"Live", "live"},
+          {"Finished", "finished"},
+          {"Cancelled", "cancelled"},
+          {"Postponed", "postponed"}
+        ]}
+        required
+      />
+
+      <.input
+        field={@form[:curation_status]}
+        type="select"
+        label="Curation Status"
+        prompt="Choose curation status"
+        options={[
+          {"Pending", "pending"},
+          {"Curated", "curated"},
+          {"Blacklisted", "blacklisted"}
+        ]}
+        required
+      />
+    </div>
+
+    <!-- Additional Match Details -->
+    <div class="border-t border-gray-200 pt-6">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Additional Details</h3>
+      
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <.input
+          field={@form[:total_points]}
+          type="number"
+          label="Total Points"
+          min="0"
+          step="0.01"
+        />
+        
+        <.input
+          field={@form[:max_points]}
+          type="number"
+          label="Max Points"
+          min="0"
+          step="0.01"
+        />
+        
+        <.input
+          field={@form[:avg_points]}
+          type="number"
+          label="Average Points"
+          min="0"
+          step="0.01"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 mt-4">
+        <.input
+          field={@form[:player_count]}
+          type="number"
+          label="Player Count"
+          min="0"
+        />
+        
+        <.input
+          field={@form[:contest_count]}
+          type="number"
+          label="Contest Count"
+          min="0"
+        />
+      </div>
+
+      <.input field={@form[:metadata]} type="textarea" label="Metadata (JSON)" rows="3" />
+    </div>
+
+    <!-- Form Actions -->
+    <:actions>
+      <.button phx-disable-with="Saving..." class="w-full sm:w-auto">
+        Save Match
+      </.button>
+      
+      <.button
+        type="button"
+        phx-click={JS.patch(@patch)}
+        class="w-full sm:w-auto bg-gray-600 hover:bg-gray-700 ml-0 sm:ml-3 mt-3 sm:mt-0"
+      >
+        Cancel
+      </.button>
+    </:actions>
+  </.simple_form>
+</div>

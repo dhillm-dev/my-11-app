@@ -1,0 +1,35 @@
+{
+  "name": "picknwin_admin",
+  "version": "1.0.0",
+  "description": "PicknWin Admin Panel Assets",
+  "main": "js/app.js",
+  "scripts": {
+    "deploy": "NODE_ENV=production tailwind --minify && esbuild js/app.js --bundle --minify --target=es2017 --outdir=../priv/static/assets",
+    "watch": "concurrently \"tailwind --watch\" \"esbuild js/app.js --bundle --watch --outdir=../priv/static/assets\""
+  },
+  "dependencies": {
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.17.11",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/picknwin_admin.git"
+  },
+  "keywords": [
+    "phoenix",
+    "liveview",
+    "admin",
+    "tailwind"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

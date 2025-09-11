@@ -1,0 +1,167 @@
+<div>
+  <.header>
+    <%= @title %>
+    <:subtitle>Use this form to manage contest records in your database.</:subtitle>
+  </.header>
+
+  <.simple_form
+    for={@form}
+    id="contest-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <!-- Basic Information -->
+      <div class="sm:col-span-2">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Basic Information</h3>
+      </div>
+      
+      <.input field={@form[:name]} type="text" label="Contest Name" required />
+      
+      <.input field={@form[:type]} type="select" label="Contest Type" options={[
+        {"Head to Head", "head_to_head"},
+        {"League", "league"},
+        {"Tournament", "tournament"},
+        {"Multiplier", "multiplier"},
+        {"Guaranteed Prize Pool", "gpp"}
+      ]} required />
+      
+      <div class="sm:col-span-2">
+        <.input field={@form[:description]} type="textarea" label="Description" rows="3" />
+      </div>
+      
+      <.input field={@form[:match_id]} type="select" label="Match" options={@match_options} required />
+      
+      <.input field={@form[:status]} type="select" label="Status" options={[
+        {"Draft", "draft"},
+        {"Published", "published"},
+        {"Live", "live"},
+        {"Completed", "completed"},
+        {"Cancelled", "cancelled"}
+      ]} required />
+      
+      <!-- Entry Settings -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Entry Settings</h3>
+      </div>
+      
+      <.input field={@form[:entry_fee]} type="number" label="Entry Fee ($)" step="0.01" min="0" />
+      
+      <.input field={@form[:max_entries]} type="number" label="Maximum Entries" min="2" required />
+      
+      <.input field={@form[:max_entries_per_user]} type="number" label="Max Entries Per User" min="1" />
+      
+      <div class="flex items-center">
+        <.input field={@form[:is_private]} type="checkbox" label="Private Contest" />
+      </div>
+      
+      <!-- Prize Settings -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Prize Settings</h3>
+      </div>
+      
+      <.input field={@form[:total_prize_pool]} type="number" label="Total Prize Pool ($)" step="0.01" min="0" required />
+      
+      <.input field={@form[:first_prize]} type="number" label="First Prize ($)" step="0.01" min="0" />
+      
+      <.input field={@form[:winner_percentage]} type="number" label="Winner Percentage (%)" step="0.1" min="0" max="100" />
+      
+      <div class="flex items-center">
+        <.input field={@form[:is_guaranteed]} type="checkbox" label="Guaranteed Prize Pool" />
+      </div>
+      
+      <!-- Registration Timeline -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Registration Timeline</h3>
+      </div>
+      
+      <.input field={@form[:registration_start]} type="datetime-local" label="Registration Start" required />
+      
+      <.input field={@form[:registration_end]} type="datetime-local" label="Registration End" required />
+      
+      <!-- Team Configuration -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Team Configuration</h3>
+      </div>
+      
+      <.input field={@form[:min_team_size]} type="number" label="Minimum Team Size" min="1" max="15" required />
+      
+      <.input field={@form[:max_team_size]} type="number" label="Maximum Team Size" min="1" max="15" required />
+      
+      <.input field={@form[:salary_cap]} type="number" label="Salary Cap ($)" step="0.01" min="0" />
+      
+      <.input field={@form[:captain_multiplier]} type="number" label="Captain Multiplier" step="0.1" min="1" value="2.0" required />
+      
+      <.input field={@form[:vice_captain_multiplier]} type="number" label="Vice Captain Multiplier" step="0.1" min="1" value="1.5" />
+      
+      <!-- Scoring Settings -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Scoring Settings</h3>
+      </div>
+      
+      <div class="sm:col-span-2">
+        <.input field={@form[:scoring_system]} type="textarea" label="Scoring System (JSON)" rows="4" 
+          placeholder='{"run": 1, "four": 1, "six": 2, "wicket": 25, "catch": 8, "stumping": 12, "run_out": 6}' />
+      </div>
+      
+      <!-- Advanced Settings -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Advanced Settings</h3>
+      </div>
+      
+      <div class="flex items-center">
+        <.input field={@form[:allow_late_entry]} type="checkbox" label="Allow Late Entry" />
+      </div>
+      
+      <div class="flex items-center">
+        <.input field={@form[:auto_create_teams]} type="checkbox" label="Auto Create Teams" />
+      </div>
+      
+      <.input field={@form[:late_entry_deadline]} type="datetime-local" label="Late Entry Deadline" />
+      
+      <.input field={@form[:created_by_id]} type="number" label="Created By (Admin ID)" />
+      
+      <!-- Rules and Terms -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Rules and Terms</h3>
+      </div>
+      
+      <div class="sm:col-span-2">
+        <.input field={@form[:rules]} type="textarea" label="Contest Rules" rows="6" 
+          placeholder="Enter contest-specific rules and regulations..." />
+      </div>
+      
+      <div class="sm:col-span-2">
+        <.input field={@form[:terms_and_conditions]} type="textarea" label="Terms and Conditions" rows="4" 
+          placeholder="Enter terms and conditions for this contest..." />
+      </div>
+      
+      <!-- Metadata -->
+      <div class="sm:col-span-2 mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Additional Metadata</h3>
+      </div>
+      
+      <div class="sm:col-span-2">
+        <.input field={@form[:metadata]} type="textarea" label="Metadata (JSON)" rows="3" 
+          placeholder='{"featured": true, "difficulty": "beginner", "tags": ["popular", "weekend"]}' />
+      </div>
+    </div>
+
+    <:actions>
+      <.button phx-disable-with="Saving..." class="bg-indigo-600 hover:bg-indigo-700">
+        <.icon name="hero-check" class="-ml-1 mr-2 h-4 w-4" />
+        Save Contest
+      </.button>
+      
+      <.button
+        type="button"
+        phx-click="cancel"
+        phx-target={@myself}
+        class="ml-3 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+      >
+        Cancel
+      </.button>
+    </:actions>
+  </.simple_form>
+</div>

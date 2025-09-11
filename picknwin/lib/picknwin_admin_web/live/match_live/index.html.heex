@@ -1,0 +1,594 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <!-- Header -->
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-2xl font-semibold leading-6 text-gray-900">Matches</h1>
+      <p class="mt-2 text-sm text-gray-700">
+        Manage and curate matches for contests.
+      </p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <.link
+        patch={~p"/admin/matches/new"}
+        class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Add Match
+      </.link>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <.icon name="hero-calendar" class="h-6 w-6 text-gray-400" />
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">Total Matches</dt>
+              <dd class="text-lg font-medium text-gray-900"><%= @stats[:total_matches] || 0 %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <.icon name="hero-check-circle" class="h-6 w-6 text-green-400" />
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">Curated</dt>
+              <dd class="text-lg font-medium text-gray-900"><%= @stats[:curated_matches] || 0 %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <.icon name="hero-clock" class="h-6 w-6 text-yellow-400" />
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">Pending</dt>
+              <dd class="text-lg font-medium text-gray-900"><%= @stats[:pending_matches] || 0 %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <.icon name="hero-play" class="h-6 w-6 text-blue-400" />
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">Live</dt>
+              <dd class="text-lg font-medium text-gray-900"><%= @stats[:live_matches] || 0 %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="mt-8 bg-white shadow rounded-lg">
+    <div class="px-4 py-5 sm:p-6">
+      <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Filters</h3>
+      <.form for={%{}} phx-change="filter" phx-submit="filter">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Search</label>
+            <input
+              type="text"
+              name="filters[search]"
+              value={@filters.search}
+              placeholder="Team names, league..."
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Sport</label>
+            <select
+              name="filters[sport]"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            >
+              <option value="">All Sports</option>
+              <option value="cricket" selected={@filters.sport == "cricket"}>Cricket</option>
+              <option value="football" selected={@filters.sport == "football"}>Football</option>
+              <option value="basketball" selected={@filters.sport == "basketball"}>Basketball</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Status</label>
+            <select
+              name="filters[status]"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            >
+              <option value="">All Status</option>
+              <option value="upcoming" selected={@filters.status == "upcoming"}>Upcoming</option>
+              <option value="live" selected={@filters.status == "live"}>Live</option>
+              <option value="finished" selected={@filters.status == "finished"}>Finished</option>
+              <option value="cancelled" selected={@filters.status == "cancelled"}>Cancelled</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Curation</label>
+            <select
+              name="filters[curation_status]"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            >
+              <option value="">All Curation</option>
+              <option value="pending" selected={@filters.curation_status == "pending"}>Pending</option>
+              <option value="curated" selected={@filters.curation_status == "curated"}>Curated</option>
+              <option value="blacklisted" selected={@filters.curation_status == "blacklisted"}>Blacklisted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-4 flex justify-end space-x-3">
+          <button
+            type="button"
+            phx-click="clear_filters"
+            class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Clear Filters
+          </button>
+        </div>
+      </.form>
+    </div>
+  </div>
+
+  <!-- Bulk Actions -->
+  <div class="mt-6 flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <%= if MapSet.size(@selected_matches) > 0 do %>
+        <span class="text-sm text-gray-700">
+          <%= MapSet.size(@selected_matches) %> selected
+        </span>
+        <div class="flex space-x-2">
+          <button
+            phx-click="bulk_action"
+            phx-value-action="curate"
+            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+          >
+            Curate
+          </button>
+          <button
+            phx-click="bulk_action"
+            phx-value-action="blacklist"
+            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
+            Blacklist
+          </button>
+          <button
+            phx-click="bulk_action"
+            phx-value-action="activate"
+            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Activate
+          </button>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex items-center space-x-2">
+      <button
+        phx-click="select_all"
+        class="text-sm text-indigo-600 hover:text-indigo-900"
+      >
+        Select All
+      </button>
+      <span class="text-gray-300">|</span>
+      <button
+        phx-click="deselect_all"
+        class="text-sm text-indigo-600 hover:text-indigo-900"
+      >
+        Deselect All
+      </button>
+    </div>
+  </div>
+
+  <!-- Matches Table -->
+  <div class="mt-6 bg-white shadow overflow-hidden sm:rounded-md">
+    <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Matches (<%= @total_count %>)
+        </h3>
+        <div class="flex items-center space-x-2">
+          <label class="text-sm text-gray-700">Sort by:</label>
+          <select
+            phx-change="sort"
+            name="sort_by"
+            class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          >
+            <option value="kickoff_desc" selected={@sort_by == "kickoff_desc"}>Kickoff (Latest)</option>
+            <option value="kickoff_asc" selected={@sort_by == "kickoff_asc"}>Kickoff (Earliest)</option>
+            <option value="created_desc" selected={@sort_by == "created_desc"}>Created (Latest)</option>
+            <option value="status" selected={@sort_by == "status"}>Status</option>
+            <option value="curation_status" selected={@sort_by == "curation_status"}>Curation</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <ul class="divide-y divide-gray-200">
+      <%= for match <- @matches do %>
+        <li class="px-4 py-4 hover:bg-gray-50">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                phx-click="select_match"
+                phx-value-match_id={match.id}
+                checked={MapSet.member?(@selected_matches, match.id)}
+                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <div class="ml-4 flex-1">
+                <div class="flex items-center">
+                  <p class="text-sm font-medium text-gray-900">
+                    <%= match.home_team %> vs <%= match.away_team %>
+                  </p>
+                  <span class={"ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Match.status_badge_class(match)}"}>
+                    <%= String.capitalize(match.status) %>
+                  </span>
+                  <span class={"ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Match.curation_badge_class(match)}"}>
+                    <%= String.capitalize(match.curation_status) %>
+                  </span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-500">
+                  <.icon name="hero-calendar" class="flex-shrink-0 mr-1.5 h-4 w-4" />
+                  <%= Calendar.strftime(match.kickoff, "%b %d, %Y at %I:%M %p") %>
+                  <span class="mx-2">•</span>
+                  <.icon name="hero-map-pin" class="flex-shrink-0 mr-1.5 h-4 w-4" />
+                  <%= match.league %>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <!-- Quick Curation Actions -->
+              <%= if match.curation_status == "pending" do %>
+                <button
+                  phx-click="curate_match"
+                  phx-value-match_id={match.id}
+                  phx-value-status="curated"
+                  class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700"
+                >
+                  Curate
+                </button>
+                <button
+                  phx-click="curate_match"
+                  phx-value-match_id={match.id}
+                  phx-value-status="blacklisted"
+                  class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700"
+                >
+                  Blacklist
+                </button>
+              <% end %>
+
+              <button
+                phx-click="show_details"
+                phx-value-match_id={match.id}
+                class="inline-flex items-center px-2 py-1 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Details
+              </button>
+
+              <.link
+                patch={~p"/admin/matches/#{match.id}/edit"}
+                class="inline-flex items-center px-2 py-1 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Edit
+              </.link>
+
+              <button
+                phx-click="delete_match"
+                phx-value-match_id={match.id}
+                data-confirm="Are you sure?"
+                class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= if @total_count == 0 do %>
+      <div class="text-center py-12">
+        <.icon name="hero-calendar" class="mx-auto h-12 w-12 text-gray-400" />
+        <h3 class="mt-2 text-sm font-medium text-gray-900">No matches</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Get started by creating a new match.
+        </p>
+        <div class="mt-6">
+          <.link
+            patch={~p"/admin/matches/new"}
+            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <.icon name="hero-plus" class="-ml-1 mr-2 h-5 w-5" />
+            New Match
+          </.link>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Pagination -->
+  <%= if @total_count > 0 do %>
+    <div class="mt-6 flex items-center justify-between">
+      <div class="flex-1 flex justify-between sm:hidden">
+        <%= if @page > 1 do %>
+          <button
+            phx-click="paginate"
+            phx-value-page={@page - 1}
+            class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          >
+            Previous
+          </button>
+        <% end %>
+        <%= if @page < @total_pages do %>
+          <button
+            phx-click="paginate"
+            phx-value-page={@page + 1}
+            class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          >
+            Next
+          </button>
+        <% end %>
+      </div>
+      <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+        <div>
+          <p class="text-sm text-gray-700">
+            Showing
+            <span class="font-medium"><%= (@page - 1) * @per_page + 1 %></span>
+            to
+            <span class="font-medium"><%= min(@page * @per_page, @total_count) %></span>
+            of
+            <span class="font-medium"><%= @total_count %></span>
+            results
+          </p>
+        </div>
+        <div>
+          <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+            <%= if @page > 1 do %>
+              <button
+                phx-click="paginate"
+                phx-value-page={@page - 1}
+                class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              >
+                <span class="sr-only">Previous</span>
+                <.icon name="hero-chevron-left" class="h-5 w-5" />
+              </button>
+            <% end %>
+
+            <%= for page_num <- max(1, @page - 2)..min(@total_pages, @page + 2) do %>
+              <button
+                phx-click="paginate"
+                phx-value-page={page_num}
+                class={[
+                  "relative inline-flex items-center px-4 py-2 border text-sm font-medium",
+                  if(page_num == @page, do: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", else: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50")
+                ]}
+              >
+                <%= page_num %>
+              </button>
+            <% end %>
+
+            <%= if @page < @total_pages do %>
+              <button
+                phx-click="paginate"
+                phx-value-page={@page + 1}
+                class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              >
+                <span class="sr-only">Next</span>
+                <.icon name="hero-chevron-right" class="h-5 w-5" />
+              </button>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- Match Details Drawer -->
+<%= if @show_details do %>
+  <div class="fixed inset-0 overflow-hidden z-50" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" phx-click="hide_details"></div>
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+        <div class="pointer-events-auto relative w-screen max-w-md">
+          <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+            <div class="px-4 sm:px-6">
+              <div class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+                  Match Details
+                </h2>
+                <div class="ml-3 flex h-7 items-center">
+                  <button
+                    type="button"
+                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    phx-click="hide_details"
+                  >
+                    <span class="sr-only">Close panel</span>
+                    <.icon name="hero-x-mark" class="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="relative mt-6 flex-1 px-4 sm:px-6">
+              <%= if @selected_match do %>
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-lg font-medium text-gray-900">
+                      <%= @selected_match.home_team %> vs <%= @selected_match.away_team %>
+                    </h3>
+                    <p class="mt-1 text-sm text-gray-500">
+                      <%= @selected_match.league %> • <%= @selected_match.sport %>
+                    </p>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">Status</dt>
+                      <dd class="mt-1">
+                        <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Match.status_badge_class(@selected_match)}"}>
+                          <%= String.capitalize(@selected_match.status) %>
+                        </span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">Curation</dt>
+                      <dd class="mt-1">
+                        <span class={"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium #{Match.curation_badge_class(@selected_match)}"}>
+                          <%= String.capitalize(@selected_match.curation_status) %>
+                        </span>
+                      </dd>
+                    </div>
+                  </div>
+
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Kickoff Time</dt>
+                    <dd class="mt-1 text-sm text-gray-900">
+                      <%= Calendar.strftime(@selected_match.kickoff, "%B %d, %Y at %I:%M %p %Z") %>
+                    </dd>
+                  </div>
+
+                  <%= if @selected_match.venue do %>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">Venue</dt>
+                      <dd class="mt-1 text-sm text-gray-900"><%= @selected_match.venue %></dd>
+                    </div>
+                  <% end %>
+
+                  <%= if @selected_match.weather do %>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">Weather</dt>
+                      <dd class="mt-1 text-sm text-gray-900"><%= @selected_match.weather %></dd>
+                    </div>
+                  <% end %>
+
+                  <%= if @selected_match.home_score || @selected_match.away_score do %>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">Score</dt>
+                      <dd class="mt-1 text-sm text-gray-900">
+                        <%= @selected_match.home_team %>: <%= @selected_match.home_score || 0 %> -
+                        <%= @selected_match.away_team %>: <%= @selected_match.away_score || 0 %>
+                      </dd>
+                    </div>
+                  <% end %>
+
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">External ID</dt>
+                    <dd class="mt-1 text-sm text-gray-900 font-mono"><%= @selected_match.external_id %></dd>
+                  </div>
+
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Created</dt>
+                    <dd class="mt-1 text-sm text-gray-900">
+                      <%= Calendar.strftime(@selected_match.inserted_at, "%B %d, %Y at %I:%M %p") %>
+                    </dd>
+                  </div>
+
+                  <%= if @selected_match.curated_by_id do %>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">Curated By</dt>
+                      <dd class="mt-1 text-sm text-gray-900">
+                        Admin ID: <%= @selected_match.curated_by_id %>
+                        <%= if @selected_match.curated_at do %>
+                          <br>
+                          <span class="text-xs text-gray-500">
+                            on <%= Calendar.strftime(@selected_match.curated_at, "%B %d, %Y at %I:%M %p") %>
+                          </span>
+                        <% end %>
+                      </dd>
+                    </div>
+                  <% end %>
+
+                  <!-- Curation Actions -->
+                  <div class="border-t border-gray-200 pt-6">
+                    <h4 class="text-sm font-medium text-gray-900 mb-4">Curation Actions</h4>
+                    <div class="space-y-3">
+                      <%= if @selected_match.curation_status == "pending" do %>
+                        <button
+                          phx-click="curate_match"
+                          phx-value-match_id={@selected_match.id}
+                          phx-value-status="curated"
+                          class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        >
+                          <.icon name="hero-check" class="-ml-1 mr-2 h-4 w-4" />
+                          Curate Match
+                        </button>
+                        <button
+                          phx-click="curate_match"
+                          phx-value-match_id={@selected_match.id}
+                          phx-value-status="blacklisted"
+                          class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                        >
+                          <.icon name="hero-x-mark" class="-ml-1 mr-2 h-4 w-4" />
+                          Blacklist Match
+                        </button>
+                      <% else %>
+                        <button
+                          phx-click="curate_match"
+                          phx-value-match_id={@selected_match.id}
+                          phx-value-status="pending"
+                          class="w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                          <.icon name="hero-arrow-path" class="-ml-1 mr-2 h-4 w-4" />
+                          Reset to Pending
+                        </button>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <!-- Edit Actions -->
+                  <div class="border-t border-gray-200 pt-6">
+                    <div class="flex space-x-3">
+                      <.link
+                        patch={~p"/admin/matches/#{@selected_match.id}/edit"}
+                        class="flex-1 inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        <.icon name="hero-pencil" class="-ml-1 mr-2 h-4 w-4" />
+                        Edit
+                      </.link>
+                      <button
+                        phx-click="delete_match"
+                        phx-value-match_id={@selected_match.id}
+                        data-confirm="Are you sure you want to delete this match?"
+                        class="flex-1 inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      >
+                        <.icon name="hero-trash" class="-ml-1 mr-2 h-4 w-4" />
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
