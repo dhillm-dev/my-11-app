@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import { buttonVariants, type Variant, type Size } from "./button.ts";
+	import { buttonVariants, type Variant, type Size } from "./button.js";
 
 	type $$Props = {
 		variant?: Variant;

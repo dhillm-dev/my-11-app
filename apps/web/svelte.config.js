@@ -11,9 +11,9 @@ const getAdapter = () => {
 		return adapterStatic({
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
+			fallback: 'index.html',
 			precompress: false,
-			strict: true
+			strict: false
 		});
 	}
 	return adapterAuto();

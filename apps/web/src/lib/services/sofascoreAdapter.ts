@@ -406,12 +406,13 @@ export class SofaScoreAdapter {
 		return 'midfielder';
 	}
 
-	private mapPositionCode(role: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'): string {
+	private mapPositionCode(role: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'): 'GK' | 'DEF' | 'MID' | 'FWD' {
 		switch (role) {
 			case 'goalkeeper': return 'GK';
 			case 'defender': return 'DEF';
 			case 'midfielder': return 'MID';
 			case 'forward': return 'FWD';
+			default: return 'MID'; // fallback
 		}
 	}
 

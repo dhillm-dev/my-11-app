@@ -113,7 +113,7 @@
 				<div class="space-y-4">
 					<div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
 						<div class="flex items-center space-x-3">
-							<img src={match.homeTeamLogo} alt={match.home} class="w-8 h-8 rounded" on:error={(e) => e.target.src = '/logos/default.png'} />
+							<img src={match.homeTeamLogo} alt={match.home} class="w-8 h-8 rounded" on:error={(e) => (e.target as HTMLImageElement).src = '/logos/default.png'} />
 							<span class="font-medium text-gray-900">{match.home}</span>
 						</div>
 						{#if match.odds}
@@ -125,7 +125,7 @@
 					
 					<div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
 						<div class="flex items-center space-x-3">
-							<img src={match.awayTeamLogo} alt={match.away} class="w-8 h-8 rounded" on:error={(e) => e.target.src = '/logos/default.png'} />
+							<img src={match.awayTeamLogo} alt={match.away} class="w-8 h-8 rounded" on:error={(e) => (e.target as HTMLImageElement).src = '/logos/default.png'} />
 							<span class="font-medium text-gray-900">{match.away}</span>
 						</div>
 						{#if match.odds}

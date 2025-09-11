@@ -390,14 +390,14 @@
 									<div class="flex items-center space-x-3">
 										<div class="flex-shrink-0">
 											<div class="flex items-center space-x-2">
-												<img src={match.homeTeamLogo} alt={match.home} class="w-6 h-6 rounded" on:error={(e) => e.target.src = '/logos/default.png'} />
+												<img src={match.homeTeamLogo} alt={match.home} class="w-6 h-6 rounded" on:error={(e) => (e.target as HTMLImageElement).src = '/logos/default.png'} />
 												<span class="text-sm font-medium text-gray-900">{match.home}</span>
 											</div>
 										</div>
 										<div class="text-sm text-gray-500">vs</div>
 										<div class="flex-shrink-0">
 											<div class="flex items-center space-x-2">
-												<img src={match.awayTeamLogo} alt={match.away} class="w-6 h-6 rounded" on:error={(e) => e.target.src = '/logos/default.png'} />
+												<img src={match.awayTeamLogo} alt={match.away} class="w-6 h-6 rounded" on:error={(e) => (e.target as HTMLImageElement).src = '/logos/default.png'} />
 												<span class="text-sm font-medium text-gray-900">{match.away}</span>
 											</div>
 										</div>
@@ -411,12 +411,10 @@
 								</td>
 								<td class="px-4 py-4">
 									<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
-										{match.status === 'live' ? 'bg-red-100 text-red-800' : 
-										  match.status === 'finished' ? 'bg-gray-100 text-gray-800' : 
+										{match.status === 'completed' ? 'bg-gray-100 text-gray-800' : 
 										  'bg-green-100 text-green-800'}">
-										{match.status === 'live' ? '🔴 Live' : 
-										 match.status === 'finished' ? '✅ Finished' : 
-										 '⏰ Scheduled'}
+										{match.status === 'completed' ? '✅ Completed' : 
+										 '⏰ Upcoming'}
 									</span>
 								</td>
 								<td class="px-4 py-4">
