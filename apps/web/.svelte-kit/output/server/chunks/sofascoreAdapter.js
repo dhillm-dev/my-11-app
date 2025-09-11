@@ -246,6 +246,8 @@ class SofaScoreAdapter {
         return "MID";
       case "forward":
         return "FWD";
+      default:
+        return "MID";
     }
   }
   calculatePlayerCredits(player, role) {

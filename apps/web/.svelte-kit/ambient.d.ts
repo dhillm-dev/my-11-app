@@ -29,7 +29,6 @@ declare module '$env/static/private' {
 	export const AHA_CHROME_CRASHPAD_PIPE_NAME: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
-	export const BASE_URL: string;
 	export const ChocolateyInstall: string;
 	export const ChocolateyLastPathUpdate: string;
 	export const COLOR: string;
@@ -38,7 +37,6 @@ declare module '$env/static/private' {
 	export const CommonProgramW6432: string;
 	export const COMPUTERNAME: string;
 	export const ComSpec: string;
-	export const DEV: string;
 	export const DriverData: string;
 	export const EDITOR: string;
 	export const EFC_4528_1592913036: string;
@@ -51,7 +49,6 @@ declare module '$env/static/private' {
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
-	export const MODE: string;
 	export const NODE: string;
 	export const NODE_ENV: string;
 	export const npm_command: string;
@@ -87,7 +84,6 @@ declare module '$env/static/private' {
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
 	export const PROCESSOR_REVISION: string;
-	export const PROD: string;
 	export const ProgramData: string;
 	export const ProgramFiles: string;
 	export const ProgramW6432: string;
@@ -101,14 +97,12 @@ declare module '$env/static/private' {
 	export const TERM_PRODUCT: string;
 	export const TERM_PROGRAM: string;
 	export const TERM_PROGRAM_VERSION: string;
-	export const TEST: string;
 	export const TMP: string;
 	export const TRAE_AI_SHELL_ID: string;
 	export const USERDOMAIN: string;
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
 	export const USERPROFILE: string;
-	export const VITEST: string;
 	export const VSCODE_INJECTION: string;
 	export const windir: string;
 }
@@ -143,7 +137,6 @@ declare module '$env/dynamic/private' {
 		AHA_CHROME_CRASHPAD_PIPE_NAME: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
-		BASE_URL: string;
 		ChocolateyInstall: string;
 		ChocolateyLastPathUpdate: string;
 		COLOR: string;
@@ -152,7 +145,6 @@ declare module '$env/dynamic/private' {
 		CommonProgramW6432: string;
 		COMPUTERNAME: string;
 		ComSpec: string;
-		DEV: string;
 		DriverData: string;
 		EDITOR: string;
 		EFC_4528_1592913036: string;
@@ -165,7 +157,6 @@ declare module '$env/dynamic/private' {
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
-		MODE: string;
 		NODE: string;
 		NODE_ENV: string;
 		npm_command: string;
@@ -201,7 +192,6 @@ declare module '$env/dynamic/private' {
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;
 		PROCESSOR_REVISION: string;
-		PROD: string;
 		ProgramData: string;
 		ProgramFiles: string;
 		ProgramW6432: string;
@@ -215,14 +205,12 @@ declare module '$env/dynamic/private' {
 		TERM_PRODUCT: string;
 		TERM_PROGRAM: string;
 		TERM_PROGRAM_VERSION: string;
-		TEST: string;
 		TMP: string;
 		TRAE_AI_SHELL_ID: string;
 		USERDOMAIN: string;
 		USERDOMAIN_ROAMINGPROFILE: string;
 		USERNAME: string;
 		USERPROFILE: string;
-		VITEST: string;
 		VSCODE_INJECTION: string;
 		windir: string;
 		[key: `PUBLIC_${string}`]: undefined;
