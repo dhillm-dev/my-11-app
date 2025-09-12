@@ -1,5 +1,5 @@
 import { clsx as clsx$1 } from "clsx";
-import { D as DEV } from "./false.js";
+import { B as BROWSER } from "./false.js";
 var is_array = Array.isArray;
 var index_of = Array.prototype.indexOf;
 var array_from = Array.from;
@@ -591,7 +591,7 @@ function flush_effects() {
       var batch = Batch.ensure();
       if (flush_count++ > 1e3) {
         var updates, entry;
-        if (DEV) ;
+        if (BROWSER) ;
         infinite_loop_guard();
       }
       batch.process(queued_root_effects);
@@ -1498,7 +1498,7 @@ function update_effect(effect) {
     effect.teardown = typeof teardown === "function" ? teardown : null;
     effect.wv = write_version;
     var dep;
-    if (DEV && tracing_mode_flag && (effect.f & DIRTY) !== 0 && effect.deps !== null) ;
+    if (BROWSER && tracing_mode_flag && (effect.f & DIRTY) !== 0 && effect.deps !== null) ;
   } finally {
     is_updating_effect = was_updating_effect;
     active_effect = previous_effect;
@@ -1599,27 +1599,6 @@ const STATUS_MASK = -7169;
 function set_signal_status(signal, status) {
   signal.f = signal.f & STATUS_MASK | status;
 }
-const VOID_ELEMENT_NAMES = [
-  "area",
-  "base",
-  "br",
-  "col",
-  "command",
-  "embed",
-  "hr",
-  "img",
-  "input",
-  "keygen",
-  "link",
-  "meta",
-  "param",
-  "source",
-  "track",
-  "wbr"
-];
-function is_void(name) {
-  return VOID_ELEMENT_NAMES.includes(name) || name.toLowerCase() === "!doctype";
-}
 const DOM_BOOLEAN_ATTRIBUTES = [
   "allowfullscreen",
   "async",
@@ -1657,16 +1636,6 @@ function is_boolean_attribute(name) {
 const PASSIVE_EVENTS = ["touchstart", "touchmove"];
 function is_passive_event(name) {
   return PASSIVE_EVENTS.includes(name);
-}
-const RAW_TEXT_ELEMENTS = (
-  /** @type {const} */
-  ["textarea", "script", "style", "title"]
-);
-function is_raw_text_element(name) {
-  return RAW_TEXT_ELEMENTS.includes(
-    /** @type {typeof RAW_TEXT_ELEMENTS[number]} */
-    name
-  );
 }
 const ATTR_REGEX = /[&"<]/g;
 const CONTENT_REGEX = /[&<]/g;
@@ -1793,7 +1762,6 @@ function get_parent_context(component_context2) {
 }
 const BLOCK_OPEN = `<!--${HYDRATION_START}-->`;
 const BLOCK_CLOSE = `<!--${HYDRATION_END}-->`;
-const EMPTY_COMMENT = `<!---->`;
 class HeadPayload {
   /** @type {Set<{ hash: string; code: string }>} */
   css = /* @__PURE__ */ new Set();
@@ -1853,22 +1821,6 @@ function abort() {
   controller = null;
 }
 const INVALID_ATTR_NAME_CHAR_REGEX = /[\s'">/=\u{FDD0}-\u{FDEF}\u{FFFE}\u{FFFF}\u{1FFFE}\u{1FFFF}\u{2FFFE}\u{2FFFF}\u{3FFFE}\u{3FFFF}\u{4FFFE}\u{4FFFF}\u{5FFFE}\u{5FFFF}\u{6FFFE}\u{6FFFF}\u{7FFFE}\u{7FFFF}\u{8FFFE}\u{8FFFF}\u{9FFFE}\u{9FFFF}\u{AFFFE}\u{AFFFF}\u{BFFFE}\u{BFFFF}\u{CFFFE}\u{CFFFF}\u{DFFFE}\u{DFFFF}\u{EFFFE}\u{EFFFF}\u{FFFFE}\u{FFFFF}\u{10FFFE}\u{10FFFF}]/u;
-function element(payload, tag, attributes_fn = noop, children_fn = noop) {
-  payload.out.push("<!---->");
-  if (tag) {
-    payload.out.push(`<${tag}`);
-    attributes_fn();
-    payload.out.push(`>`);
-    if (!is_void(tag)) {
-      children_fn();
-      if (!is_raw_text_element(tag)) {
-        payload.out.push(EMPTY_COMMENT);
-      }
-      payload.out.push(`</${tag}>`);
-    }
-  }
-  payload.out.push("<!---->");
-}
 let on_destroy = [];
 function render(component, options = {}) {
   try {
@@ -1877,7 +1829,7 @@ function render(component, options = {}) {
     on_destroy = [];
     payload.out.push(BLOCK_OPEN);
     let reset_reset_element;
-    if (DEV) ;
+    if (BROWSER) ;
     if (options.context) {
       push();
       current_component.c = options.context;
@@ -1931,22 +1883,6 @@ function spread_attributes(attrs, css_hash, classes, styles, flags = 0) {
     attr_str += attr(name, value, is_html && is_boolean_attribute(name));
   }
   return attr_str;
-}
-function spread_props(props) {
-  const merged_props = {};
-  let key;
-  for (let i = 0; i < props.length; i++) {
-    const obj = props[i];
-    for (key in obj) {
-      const desc = Object.getOwnPropertyDescriptor(obj, key);
-      if (desc) {
-        Object.defineProperty(merged_props, key, desc);
-      } else {
-        merged_props[key] = obj[key];
-      }
-    }
-  }
-  return merged_props;
 }
 function stringify(value) {
   return typeof value === "string" ? value : value == null ? "" : value + "";
@@ -2020,7 +1956,7 @@ function maybe_selected(payload, value) {
   return value === payload.select_value ? " selected" : "";
 }
 export {
-  assign_payload as $,
+  safe_not_equal as $,
   push as A,
   setContext as B,
   COMMENT_NODE as C,
@@ -2034,25 +1970,23 @@ export {
   unsubscribe_stores as K,
   LEGACY_PROPS as L,
   getContext as M,
-  fallback as N,
+  slot as N,
   ensure_array_like as O,
   attr as P,
-  maybe_selected as Q,
-  slot as R,
-  bind_props as S,
-  attr_style as T,
-  sanitize_props as U,
-  rest_props as V,
-  spread_attributes as W,
-  clsx as X,
-  element as Y,
-  spread_props as Z,
-  copy_payload as _,
+  sanitize_props as Q,
+  rest_props as R,
+  fallback as S,
+  spread_attributes as T,
+  clsx as U,
+  bind_props as V,
+  copy_payload as W,
+  assign_payload as X,
+  maybe_selected as Y,
+  attr_style as Z,
+  noop as _,
   set_active_effect as a,
-  noop as a0,
-  safe_not_equal as a1,
-  subscribe_to_store as a2,
-  run_all as a3,
+  subscribe_to_store as a0,
+  run_all as a1,
   active_effect as b,
   active_reaction as c,
   define_property as d,

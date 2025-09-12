@@ -3,31 +3,6 @@
 		"src/routes/+layout.ts",
 		"src/routes/+layout.ts"
 	],
-	"/admin": [
-		"src/routes/+layout.ts",
-		"src/routes/+layout.ts"
-	],
-	"/admin/contests": [
-		"src/routes/+layout.ts"
-	],
-	"/admin/login": [
-		"src/routes/+layout.ts"
-	],
-	"/admin/matches": [
-		"src/routes/+layout.ts"
-	],
-	"/admin/players": [
-		"src/routes/+layout.ts"
-	],
-	"/admin/unauthorized": [
-		"src/routes/+layout.ts"
-	],
-	"/admin/users": [
-		"src/routes/+layout.ts"
-	],
-	"/admin/wallet": [
-		"src/routes/+layout.ts"
-	],
 	"/api-demo": [
 		"src/routes/+layout.ts"
 	],

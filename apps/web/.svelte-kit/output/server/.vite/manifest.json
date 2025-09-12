@@ -26,26 +26,6 @@
       "_app/immutable/assets/LoginModal.BolWeU3G.css"
     ]
   },
-  "_admin.js": {
-    "file": "chunks/admin.js",
-    "name": "admin",
-    "imports": [
-      "_index.js"
-    ]
-  },
-  "_button.js": {
-    "file": "chunks/button.js",
-    "name": "button"
-  },
-  "_button2.js": {
-    "file": "chunks/button2.js",
-    "name": "button",
-    "imports": [
-      "_index2.js",
-      "_utils2.js",
-      "_button.js"
-    ]
-  },
   "_client.js": {
     "file": "chunks/client.js",
     "name": "client",
@@ -67,10 +47,6 @@
   "_false.js": {
     "file": "chunks/false.js",
     "name": "false"
-  },
-  "_feedAdapter.js": {
-    "file": "chunks/feedAdapter.js",
-    "name": "feedAdapter"
   },
   "_html.js": {
     "file": "chunks/html.js",
@@ -157,7 +133,6 @@
     "file": "chunks/unifiedFeedService.js",
     "name": "unifiedFeedService",
     "imports": [
-      "_feedAdapter.js",
       "_sofascoreAdapter.js"
     ]
   },
@@ -234,7 +209,7 @@
       "_index3.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.Ce-nBszt.css"
+      "_app/immutable/assets/_layout.BUJzzN7T.css"
     ]
   },
   "src/routes/+layout.ts": {
@@ -258,115 +233,6 @@
       "_index3.js",
       "_html.js"
     ]
-  },
-  "src/routes/admin/+layout.svelte": {
-    "file": "entries/pages/admin/_layout.svelte.js",
-    "name": "entries/pages/admin/_layout.svelte",
-    "src": "src/routes/admin/+layout.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_stores.js",
-      "_admin.js",
-      "_exports.js",
-      "_utils.js",
-      "_state.svelte.js"
-    ],
-    "css": [
-      "_app/immutable/assets/_layout.D2JEGd8P.css"
-    ]
-  },
-  "src/routes/admin/+page.svelte": {
-    "file": "entries/pages/admin/_page.svelte.js",
-    "name": "entries/pages/admin/_page.svelte",
-    "src": "src/routes/admin/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_admin.js",
-      "_client.js"
-    ]
-  },
-  "src/routes/admin/contests/+page.svelte": {
-    "file": "entries/pages/admin/contests/_page.svelte.js",
-    "name": "entries/pages/admin/contests/_page.svelte",
-    "src": "src/routes/admin/contests/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_admin.js",
-      "_feedAdapter.js",
-      "_button.js",
-      "_exports.js",
-      "_utils.js",
-      "_state.svelte.js"
-    ]
-  },
-  "src/routes/admin/login/+page.svelte": {
-    "file": "entries/pages/admin/login/_page.svelte.js",
-    "name": "entries/pages/admin/login/_page.svelte",
-    "src": "src/routes/admin/login/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_exports.js",
-      "_utils.js",
-      "_state.svelte.js",
-      "_admin.js"
-    ]
-  },
-  "src/routes/admin/matches/+page.svelte": {
-    "file": "entries/pages/admin/matches/_page.svelte.js",
-    "name": "entries/pages/admin/matches/_page.svelte",
-    "src": "src/routes/admin/matches/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_feedAdapter.js",
-      "_admin.js",
-      "_button.js",
-      "_runtime.js",
-      "_button2.js"
-    ]
-  },
-  "src/routes/admin/players/+page.svelte": {
-    "file": "entries/pages/admin/players/_page.svelte.js",
-    "name": "entries/pages/admin/players/_page.svelte",
-    "src": "src/routes/admin/players/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_admin.js"
-    ]
-  },
-  "src/routes/admin/unauthorized/+page.svelte": {
-    "file": "entries/pages/admin/unauthorized/_page.svelte.js",
-    "name": "entries/pages/admin/unauthorized/_page.svelte",
-    "src": "src/routes/admin/unauthorized/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_exports.js",
-      "_utils.js",
-      "_state.svelte.js",
-      "_admin.js"
-    ]
-  },
-  "src/routes/admin/users/+page.svelte": {
-    "file": "entries/pages/admin/users/_page.svelte.js",
-    "name": "entries/pages/admin/users/_page.svelte",
-    "src": "src/routes/admin/users/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_admin.js"
-    ]
-  },
-  "src/routes/admin/wallet/+page.svelte": {
-    "file": "entries/pages/admin/wallet/_page.svelte.js",
-    "name": "entries/pages/admin/wallet/_page.svelte",
-    "src": "src/routes/admin/wallet/+page.svelte",
-    "isEntry": true
   },
   "src/routes/api-demo/+page.svelte": {
     "file": "entries/pages/api-demo/_page.svelte.js",
@@ -469,9 +335,7 @@
       "_exports.js",
       "_utils.js",
       "_state.svelte.js",
-      "_button.js",
-      "_utils2.js",
-      "_button2.js"
+      "_utils2.js"
     ],
     "css": [
       "_app/immutable/assets/_page.tn0RQdqM.css"

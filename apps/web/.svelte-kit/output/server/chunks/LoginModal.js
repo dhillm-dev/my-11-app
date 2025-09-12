@@ -1,4 +1,4 @@
-import { A as push, N as fallback, G as escape_html, S as bind_props, D as pop } from "./index2.js";
+import { A as push, S as fallback, G as escape_html, V as bind_props, D as pop } from "./index2.js";
 import "@sveltejs/kit/internal";
 import "./exports.js";
 import "./utils.js";

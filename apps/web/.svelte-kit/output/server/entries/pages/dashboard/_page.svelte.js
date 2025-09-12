@@ -1,4 +1,4 @@
-import { _ as copy_payload, $ as assign_payload, D as pop, A as push, O as ensure_array_like, F as head, G as escape_html, E as store_get, I as attr_class, J as stringify, K as unsubscribe_stores } from "../../../chunks/index2.js";
+import { W as copy_payload, X as assign_payload, D as pop, A as push, O as ensure_array_like, F as head, G as escape_html, E as store_get, I as attr_class, J as stringify, K as unsubscribe_stores } from "../../../chunks/index2.js";
 import { u as user } from "../../../chunks/teams.js";
 import "@sveltejs/kit/internal";
 import "../../../chunks/exports.js";

@@ -17,43 +17,26 @@ export const nodes = [
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
 	() => import('./nodes/15'),
-	() => import('./nodes/16'),
-	() => import('./nodes/17'),
-	() => import('./nodes/18'),
-	() => import('./nodes/19'),
-	() => import('./nodes/20'),
-	() => import('./nodes/21'),
-	() => import('./nodes/22'),
-	() => import('./nodes/23'),
-	() => import('./nodes/24'),
-	() => import('./nodes/25')
+	() => import('./nodes/16')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
-		"/": [4],
-		"/admin": [5,[2]],
-		"/admin/contests": [6,[2]],
-		"/admin/login": [7,[2]],
-		"/admin/matches": [8,[2]],
-		"/admin/players": [9,[2]],
-		"/admin/unauthorized": [10,[2]],
-		"/admin/users": [11,[2]],
-		"/admin/wallet": [12,[2]],
-		"/api-demo": [13],
-		"/auth/forgot": [14,[3]],
-		"/auth/login": [15,[3]],
-		"/auth/register": [16,[3]],
-		"/auth/reset": [17,[3]],
-		"/contests": [18],
-		"/dashboard": [19],
-		"/how-to-play": [20],
-		"/matches": [21],
-		"/profile": [22],
-		"/rapidapi-test": [23],
-		"/team-builder": [24],
-		"/wallet": [25]
+		"/": [3],
+		"/api-demo": [4],
+		"/auth/forgot": [5,[2]],
+		"/auth/login": [6,[2]],
+		"/auth/register": [7,[2]],
+		"/auth/reset": [8,[2]],
+		"/contests": [9],
+		"/dashboard": [10],
+		"/how-to-play": [11],
+		"/matches": [12],
+		"/profile": [13],
+		"/rapidapi-test": [14],
+		"/team-builder": [15],
+		"/wallet": [16]
 	};
 
 export const hooks = {

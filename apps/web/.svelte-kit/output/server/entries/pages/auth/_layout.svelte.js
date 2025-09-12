@@ -1,4 +1,4 @@
-import { R as slot, D as pop, A as push } from "../../../chunks/index2.js";
+import { N as slot, D as pop, A as push } from "../../../chunks/index2.js";
 import "@sveltejs/kit/internal";
 import "../../../chunks/exports.js";
 import "../../../chunks/utils.js";

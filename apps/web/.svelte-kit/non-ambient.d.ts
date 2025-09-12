@@ -63,6 +63,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/" | "/admin" | "/admin/" | "/admin/contests" | "/admin/contests/" | "/admin/login" | "/admin/login/" | "/admin/matches" | "/admin/matches/" | "/admin/players" | "/admin/players/" | "/admin/unauthorized" | "/admin/unauthorized/" | "/admin/users" | "/admin/users/" | "/admin/wallet" | "/admin/wallet/" | "/api-demo" | "/api-demo/" | "/api" | "/api/" | "/api/rapidapi-test" | "/api/rapidapi-test/" | "/api/sofascore" | "/api/sofascore/" | "/api/sofascore/live" | "/api/sofascore/live/" | "/api/sofascore/search" | "/api/sofascore/search/" | "/auth" | "/auth/" | "/auth/forgot" | "/auth/forgot/" | "/auth/login" | "/auth/login/" | "/auth/register" | "/auth/register/" | "/auth/reset" | "/auth/reset/" | "/contests" | "/contests/" | "/dashboard" | "/dashboard/" | "/how-to-play" | "/how-to-play/" | "/matches" | "/matches/" | "/profile" | "/profile/" | "/rapidapi-test" | "/rapidapi-test/" | "/team-builder" | "/team-builder/" | "/wallet" | "/wallet/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/robots.txt" | string & {};
+		Asset(): "/.nojekyll" | "/images/peeps/all-peeps.svg" | "/robots.txt" | string & {};
 	}
 }

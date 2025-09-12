@@ -1,12 +1,58 @@
-import { U as sanitize_props, V as rest_props, A as push, N as fallback, W as spread_attributes, X as clsx, S as bind_props, D as pop, _ as copy_payload, $ as assign_payload, F as head, I as attr_class, J as stringify } from "../../../../chunks/index2.js";
+import { Q as sanitize_props, R as rest_props, A as push, S as fallback, T as spread_attributes, U as clsx, N as slot, V as bind_props, D as pop, W as copy_payload, X as assign_payload, F as head, I as attr_class, J as stringify } from "../../../../chunks/index2.js";
 import "@sveltejs/kit/internal";
 import "../../../../chunks/exports.js";
 import "../../../../chunks/utils.js";
 import "../../../../chunks/state.svelte.js";
-import "../../../../chunks/button.js";
-import { c as cn } from "../../../../chunks/utils2.js";
+import { cva } from "class-variance-authority";
 import "clsx";
-import { B as Button } from "../../../../chunks/button2.js";
+import { c as cn } from "../../../../chunks/utils2.js";
+function Button($$payload, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const $$restProps = rest_props($$sanitized_props, ["class", "variant", "size", "type", "disabled"]);
+  push();
+  let className = fallback($$props["class"], void 0);
+  let variant = fallback($$props["variant"], "default");
+  let size = fallback($$props["size"], "default");
+  let type = fallback($$props["type"], "button");
+  let disabled = fallback($$props["disabled"], false);
+  $$payload.out.push(`<button${spread_attributes(
+    {
+      type,
+      disabled,
+      class: clsx(cn(buttonVariants({ variant, size, className }))),
+      ...$$restProps
+    }
+  )}><!---->`);
+  slot($$payload, $$props, "default", {});
+  $$payload.out.push(`<!----></button>`);
+  bind_props($$props, { class: className, variant, size, type, disabled });
+  pop();
+}
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default"
+    }
+  }
+);
 function Input($$payload, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const $$restProps = rest_props($$sanitized_props, [

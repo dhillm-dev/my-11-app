@@ -1,7 +1,7 @@
 import { d as derived, w as writable } from "./index.js";
-import { D as DEV } from "./false.js";
+import { B as BROWSER } from "./false.js";
 import { g as generateId, d as delay } from "./utils2.js";
-const browser = DEV;
+const browser = BROWSER;
 const teams = [
   { name: "Manchester United", logo: "/teams/man-utd.svg" },
   { name: "Liverpool", logo: "/teams/liverpool.svg" },

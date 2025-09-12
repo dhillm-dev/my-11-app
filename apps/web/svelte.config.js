@@ -1,37 +1,24 @@
-import adapterAuto from '@sveltejs/adapter-auto';
-import adapterStatic from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-// Determine deployment target from environment
-const deployTarget = process.env.DEPLOY_TARGET || 'vercel'; // 'vercel' or 'github-pages'
-
-// Configure adapter based on deployment target
-const getAdapter = () => {
-	if (deployTarget === 'github-pages') {
-		return adapterStatic({
-			pages: 'build',
-			assets: 'build',
-			fallback: 'index.html',
-			precompress: false,
-			strict: false
-		});
-	}
-	return adapterAuto();
-};
+const dev = process.argv.includes('dev'); // Check if running in dev mode
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: getAdapter(),
-		// Configure base path for GitHub Pages if needed
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: '404.html' // GitHub Pages standard for SPA routing
+		}),
+		// If DEPLOY_TARGET is 'github-pages', use the repo name as base
+		// Otherwise, use root for local development or other deployments
 		paths: {
-			base: deployTarget === 'github-pages' ? (process.env.BASE_PATH || '') : ''
-		},
-		// Prerender all routes for static deployment
-		prerender: {
-			entries: deployTarget === 'github-pages' ? ['*'] : undefined
+			base: process.env.DEPLOY_TARGET === 'github-pages' ? '/my-11-app' : '/'
 		}
 	}
 };

@@ -6,11 +6,11 @@ function __memo(fn) {
 
 return {
 	appDir: "_app",
-	appPath: "_app",
-	assets: new Set(["robots.txt"]),
-	mimeTypes: {".txt":"text/plain"},
+	appPath: "my-11-app/_app",
+	assets: new Set([".nojekyll","images/peeps/all-peeps.svg","robots.txt"]),
+	mimeTypes: {".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		client: {start:"_app/immutable/entry/start.xPJt1MvE.js",app:"_app/immutable/entry/app.DRk7aloC.js",imports:["_app/immutable/entry/start.xPJt1MvE.js","_app/immutable/chunks/CHmzRBH6.js","_app/immutable/chunks/d-9Q_JcI.js","_app/immutable/chunks/CC47Dqnt.js","_app/immutable/chunks/DIeogL5L.js","_app/immutable/chunks/C3K3qoHi.js","_app/immutable/entry/app.DRk7aloC.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/CC47Dqnt.js","_app/immutable/chunks/DIeogL5L.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/d-9Q_JcI.js","_app/immutable/chunks/3oX9xRnt.js","_app/immutable/chunks/CAA_fk_i.js","_app/immutable/chunks/DLEGmHds.js","_app/immutable/chunks/C3K3qoHi.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.b4SDu9oh.js",app:"_app/immutable/entry/app.IGBOnPKA.js",imports:["_app/immutable/entry/start.b4SDu9oh.js","_app/immutable/chunks/DotlNnaL.js","_app/immutable/chunks/CeyqlY7M.js","_app/immutable/chunks/BYwdtpf8.js","_app/immutable/chunks/D4e3NgJS.js","_app/immutable/entry/app.IGBOnPKA.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/BYwdtpf8.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/CeyqlY7M.js","_app/immutable/chunks/x2hlQoet.js","_app/immutable/chunks/BlWJXHQh.js","_app/immutable/chunks/DZx-2HU6.js","_app/immutable/chunks/D4e3NgJS.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -28,16 +28,7 @@ return {
 			__memo(() => import('./nodes/13.js')),
 			__memo(() => import('./nodes/14.js')),
 			__memo(() => import('./nodes/15.js')),
-			__memo(() => import('./nodes/16.js')),
-			__memo(() => import('./nodes/17.js')),
-			__memo(() => import('./nodes/18.js')),
-			__memo(() => import('./nodes/19.js')),
-			__memo(() => import('./nodes/20.js')),
-			__memo(() => import('./nodes/21.js')),
-			__memo(() => import('./nodes/22.js')),
-			__memo(() => import('./nodes/23.js')),
-			__memo(() => import('./nodes/24.js')),
-			__memo(() => import('./nodes/25.js'))
+			__memo(() => import('./nodes/16.js'))
 		],
 		remotes: {
 			
@@ -47,70 +38,14 @@ return {
 				id: "/",
 				pattern: /^\/$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 4 },
-				endpoint: null
-			},
-			{
-				id: "/admin",
-				pattern: /^\/admin\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 5 },
-				endpoint: null
-			},
-			{
-				id: "/admin/contests",
-				pattern: /^\/admin\/contests\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 6 },
-				endpoint: null
-			},
-			{
-				id: "/admin/login",
-				pattern: /^\/admin\/login\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 7 },
-				endpoint: null
-			},
-			{
-				id: "/admin/matches",
-				pattern: /^\/admin\/matches\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 8 },
-				endpoint: null
-			},
-			{
-				id: "/admin/players",
-				pattern: /^\/admin\/players\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 9 },
-				endpoint: null
-			},
-			{
-				id: "/admin/unauthorized",
-				pattern: /^\/admin\/unauthorized\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 10 },
-				endpoint: null
-			},
-			{
-				id: "/admin/users",
-				pattern: /^\/admin\/users\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 11 },
-				endpoint: null
-			},
-			{
-				id: "/admin/wallet",
-				pattern: /^\/admin\/wallet\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 12 },
+				page: { layouts: [0,], errors: [1,], leaf: 3 },
 				endpoint: null
 			},
 			{
 				id: "/api-demo",
 				pattern: /^\/api-demo\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				page: { layouts: [0,], errors: [1,], leaf: 4 },
 				endpoint: null
 			},
 			{
@@ -138,84 +73,84 @@ return {
 				id: "/auth/forgot",
 				pattern: /^\/auth\/forgot\/?$/,
 				params: [],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 14 },
+				page: { layouts: [0,2,], errors: [1,,], leaf: 5 },
 				endpoint: null
 			},
 			{
 				id: "/auth/login",
 				pattern: /^\/auth\/login\/?$/,
 				params: [],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 15 },
+				page: { layouts: [0,2,], errors: [1,,], leaf: 6 },
 				endpoint: null
 			},
 			{
 				id: "/auth/register",
 				pattern: /^\/auth\/register\/?$/,
 				params: [],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 16 },
+				page: { layouts: [0,2,], errors: [1,,], leaf: 7 },
 				endpoint: null
 			},
 			{
 				id: "/auth/reset",
 				pattern: /^\/auth\/reset\/?$/,
 				params: [],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 17 },
+				page: { layouts: [0,2,], errors: [1,,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/contests",
 				pattern: /^\/contests\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 18 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
 				endpoint: null
 			},
 			{
 				id: "/dashboard",
 				pattern: /^\/dashboard\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 19 },
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			},
 			{
 				id: "/how-to-play",
 				pattern: /^\/how-to-play\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 20 },
+				page: { layouts: [0,], errors: [1,], leaf: 11 },
 				endpoint: null
 			},
 			{
 				id: "/matches",
 				pattern: /^\/matches\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 21 },
+				page: { layouts: [0,], errors: [1,], leaf: 12 },
 				endpoint: null
 			},
 			{
 				id: "/profile",
 				pattern: /^\/profile\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 22 },
+				page: { layouts: [0,], errors: [1,], leaf: 13 },
 				endpoint: null
 			},
 			{
 				id: "/rapidapi-test",
 				pattern: /^\/rapidapi-test\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 23 },
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			},
 			{
 				id: "/team-builder",
 				pattern: /^\/team-builder\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 24 },
+				page: { layouts: [0,], errors: [1,], leaf: 15 },
 				endpoint: null
 			},
 			{
 				id: "/wallet",
 				pattern: /^\/wallet\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 25 },
+				page: { layouts: [0,], errors: [1,], leaf: 16 },
 				endpoint: null
 			}
 		],

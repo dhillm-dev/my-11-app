@@ -1,4 +1,4 @@
-import { _ as copy_payload, $ as assign_payload, D as pop, A as push, O as ensure_array_like, F as head, G as escape_html, T as attr_style, I as attr_class, P as attr, J as stringify } from "../../../chunks/index2.js";
+import { W as copy_payload, X as assign_payload, D as pop, A as push, O as ensure_array_like, F as head, G as escape_html, Z as attr_style, I as attr_class, P as attr, J as stringify } from "../../../chunks/index2.js";
 import "@sveltejs/kit/internal";
 import "../../../chunks/exports.js";
 import "../../../chunks/utils.js";
