@@ -15,11 +15,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment, canceling any in-progress runs to prevent artifact conflicts.
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   NODE_VERSION: '20'
@@ -55,7 +54,6 @@ jobs:
         run: npm run build
         env:
           DEPLOY_TARGET: github-pages
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
           PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL || 'https://picknwin-api.fly.dev/api' }}
           PUBLIC_WS_URL: ${{ vars.PUBLIC_WS_URL || 'wss://picknwin-api.fly.dev/socket' }}
           PUBLIC_ENV: production
