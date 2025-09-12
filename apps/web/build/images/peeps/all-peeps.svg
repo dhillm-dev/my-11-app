@@ -1,0 +1,159 @@
+<svg width="700" height="1500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 15 rows x 7 cols = 105 peeps -->
+  <!-- Each peep is 100x100 pixels -->
+  
+  <!-- Row 1 -->
+  <g id="row1">
+    <circle cx="50" cy="50" r="30" fill="#FF6B6B" stroke="#333" stroke-width="2"/>
+    <circle cx="150" cy="50" r="30" fill="#4ECDC4" stroke="#333" stroke-width="2"/>
+    <circle cx="250" cy="50" r="30" fill="#45B7D1" stroke="#333" stroke-width="2"/>
+    <circle cx="350" cy="50" r="30" fill="#96CEB4" stroke="#333" stroke-width="2"/>
+    <circle cx="450" cy="50" r="30" fill="#FFEAA7" stroke="#333" stroke-width="2"/>
+    <circle cx="550" cy="50" r="30" fill="#DDA0DD" stroke="#333" stroke-width="2"/>
+    <circle cx="650" cy="50" r="30" fill="#98D8C8" stroke="#333" stroke-width="2"/>
+  </g>
+  
+  <!-- Row 2 -->
+  <g id="row2">
+    <rect x="20" y="120" width="60" height="60" rx="10" fill="#FF7675" stroke="#333" stroke-width="2"/>
+    <rect x="120" y="120" width="60" height="60" rx="10" fill="#74B9FF" stroke="#333" stroke-width="2"/>
+    <rect x="220" y="120" width="60" height="60" rx="10" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <rect x="320" y="120" width="60" height="60" rx="10" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    <rect x="420" y="120" width="60" height="60" rx="10" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <rect x="520" y="120" width="60" height="60" rx="10" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+    <rect x="620" y="120" width="60" height="60" rx="10" fill="#A0E7E5" stroke="#333" stroke-width="2"/>
+  </g>
+  
+  <!-- Row 3 -->
+  <g id="row3">
+    <polygon points="50,220 20,280 80,280" fill="#00B894" stroke="#333" stroke-width="2"/>
+    <polygon points="150,220 120,280 180,280" fill="#E17055" stroke="#333" stroke-width="2"/>
+    <polygon points="250,220 220,280 280,280" fill="#0984E3" stroke="#333" stroke-width="2"/>
+    <polygon points="350,220 320,280 380,280" fill="#00CEC9" stroke="#333" stroke-width="2"/>
+    <polygon points="450,220 420,280 480,280" fill="#E84393" stroke="#333" stroke-width="2"/>
+    <polygon points="550,220 520,280 580,280" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <polygon points="650,220 620,280 680,280" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+  </g>
+  
+  <!-- Repeat pattern for remaining rows with slight variations -->
+  <!-- Row 4-15 with mixed shapes and colors -->
+  <g id="rows4-15">
+    <!-- Row 4 -->
+    <ellipse cx="50" cy="350" rx="35" ry="25" fill="#FF6B6B" stroke="#333" stroke-width="2"/>
+    <ellipse cx="150" cy="350" rx="35" ry="25" fill="#4ECDC4" stroke="#333" stroke-width="2"/>
+    <ellipse cx="250" cy="350" rx="35" ry="25" fill="#45B7D1" stroke="#333" stroke-width="2"/>
+    <ellipse cx="350" cy="350" rx="35" ry="25" fill="#96CEB4" stroke="#333" stroke-width="2"/>
+    <ellipse cx="450" cy="350" rx="35" ry="25" fill="#FFEAA7" stroke="#333" stroke-width="2"/>
+    <ellipse cx="550" cy="350" rx="35" ry="25" fill="#DDA0DD" stroke="#333" stroke-width="2"/>
+    <ellipse cx="650" cy="350" rx="35" ry="25" fill="#98D8C8" stroke="#333" stroke-width="2"/>
+    
+    <!-- Continue pattern for rows 5-15 -->
+    <!-- Using a mix of circles, rectangles, and polygons with different colors -->
+    <!-- Each positioned at y = (row-1) * 100 + 50 -->
+    
+    <!-- Row 5 -->
+    <circle cx="50" cy="450" r="25" fill="#E17055" stroke="#333" stroke-width="2"/>
+    <circle cx="150" cy="450" r="25" fill="#00B894" stroke="#333" stroke-width="2"/>
+    <circle cx="250" cy="450" r="25" fill="#0984E3" stroke="#333" stroke-width="2"/>
+    <circle cx="350" cy="450" r="25" fill="#00CEC9" stroke="#333" stroke-width="2"/>
+    <circle cx="450" cy="450" r="25" fill="#E84393" stroke="#333" stroke-width="2"/>
+    <circle cx="550" cy="450" r="25" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <circle cx="650" cy="450" r="25" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    
+    <!-- Rows 6-15 with similar patterns -->
+    <!-- Row 6 -->
+    <rect x="25" y="525" width="50" height="50" rx="5" fill="#FF7675" stroke="#333" stroke-width="2"/>
+    <rect x="125" y="525" width="50" height="50" rx="5" fill="#74B9FF" stroke="#333" stroke-width="2"/>
+    <rect x="225" y="525" width="50" height="50" rx="5" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <rect x="325" y="525" width="50" height="50" rx="5" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    <rect x="425" y="525" width="50" height="50" rx="5" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <rect x="525" y="525" width="50" height="50" rx="5" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+    <rect x="625" y="525" width="50" height="50" rx="5" fill="#A0E7E5" stroke="#333" stroke-width="2"/>
+    
+    <!-- Continue this pattern for remaining rows 7-15 -->
+    <!-- Each row alternates between circles, rectangles, and other shapes -->
+    <!-- With y positions at 650, 750, 850, 950, 1050, 1150, 1250, 1350, 1450 -->
+    
+    <!-- Row 7 -->
+    <polygon points="50,650 25,700 75,700" fill="#00B894" stroke="#333" stroke-width="2"/>
+    <polygon points="150,650 125,700 175,700" fill="#E17055" stroke="#333" stroke-width="2"/>
+    <polygon points="250,650 225,700 275,700" fill="#0984E3" stroke="#333" stroke-width="2"/>
+    <polygon points="350,650 325,700 375,700" fill="#00CEC9" stroke="#333" stroke-width="2"/>
+    <polygon points="450,650 425,700 475,700" fill="#E84393" stroke="#333" stroke-width="2"/>
+    <polygon points="550,650 525,700 575,700" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <polygon points="650,650 625,700 675,700" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+    
+    <!-- Rows 8-15 continue with mixed shapes and colors -->
+    <!-- Row 8 -->
+    <circle cx="50" cy="750" r="30" fill="#FF6B6B" stroke="#333" stroke-width="2"/>
+    <circle cx="150" cy="750" r="30" fill="#4ECDC4" stroke="#333" stroke-width="2"/>
+    <circle cx="250" cy="750" r="30" fill="#45B7D1" stroke="#333" stroke-width="2"/>
+    <circle cx="350" cy="750" r="30" fill="#96CEB4" stroke="#333" stroke-width="2"/>
+    <circle cx="450" cy="750" r="30" fill="#FFEAA7" stroke="#333" stroke-width="2"/>
+    <circle cx="550" cy="750" r="30" fill="#DDA0DD" stroke="#333" stroke-width="2"/>
+    <circle cx="650" cy="750" r="30" fill="#98D8C8" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 9 -->
+    <rect x="20" y="820" width="60" height="60" rx="10" fill="#FF7675" stroke="#333" stroke-width="2"/>
+    <rect x="120" y="820" width="60" height="60" rx="10" fill="#74B9FF" stroke="#333" stroke-width="2"/>
+    <rect x="220" y="820" width="60" height="60" rx="10" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <rect x="320" y="820" width="60" height="60" rx="10" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    <rect x="420" y="820" width="60" height="60" rx="10" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <rect x="520" y="820" width="60" height="60" rx="10" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+    <rect x="620" y="820" width="60" height="60" rx="10" fill="#A0E7E5" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 10 -->
+    <ellipse cx="50" cy="950" rx="35" ry="25" fill="#E17055" stroke="#333" stroke-width="2"/>
+    <ellipse cx="150" cy="950" rx="35" ry="25" fill="#00B894" stroke="#333" stroke-width="2"/>
+    <ellipse cx="250" cy="950" rx="35" ry="25" fill="#0984E3" stroke="#333" stroke-width="2"/>
+    <ellipse cx="350" cy="950" rx="35" ry="25" fill="#00CEC9" stroke="#333" stroke-width="2"/>
+    <ellipse cx="450" cy="950" rx="35" ry="25" fill="#E84393" stroke="#333" stroke-width="2"/>
+    <ellipse cx="550" cy="950" rx="35" ry="25" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <ellipse cx="650" cy="950" rx="35" ry="25" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 11 -->
+    <circle cx="50" cy="1050" r="25" fill="#FF6B6B" stroke="#333" stroke-width="2"/>
+    <circle cx="150" cy="1050" r="25" fill="#4ECDC4" stroke="#333" stroke-width="2"/>
+    <circle cx="250" cy="1050" r="25" fill="#45B7D1" stroke="#333" stroke-width="2"/>
+    <circle cx="350" cy="1050" r="25" fill="#96CEB4" stroke="#333" stroke-width="2"/>
+    <circle cx="450" cy="1050" r="25" fill="#FFEAA7" stroke="#333" stroke-width="2"/>
+    <circle cx="550" cy="1050" r="25" fill="#DDA0DD" stroke="#333" stroke-width="2"/>
+    <circle cx="650" cy="1050" r="25" fill="#98D8C8" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 12 -->
+    <polygon points="50,1120 25,1170 75,1170" fill="#00B894" stroke="#333" stroke-width="2"/>
+    <polygon points="150,1120 125,1170 175,1170" fill="#E17055" stroke="#333" stroke-width="2"/>
+    <polygon points="250,1120 225,1170 275,1170" fill="#0984E3" stroke="#333" stroke-width="2"/>
+    <polygon points="350,1120 325,1170 375,1170" fill="#00CEC9" stroke="#333" stroke-width="2"/>
+    <polygon points="450,1120 425,1170 475,1170" fill="#E84393" stroke="#333" stroke-width="2"/>
+    <polygon points="550,1120 525,1170 575,1170" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <polygon points="650,1120 625,1170 675,1170" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 13 -->
+    <rect x="25" y="1225" width="50" height="50" rx="5" fill="#FF7675" stroke="#333" stroke-width="2"/>
+    <rect x="125" y="1225" width="50" height="50" rx="5" fill="#74B9FF" stroke="#333" stroke-width="2"/>
+    <rect x="225" y="1225" width="50" height="50" rx="5" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <rect x="325" y="1225" width="50" height="50" rx="5" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    <rect x="425" y="1225" width="50" height="50" rx="5" fill="#FDCB6E" stroke="#333" stroke-width="2"/>
+    <rect x="525" y="1225" width="50" height="50" rx="5" fill="#6C5CE7" stroke="#333" stroke-width="2"/>
+    <rect x="625" y="1225" width="50" height="50" rx="5" fill="#A0E7E5" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 14 -->
+    <ellipse cx="50" cy="1350" rx="30" ry="20" fill="#E17055" stroke="#333" stroke-width="2"/>
+    <ellipse cx="150" cy="1350" rx="30" ry="20" fill="#00B894" stroke="#333" stroke-width="2"/>
+    <ellipse cx="250" cy="1350" rx="30" ry="20" fill="#0984E3" stroke="#333" stroke-width="2"/>
+    <ellipse cx="350" cy="1350" rx="30" ry="20" fill="#00CEC9" stroke="#333" stroke-width="2"/>
+    <ellipse cx="450" cy="1350" rx="30" ry="20" fill="#E84393" stroke="#333" stroke-width="2"/>
+    <ellipse cx="550" cy="1350" rx="30" ry="20" fill="#A29BFE" stroke="#333" stroke-width="2"/>
+    <ellipse cx="650" cy="1350" rx="30" ry="20" fill="#FD79A8" stroke="#333" stroke-width="2"/>
+    
+    <!-- Row 15 -->
+    <circle cx="50" cy="1450" r="28" fill="#FF6B6B" stroke="#333" stroke-width="2"/>
+    <circle cx="150" cy="1450" r="28" fill="#4ECDC4" stroke="#333" stroke-width="2"/>
+    <circle cx="250" cy="1450" r="28" fill="#45B7D1" stroke="#333" stroke-width="2"/>
+    <circle cx="350" cy="1450" r="28" fill="#96CEB4" stroke="#333" stroke-width="2"/>
+    <circle cx="450" cy="1450" r="28" fill="#FFEAA7" stroke="#333" stroke-width="2"/>
+    <circle cx="550" cy="1450" r="28" fill="#DDA0DD" stroke="#333" stroke-width="2"/>
+    <circle cx="650" cy="1450" r="28" fill="#98D8C8" stroke="#333" stroke-width="2"/>
+  </g>
+</svg>
