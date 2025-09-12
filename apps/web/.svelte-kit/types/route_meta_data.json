@@ -1,0 +1,82 @@
+{
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/admin": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/admin/contests": [
+		"src/routes/+layout.ts"
+	],
+	"/admin/login": [
+		"src/routes/+layout.ts"
+	],
+	"/admin/matches": [
+		"src/routes/+layout.ts"
+	],
+	"/admin/players": [
+		"src/routes/+layout.ts"
+	],
+	"/admin/unauthorized": [
+		"src/routes/+layout.ts"
+	],
+	"/admin/users": [
+		"src/routes/+layout.ts"
+	],
+	"/admin/wallet": [
+		"src/routes/+layout.ts"
+	],
+	"/api-demo": [
+		"src/routes/+layout.ts"
+	],
+	"/api/rapidapi-test": [
+		"src/routes/api/rapidapi-test/+server.ts"
+	],
+	"/api/sofascore/live": [
+		"src/routes/api/sofascore/live/+server.ts"
+	],
+	"/api/sofascore/search": [
+		"src/routes/api/sofascore/search/+server.ts"
+	],
+	"/auth": [
+		"src/routes/+layout.ts"
+	],
+	"/auth/forgot": [
+		"src/routes/+layout.ts"
+	],
+	"/auth/login": [
+		"src/routes/+layout.ts"
+	],
+	"/auth/register": [
+		"src/routes/+layout.ts"
+	],
+	"/auth/reset": [
+		"src/routes/+layout.ts"
+	],
+	"/contests": [
+		"src/routes/+layout.ts"
+	],
+	"/dashboard": [
+		"src/routes/+layout.ts"
+	],
+	"/how-to-play": [
+		"src/routes/+layout.ts"
+	],
+	"/matches": [
+		"src/routes/+layout.ts"
+	],
+	"/profile": [
+		"src/routes/+layout.ts"
+	],
+	"/rapidapi-test": [
+		"src/routes/+layout.ts"
+	],
+	"/team-builder": [
+		"src/routes/+layout.ts"
+	],
+	"/wallet": [
+		"src/routes/+layout.ts"
+	]
+}
