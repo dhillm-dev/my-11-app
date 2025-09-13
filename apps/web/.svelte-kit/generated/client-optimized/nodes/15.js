@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/neumorphic-demo/+page.svelte";
+export { default as component } from "../../../../src/routes/neo-svelte-demo/+page.svelte";

@@ -1,4 +1,4 @@
-import { _ as current_component, Q as sanitize_props, A as push, T as spread_attributes, P as attr, D as pop, J as stringify, V as bind_props, $ as element, a0 as spread_props, G as escape_html, I as attr_class, W as copy_payload, X as assign_payload, Z as attr_style, M as getContext, O as ensure_array_like, B as setContext, a1 as run, F as head } from "../../../chunks/index2.js";
+import { Q as sanitize_props, A as push, T as spread_attributes, P as attr, D as pop, J as stringify, V as bind_props, a3 as element, a4 as spread_props, G as escape_html, I as attr_class, W as copy_payload, X as assign_payload, Z as attr_style, M as getContext, O as ensure_array_like, B as setContext, a5 as run, F as head } from "../../../chunks/index2.js";
 import { clamp } from "@dvcol/common-utils/common/math";
 import "clsx";
 import { debounce } from "@dvcol/common-utils/common/debounce";
@@ -13,16 +13,8 @@ import { percent, round } from "@dvcol/common-utils";
 import { toStyle } from "@dvcol/common-utils/common/class";
 import "@dvcol/common-utils/common/object";
 import { wait } from "@dvcol/common-utils/common/promise";
+import { t as tick, o as onDestroy } from "../../../chunks/index-server.js";
 import { computePosition, flip, offset } from "@floating-ui/dom";
-function onDestroy(fn) {
-  var context = (
-    /** @type {Component} */
-    current_component
-  );
-  (context.d ??= []).push(fn);
-}
-async function tick() {
-}
 function cubic_out(t) {
   const f = t - 1;
   return f * f * f + 1;
@@ -5029,11 +5021,11 @@ function _page($$payload) {
     });
     NeoThemeProvider($$payload2, {
       children: ($$payload3) => {
-        $$payload3.out.push(`<div class="min-h-screen bg-gray-100 p-8"><div class="max-w-6xl mx-auto"><h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Neo Svelte Demo</h1> <p class="text-center text-gray-600 mb-12">Exploring the @dvcol/neo-svelte neumorphic UI library for Svelte 5</p> `);
+        $$payload3.out.push(`<div class="min-h-screen p-8" style="background-color: var(--neo-background-color);"><div class="max-w-6xl mx-auto"><h1 class="text-4xl font-bold text-center mb-8" style="color: var(--neo-text-color);">Neo Svelte Demo</h1> <p class="text-center mb-12" style="color: var(--neo-text-color-secondary);">Exploring the @dvcol/neo-svelte neumorphic UI library for Svelte 5</p> `);
         NeoCard($$payload3, {
           class: "mb-8 p-6",
           children: ($$payload4) => {
-            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4 text-gray-800">Buttons</h2> <div class="flex flex-wrap gap-4">`);
+            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4" style="color: var(--neo-text-color);">Buttons</h2> <div class="flex flex-wrap gap-4">`);
             NeoButton($$payload4, {
               children: ($$payload5) => {
                 $$payload5.out.push(`<!---->Default Button`);
@@ -5072,7 +5064,7 @@ function _page($$payload) {
         NeoCard($$payload3, {
           class: "mb-8 p-6",
           children: ($$payload4) => {
-            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4 text-gray-800">Inputs</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="block text-sm font-medium text-gray-700 mb-2">Text Input</label> `);
+            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4" style="color: var(--neo-text-color);">Inputs</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="block text-sm font-medium mb-2" style="color: var(--neo-text-color);">Text Input</label> `);
             NeoInput($$payload4, {
               placeholder: "Enter text...",
               get value() {
@@ -5083,7 +5075,7 @@ function _page($$payload) {
                 $$settled = false;
               }
             });
-            $$payload4.out.push(`<!----></div> <div><label class="block text-sm font-medium text-gray-700 mb-2">Password Input</label> `);
+            $$payload4.out.push(`<!----></div> <div><label class="block text-sm font-medium mb-2" style="color: var(--neo-text-color);">Password Input</label> `);
             NeoInput($$payload4, { type: "password", placeholder: "Enter password..." });
             $$payload4.out.push(`<!----></div></div>`);
           },
@@ -5093,7 +5085,7 @@ function _page($$payload) {
         NeoCard($$payload3, {
           class: "mb-8 p-6",
           children: ($$payload4) => {
-            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4 text-gray-800">Form Controls</h2> <div class="space-y-6"><div class="flex items-center space-x-4">`);
+            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4" style="color: var(--neo-text-color);">Form Controls</h2> <div class="space-y-6"><div class="flex items-center space-x-4">`);
             NeoSwitch($$payload4, {
               get checked() {
                 return switchValue;
@@ -5103,7 +5095,7 @@ function _page($$payload) {
                 $$settled = false;
               }
             });
-            $$payload4.out.push(`<!----> <span class="text-gray-700">Toggle Switch: ${escape_html(switchValue ? "On" : "Off")}</span></div> <div><label class="block text-sm font-medium text-gray-700 mb-2">Range Slider: ${escape_html(rangeValue)}</label> `);
+            $$payload4.out.push(`<!----> <span style="color: var(--neo-text-color);">Toggle Switch: ${escape_html(switchValue ? "On" : "Off")}</span></div> <div><label class="block text-sm font-medium mb-2" style="color: var(--neo-text-color);">Range Slider: ${escape_html(rangeValue)}</label> `);
             NeoRange($$payload4, {
               min: 0,
               max: 100,
@@ -5125,7 +5117,7 @@ function _page($$payload) {
                 $$settled = false;
               }
             });
-            $$payload4.out.push(`<!----> <span class="text-gray-700">Checkbox: ${escape_html(checkboxValue ? "Checked" : "Unchecked")}</span></div> <div><label class="block text-sm font-medium text-gray-700 mb-2">Radio Group: ${escape_html(radioValue)}</label> <div class="flex space-x-4"><div class="flex items-center space-x-2">`);
+            $$payload4.out.push(`<!----> <span style="color: var(--neo-text-color);">Checkbox: ${escape_html(checkboxValue ? "Checked" : "Unchecked")}</span></div> <div><label class="block text-sm font-medium mb-2" style="color: var(--neo-text-color);">Radio Group: ${escape_html(radioValue)}</label> <div class="flex space-x-4"><div class="flex items-center space-x-2">`);
             NeoRadio($$payload4, {
               value: "option1",
               get group() {
@@ -5136,7 +5128,7 @@ function _page($$payload) {
                 $$settled = false;
               }
             });
-            $$payload4.out.push(`<!----> <span class="text-gray-700">Option 1</span></div> <div class="flex items-center space-x-2">`);
+            $$payload4.out.push(`<!----> <span style="color: var(--neo-text-color);">Option 1</span></div> <div class="flex items-center space-x-2">`);
             NeoRadio($$payload4, {
               value: "option2",
               get group() {
@@ -5147,7 +5139,7 @@ function _page($$payload) {
                 $$settled = false;
               }
             });
-            $$payload4.out.push(`<!----> <span class="text-gray-700">Option 2</span></div> <div class="flex items-center space-x-2">`);
+            $$payload4.out.push(`<!----> <span style="color: var(--neo-text-color);">Option 2</span></div> <div class="flex items-center space-x-2">`);
             NeoRadio($$payload4, {
               value: "option3",
               get group() {
@@ -5158,7 +5150,7 @@ function _page($$payload) {
                 $$settled = false;
               }
             });
-            $$payload4.out.push(`<!----> <span class="text-gray-700">Option 3</span></div></div></div></div>`);
+            $$payload4.out.push(`<!----> <span style="color: var(--neo-text-color);">Option 3</span></div></div></div></div>`);
           },
           $$slots: { default: true }
         });
@@ -5166,9 +5158,9 @@ function _page($$payload) {
         NeoCard($$payload3, {
           class: "mb-8 p-6",
           children: ($$payload4) => {
-            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4 text-gray-800">Progress &amp; Badges</h2> <div class="space-y-6"><div><label class="block text-sm font-medium text-gray-700 mb-2">Progress: ${escape_html(rangeValue)}%</label> `);
+            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4" style="color: var(--neo-text-color);">Progress &amp; Badges</h2> <div class="space-y-6"><div><label class="block text-sm font-medium mb-2" style="color: var(--neo-text-color);">Progress: ${escape_html(rangeValue)}%</label> `);
             NeoProgress($$payload4, { value: rangeValue, max: 100 });
-            $$payload4.out.push(`<!----></div> <div><label class="block text-sm font-medium text-gray-700 mb-2">Badges</label> <div class="flex flex-wrap gap-2">`);
+            $$payload4.out.push(`<!----></div> <div><label class="block text-sm font-medium mb-2" style="color: var(--neo-text-color);">Badges</label> <div class="flex flex-wrap gap-2">`);
             NeoBadge($$payload4, {
               children: ($$payload5) => {
                 $$payload5.out.push(`<!---->Default`);
@@ -5223,7 +5215,7 @@ function _page($$payload) {
         NeoCard($$payload3, {
           class: "mb-8 p-6",
           children: ($$payload4) => {
-            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4 text-gray-800">Library Comparison</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><h3 class="text-lg font-medium mb-3 text-gray-700">@dvcol/neo-svelte</h3> <ul class="space-y-2 text-sm text-gray-600"><li>✅ Native Svelte 5 support</li> <li>✅ Pre-built neumorphic components</li> <li>✅ Theme provider system</li> <li>✅ Comprehensive component library</li> <li>✅ Accessible components</li> <li>✅ TypeScript support</li></ul></div> <div><h3 class="text-lg font-medium mb-3 text-gray-700">Our Custom Implementation</h3> <ul class="space-y-2 text-sm text-gray-600"><li>✅ Custom CSS variables system</li> <li>✅ Tailwind integration</li> <li>✅ Light/dark mode support</li> <li>✅ Dynamic theme overrides</li> <li>⚠️ Limited component set</li> <li>⚠️ Manual maintenance required</li></ul></div></div>`);
+            $$payload4.out.push(`<h2 class="text-2xl font-semibold mb-4" style="color: var(--neo-text-color);">Library Comparison</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><h3 class="text-lg font-medium mb-3" style="color: var(--neo-text-color);">@dvcol/neo-svelte</h3> <ul class="space-y-2 text-sm" style="color: var(--neo-text-color-secondary);"><li>✅ Native Svelte 5 support</li> <li>✅ Pre-built neumorphic components</li> <li>✅ Theme provider system</li> <li>✅ Comprehensive component library</li> <li>✅ Accessible components</li> <li>✅ TypeScript support</li></ul></div> <div><h3 class="text-lg font-medium mb-3" style="color: var(--neo-text-color);">Our Custom Implementation</h3> <ul class="space-y-2 text-sm" style="color: var(--neo-text-color-secondary);"><li>✅ Custom CSS variables system</li> <li>✅ Tailwind integration</li> <li>✅ Light/dark mode support</li> <li>✅ Dynamic theme overrides</li> <li>⚠️ Limited component set</li> <li>⚠️ Manual maintenance required</li></ul></div></div>`);
           },
           $$slots: { default: true }
         });

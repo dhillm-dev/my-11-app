@@ -1,3 +1,1 @@
-import * as universal from "../../../../src/routes/matches/+page.ts";
-export { universal };
-export { default as component } from "../../../../src/routes/matches/+page.svelte";
+export { default as component } from "../../../../src/routes/lenis-demo/+page.svelte";

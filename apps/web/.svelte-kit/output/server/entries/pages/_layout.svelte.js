@@ -1,6 +1,7 @@
 import { E as store_get, F as head, G as escape_html, I as attr_class, J as stringify, K as unsubscribe_stores, D as pop, A as push } from "../../chunks/index2.js";
 import { p as page } from "../../chunks/stores.js";
 import { i as isAuthenticated, u as user } from "../../chunks/teams.js";
+import { o as onDestroy } from "../../chunks/index-server.js";
 import "@sveltejs/kit/internal";
 import "../../chunks/exports.js";
 import "../../chunks/utils.js";
@@ -9,10 +10,15 @@ import "../../chunks/state.svelte.js";
 import { $ as $isLoading, a as $format } from "../../chunks/runtime.js";
 import "../../chunks/index3.js";
 import "../../chunks/button.js";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 function _layout($$payload, $$props) {
   push();
   var $$store_subs;
+  gsap.registerPlugin(ScrollTrigger);
   let { children, data } = $$props;
+  onDestroy(() => {
+  });
   let isAuthPage = store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/auth");
   store_get($$store_subs ??= {}, "$page", page).url.pathname === "/";
   let showMobileNavigation = store_get($$store_subs ??= {}, "$isAuthenticated", isAuthenticated) && !isAuthPage;

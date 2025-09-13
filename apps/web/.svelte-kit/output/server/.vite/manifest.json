@@ -65,6 +65,13 @@
     "file": "chunks/html.js",
     "name": "html"
   },
+  "_index-server.js": {
+    "file": "chunks/index-server.js",
+    "name": "index-server",
+    "imports": [
+      "_index2.js"
+    ]
+  },
   "_index.js": {
     "file": "chunks/index.js",
     "name": "index",
@@ -215,6 +222,7 @@
       "_index2.js",
       "_stores.js",
       "_teams.js",
+      "_index-server.js",
       "_exports.js",
       "_utils.js",
       "_state.svelte.js",
@@ -223,7 +231,7 @@
       "_button.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.YDGTtzLy.css"
+      "_app/immutable/assets/_layout.C45tc-c2.css"
     ]
   },
   "src/routes/+layout.ts": {
@@ -464,6 +472,18 @@
     "src": "src/routes/how-to-play/+page.ts",
     "isEntry": true
   },
+  "src/routes/lenis-demo/+page.svelte": {
+    "file": "entries/pages/lenis-demo/_page.svelte.js",
+    "name": "entries/pages/lenis-demo/_page.svelte",
+    "src": "src/routes/lenis-demo/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.D7Ue4thp.css"
+    ]
+  },
   "src/routes/matches/+page.svelte": {
     "file": "entries/pages/matches/_page.svelte.js",
     "name": "entries/pages/matches/_page.svelte",
@@ -490,7 +510,8 @@
     "src": "src/routes/neo-svelte-demo/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_index2.js"
+      "_index2.js",
+      "_index-server.js"
     ],
     "css": [
       "_app/immutable/assets/_page.BJPN7KNA.css"

@@ -6,11 +6,11 @@ function __memo(fn) {
 
 return {
 	appDir: "_app",
-	appPath: "_app",
+	appPath: "my-11-app/_app",
 	assets: new Set([".nojekyll","images/peeps/all-peeps.svg","robots.txt"]),
 	mimeTypes: {".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		client: {start:"_app/immutable/entry/start.P_sn6F2w.js",app:"_app/immutable/entry/app.BZzXYmV3.js",imports:["_app/immutable/entry/start.P_sn6F2w.js","_app/immutable/chunks/B_vfh-un.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/BQeg1LcY.js","_app/immutable/entry/app.BZzXYmV3.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/DJXJUQSZ.js","_app/immutable/chunks/CJm2gSzS.js","_app/immutable/chunks/DylqDdvv.js","_app/immutable/chunks/Bz204FB1.js","_app/immutable/chunks/BQeg1LcY.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.ByVeo_tN.js",app:"_app/immutable/entry/app.DjJ65f9v.js",imports:["_app/immutable/entry/start.ByVeo_tN.js","_app/immutable/chunks/CUkduZpC.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/BQeg1LcY.js","_app/immutable/entry/app.DjJ65f9v.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/DJXJUQSZ.js","_app/immutable/chunks/BDdZuI0x.js","_app/immutable/chunks/DylqDdvv.js","_app/immutable/chunks/Bz204FB1.js","_app/immutable/chunks/BQeg1LcY.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js'))
@@ -41,7 +41,7 @@ return {
 				endpoint: __memo(() => import('./entries/endpoints/api/sofascore/search/_server.ts.js'))
 			}
 		],
-		prerendered_routes: new Set(["/","/api-demo","/auth/forgot","/auth/login","/auth/register","/auth/reset","/button-demo","/contests","/dashboard","/how-to-play","/matches","/neo-svelte-demo","/neumorphic-demo","/profile","/rapidapi-test","/team-builder","/wallet"]),
+		prerendered_routes: new Set(["/my-11-app/","/my-11-app/api-demo","/my-11-app/auth/forgot","/my-11-app/auth/login","/my-11-app/auth/register","/my-11-app/auth/reset","/my-11-app/button-demo","/my-11-app/contests","/my-11-app/dashboard","/my-11-app/how-to-play","/my-11-app/lenis-demo","/my-11-app/matches","/my-11-app/neo-svelte-demo","/my-11-app/neumorphic-demo","/my-11-app/profile","/my-11-app/rapidapi-test","/my-11-app/team-builder","/my-11-app/wallet"]),
 		matchers: async () => {
 			
 			return {  };

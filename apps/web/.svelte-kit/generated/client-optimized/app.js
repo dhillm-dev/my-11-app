@@ -20,7 +20,8 @@ export const nodes = [
 	() => import('./nodes/16'),
 	() => import('./nodes/17'),
 	() => import('./nodes/18'),
-	() => import('./nodes/19')
+	() => import('./nodes/19'),
+	() => import('./nodes/20')
 ];
 
 export const server_loads = [];
@@ -36,13 +37,14 @@ export const dictionary = {
 		"/contests": [10],
 		"/dashboard": [11],
 		"/how-to-play": [12],
-		"/matches": [13],
-		"/neo-svelte-demo": [14],
-		"/neumorphic-demo": [15],
-		"/profile": [16],
-		"/rapidapi-test": [17],
-		"/team-builder": [18],
-		"/wallet": [19]
+		"/lenis-demo": [13],
+		"/matches": [14],
+		"/neo-svelte-demo": [15],
+		"/neumorphic-demo": [16],
+		"/profile": [17],
+		"/rapidapi-test": [18],
+		"/team-builder": [19],
+		"/wallet": [20]
 	};
 
 export const hooks = {

@@ -6,11 +6,11 @@ function __memo(fn) {
 
 return {
 	appDir: "_app",
-	appPath: "_app",
+	appPath: "my-11-app/_app",
 	assets: new Set([".nojekyll","images/peeps/all-peeps.svg","robots.txt"]),
 	mimeTypes: {".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		client: {start:"_app/immutable/entry/start.P_sn6F2w.js",app:"_app/immutable/entry/app.BZzXYmV3.js",imports:["_app/immutable/entry/start.P_sn6F2w.js","_app/immutable/chunks/B_vfh-un.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/BQeg1LcY.js","_app/immutable/entry/app.BZzXYmV3.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/DJXJUQSZ.js","_app/immutable/chunks/CJm2gSzS.js","_app/immutable/chunks/DylqDdvv.js","_app/immutable/chunks/Bz204FB1.js","_app/immutable/chunks/BQeg1LcY.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.ByVeo_tN.js",app:"_app/immutable/entry/app.DjJ65f9v.js",imports:["_app/immutable/entry/start.ByVeo_tN.js","_app/immutable/chunks/CUkduZpC.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/BQeg1LcY.js","_app/immutable/entry/app.DjJ65f9v.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/DJXJUQSZ.js","_app/immutable/chunks/BDdZuI0x.js","_app/immutable/chunks/DylqDdvv.js","_app/immutable/chunks/Bz204FB1.js","_app/immutable/chunks/BQeg1LcY.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -31,7 +31,8 @@ return {
 			__memo(() => import('./nodes/16.js')),
 			__memo(() => import('./nodes/17.js')),
 			__memo(() => import('./nodes/18.js')),
-			__memo(() => import('./nodes/19.js'))
+			__memo(() => import('./nodes/19.js')),
+			__memo(() => import('./nodes/20.js'))
 		],
 		remotes: {
 			
@@ -129,52 +130,59 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/lenis-demo",
+				pattern: /^\/lenis-demo\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				endpoint: null
+			},
+			{
 				id: "/matches",
 				pattern: /^\/matches\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			},
 			{
 				id: "/neo-svelte-demo",
 				pattern: /^\/neo-svelte-demo\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 14 },
+				page: { layouts: [0,], errors: [1,], leaf: 15 },
 				endpoint: null
 			},
 			{
 				id: "/neumorphic-demo",
 				pattern: /^\/neumorphic-demo\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 15 },
+				page: { layouts: [0,], errors: [1,], leaf: 16 },
 				endpoint: null
 			},
 			{
 				id: "/profile",
 				pattern: /^\/profile\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 16 },
+				page: { layouts: [0,], errors: [1,], leaf: 17 },
 				endpoint: null
 			},
 			{
 				id: "/rapidapi-test",
 				pattern: /^\/rapidapi-test\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 17 },
+				page: { layouts: [0,], errors: [1,], leaf: 18 },
 				endpoint: null
 			},
 			{
 				id: "/team-builder",
 				pattern: /^\/team-builder\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 18 },
+				page: { layouts: [0,], errors: [1,], leaf: 19 },
 				endpoint: null
 			},
 			{
 				id: "/wallet",
 				pattern: /^\/wallet\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 19 },
+				page: { layouts: [0,], errors: [1,], leaf: 20 },
 				endpoint: null
 			}
 		],
