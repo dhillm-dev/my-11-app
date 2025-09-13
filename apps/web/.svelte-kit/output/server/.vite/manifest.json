@@ -248,6 +248,12 @@
       "_app/immutable/assets/_page.DDpDL8WN.css"
     ]
   },
+  "src/routes/api-demo/+page.ts": {
+    "file": "entries/pages/api-demo/_page.ts.js",
+    "name": "entries/pages/api-demo/_page.ts",
+    "src": "src/routes/api-demo/+page.ts",
+    "isEntry": true
+  },
   "src/routes/api/rapidapi-test/+server.ts": {
     "file": "entries/endpoints/api/rapidapi-test/_server.ts.js",
     "name": "entries/endpoints/api/rapidapi-test/_server.ts",
@@ -399,6 +405,12 @@
       "_LoginModal.js"
     ]
   },
+  "src/routes/dashboard/+page.ts": {
+    "file": "entries/pages/dashboard/_page.ts.js",
+    "name": "entries/pages/dashboard/_page.ts",
+    "src": "src/routes/dashboard/+page.ts",
+    "isEntry": true
+  },
   "src/routes/how-to-play/+page.svelte": {
     "file": "entries/pages/how-to-play/_page.svelte.js",
     "name": "entries/pages/how-to-play/_page.svelte",
@@ -412,6 +424,12 @@
       "_teams.js",
       "_html.js"
     ]
+  },
+  "src/routes/how-to-play/+page.ts": {
+    "file": "entries/pages/how-to-play/_page.ts.js",
+    "name": "entries/pages/how-to-play/_page.ts",
+    "src": "src/routes/how-to-play/+page.ts",
+    "isEntry": true
   },
   "src/routes/matches/+page.svelte": {
     "file": "entries/pages/matches/_page.svelte.js",
@@ -427,6 +445,12 @@
       "_runtime.js"
     ]
   },
+  "src/routes/matches/+page.ts": {
+    "file": "entries/pages/matches/_page.ts.js",
+    "name": "entries/pages/matches/_page.ts",
+    "src": "src/routes/matches/+page.ts",
+    "isEntry": true
+  },
   "src/routes/profile/+page.svelte": {
     "file": "entries/pages/profile/_page.svelte.js",
     "name": "entries/pages/profile/_page.svelte",
@@ -437,6 +461,12 @@
       "_teams.js",
       "_client.js"
     ]
+  },
+  "src/routes/profile/+page.ts": {
+    "file": "entries/pages/profile/_page.ts.js",
+    "name": "entries/pages/profile/_page.ts",
+    "src": "src/routes/profile/+page.ts",
+    "isEntry": true
   },
   "src/routes/rapidapi-test/+page.svelte": {
     "file": "entries/pages/rapidapi-test/_page.svelte.js",
@@ -449,6 +479,12 @@
     "css": [
       "_app/immutable/assets/_page.B_IlzWRt.css"
     ]
+  },
+  "src/routes/rapidapi-test/+page.ts": {
+    "file": "entries/pages/rapidapi-test/_page.ts.js",
+    "name": "entries/pages/rapidapi-test/_page.ts",
+    "src": "src/routes/rapidapi-test/+page.ts",
+    "isEntry": true
   },
   "src/routes/team-builder/+page.svelte": {
     "file": "entries/pages/team-builder/_page.svelte.js",
@@ -465,6 +501,12 @@
       "_LoginModal.js"
     ]
   },
+  "src/routes/team-builder/+page.ts": {
+    "file": "entries/pages/team-builder/_page.ts.js",
+    "name": "entries/pages/team-builder/_page.ts",
+    "src": "src/routes/team-builder/+page.ts",
+    "isEntry": true
+  },
   "src/routes/wallet/+page.svelte": {
     "file": "entries/pages/wallet/_page.svelte.js",
     "name": "entries/pages/wallet/_page.svelte",
@@ -477,5 +519,11 @@
       "_utils.js",
       "_state.svelte.js"
     ]
+  },
+  "src/routes/wallet/+page.ts": {
+    "file": "entries/pages/wallet/_page.ts.js",
+    "name": "entries/pages/wallet/_page.ts",
+    "src": "src/routes/wallet/+page.ts",
+    "isEntry": true
   }
 }
