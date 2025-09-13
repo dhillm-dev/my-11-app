@@ -299,30 +299,5 @@
     "terms": "Terms",
     "privacy_policy": "Privacy Policy",
     "responsible_gaming": "Responsible Gaming"
-  },
-  "admin": {
-    "dashboard_title": "Dashboard - Dream11 Admin",
-    "active_contests": "Active Contests",
-    "total_entries": "Total Entries",
-    "ggr": "GGR",
-    "payouts": "Payouts",
-    "active_users": "Active Users",
-    "quick_actions": "Quick Actions",
-    "recent_activity": "Recent Activity",
-    "no_recent_activity": "No recent activity",
-    "live_incidents": "Live Incidents",
-    "no_active_incidents": "No active incidents",
-    "unauthorized": "Unauthorized",
-    "users_management": "Users Management",
-    "manage_user_accounts": "Manage user accounts, KYC status, and wallet information",
-    "search_name_email": "Search name or email...",
-    "kyc_status": "KYC Status",
-    "all_statuses": "All Statuses",
-    "role": "Role",
-    "all_roles": "All Roles",
-    "show_banned_only": "Show Banned Only",
-    "loading_users": "Loading users...",
-    "no_users_found": "No users found",
-    "demo_accounts": "Demo Accounts"
   }
 }

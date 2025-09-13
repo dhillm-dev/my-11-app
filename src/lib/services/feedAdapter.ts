@@ -1,6 +1,6 @@
 import type { Match, Player } from '$lib/types';
 
-// Extended match interface for admin curation
+// Extended match interface for data processing
 export interface FeedMatch extends Match {
 	matchId: string;
 	league: string;

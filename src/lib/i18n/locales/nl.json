@@ -299,30 +299,5 @@
     "terms": "Voorwaarden",
     "privacy_policy": "Privacybeleid",
     "responsible_gaming": "Verantwoord Gokken"
-  },
-  "admin": {
-    "dashboard_title": "Dashboard - Dream11 Admin",
-    "active_contests": "Actieve Wedstrijden",
-    "total_entries": "Totaal Inschrijvingen",
-    "ggr": "GGR",
-    "payouts": "Uitbetalingen",
-    "active_users": "Actieve Gebruikers",
-    "quick_actions": "Snelle Acties",
-    "recent_activity": "Recente Activiteit",
-    "no_recent_activity": "Geen recente activiteit",
-    "live_incidents": "Live Incidenten",
-    "no_active_incidents": "Geen actieve incidenten",
-    "unauthorized": "Ongeautoriseerd",
-    "users_management": "Gebruikersbeheer",
-    "manage_user_accounts": "Beheer gebruikersaccounts, KYC-status en portemonnee-informatie",
-    "search_name_email": "Zoek naam of e-mail...",
-    "kyc_status": "KYC Status",
-    "all_statuses": "Alle Statussen",
-    "role": "Rol",
-    "all_roles": "Alle Rollen",
-    "show_banned_only": "Alleen Geblokkeerde Tonen",
-    "loading_users": "Gebruikers laden...",
-    "no_users_found": "Geen gebruikers gevonden",
-    "demo_accounts": "Demo Accounts"
   }
 }

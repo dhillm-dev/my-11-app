@@ -5,7 +5,7 @@ export interface User {
 	avatar?: string;
 	balance: number;
 	kycVerified: boolean;
-	role?: 'user' | 'superadmin' | 'admin' | 'moderator' | 'viewer';
+	role?: 'user';
 	phone?: string;
 	dateOfBirth?: string;
 	state?: string;
@@ -94,64 +94,9 @@ export interface ApiResponse<T> {
 	message?: string;
 }
 
-// Admin Types
-export interface AdminSession {
-	user: User;
-	role: 'superadmin' | 'admin' | 'moderator' | 'viewer';
-	permissions: AdminPermission[];
-	isImpersonating?: boolean;
-	originalAdminId?: string;
-}
-
-export interface AdminPermission {
-	resource: string;
-	actions: ('create' | 'read' | 'update' | 'delete' | 'publish' | 'lock')[];
-}
-
-export interface AuditLog {
-	id: string;
-	adminId: string;
-	adminName: string;
-	action: string;
-	resource: string;
-	resourceId?: string;
-	changes?: Record<string, any>;
-	timestamp: Date;
-	ipAddress?: string;
-	userAgent?: string;
-}
-
-export interface AdminContest extends Contest {
-	visibility: 'public' | 'private';
-	multiEntry: boolean;
-	lineupAvailable: boolean;
-	scoringFeedId?: string;
-	createdBy: string;
-	updatedBy?: string;
-	updatedAt?: Date;
-}
-
-export interface AdminMatch extends Match {
-	lineupAvailable: boolean;
-	scoringFeedId?: string;
-	createdBy: string;
-	updatedBy?: string;
-	updatedAt?: Date;
-}
-
-export interface AdminPlayer extends Player {
-	isActive: boolean;
-	price: number;
-	injuryStatus?: string;
-	createdBy: string;
-	updatedBy?: string;
-	updatedAt?: Date;
-}
-
 export interface WalletTransaction {
 	id: string;
 	userId: string;
-	adminId?: string;
 	type: 'credit' | 'debit' | 'deposit' | 'withdrawal' | 'contest_entry' | 'contest_win' | 'bonus' | 'refund';
 	amount: number;
 	description: string;
@@ -159,15 +104,6 @@ export interface WalletTransaction {
 	status: 'pending' | 'completed' | 'failed';
 	createdAt: Date;
 }
-
-export interface AdminSettings {
-	bonuses: {
-		signupBonus: number;
-		referralBonus: number;
-		promoEnabled: boolean;
-	};
-	scoring: {
-		weights: Record<string, number>;
 		roleRules: {
 			gk: { min: number; max: number };
 			def: { min: number; max: number };

@@ -28,8 +28,7 @@ const requiredAuthRoutes = [
 	'/team-builder',
 	'/live',
 	'/results',
-	'/profile',
-	'/admin'
+	'/profile'
 ];
 
 export const load: LayoutLoad = async ({ url, depends }) => {
