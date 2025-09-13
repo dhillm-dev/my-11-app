@@ -3,6 +3,11 @@
 export const index = 7;
 let component_cache;
 export const component = async () => component_cache ??= (await import('../entries/pages/auth/register/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/7.BuJi9gYK.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/BQ5TAxPT.js","_app/immutable/chunks/CVry2a8L.js","_app/immutable/chunks/Cgd3HNF2.js","_app/immutable/chunks/DUfWvYOm.js","_app/immutable/chunks/DXEbly8j.js","_app/immutable/chunks/CtW1WcXw.js","_app/immutable/chunks/B-dksMZM.js","_app/immutable/chunks/CdEA5IGF.js","_app/immutable/chunks/B21ZSewf.js","_app/immutable/chunks/C2qV-dvn.js","_app/immutable/chunks/BbgwE1SL.js","_app/immutable/chunks/Dpb-i6uF.js","_app/immutable/chunks/0Rlou4_0.js","_app/immutable/chunks/D0VaxNBh.js","_app/immutable/chunks/9ek7rKyT.js"];
+export const universal = {
+  "prerender": true,
+  "ssr": false
+};
+export const universal_id = "src/routes/auth/register/+page.ts";
+export const imports = ["_app/immutable/nodes/7.sLqayI2g.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/Cki9lcfI.js","_app/immutable/chunks/-7ji5h5c.js","_app/immutable/chunks/By3v3tMv.js","_app/immutable/chunks/CAKQOoBr.js","_app/immutable/chunks/fM1JLal-.js","_app/immutable/chunks/U3M1nOa8.js","_app/immutable/chunks/B-dksMZM.js","_app/immutable/chunks/CdEA5IGF.js","_app/immutable/chunks/CBgjW_LK.js","_app/immutable/chunks/DhZ9dMgW.js","_app/immutable/chunks/CEukAdJd.js","_app/immutable/chunks/BYnp55xC.js","_app/immutable/chunks/CUyTfC05.js","_app/immutable/chunks/hyRILVxy.js","_app/immutable/chunks/9ek7rKyT.js"];
 export const stylesheets = [];
 export const fonts = [];
