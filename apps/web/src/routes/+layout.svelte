@@ -29,14 +29,17 @@
 	onMount(() => {
 		userActions.loadFromStorage();
 		
-		// Initialize Lenis smooth scroll with ultra-smooth settings
+		// Initialize Lenis smooth scroll with enhanced ultra-smooth settings for GitHub Pages
 		const lenis = createLenis({
-			// Ultra-smooth configuration overrides
-			wheelMultiplier: 0.6,
-			lerp: 0.04,
-			duration: 2.2,
-			touchInertiaMultiplier: 40,
-			syncTouchLerp: 0.06
+			// Enhanced ultra-smooth configuration for web deployment
+			wheelMultiplier: 0.5, // Even gentler wheel response
+			lerp: 0.035, // Ultra-smooth interpolation
+			duration: 2.5, // Longer animations for smoother feel
+			touchInertiaMultiplier: 45, // Enhanced touch momentum
+			syncTouchLerp: 0.05, // Smoother touch sync
+			// Additional smoothing features
+			normalizeWheel: true,
+			smoothing: 0.1
 		});
 		
 		if (lenis) {

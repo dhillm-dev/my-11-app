@@ -40,9 +40,11 @@
      --radius-lg: 2rem; /* 32px */
    }
 
-  /* Ultra-smooth scrolling optimizations */
+  /* Ultra-smooth scrolling optimizations - Enhanced for GitHub Pages */
   html {
     scroll-behavior: auto; /* Let Lenis handle smooth scrolling */
+    --scroll-progress: 0px;
+    --scroll-velocity: 0;
   }
 
   /* Optimize for smooth scrolling performance */
@@ -52,6 +54,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeSpeed;
+    /* Enhanced smooth scrolling support */
+    overflow-x: hidden;
+    overscroll-behavior: none;
   }
 
   /* Optimize scroll containers */
@@ -59,11 +64,27 @@
     /* Improve scroll performance */
     will-change: auto;
     backface-visibility: hidden;
+    /* Enhanced GPU acceleration */
+    transform-style: preserve-3d;
   }
 
-  /* Smooth transitions for interactive elements */
+  /* Enhanced smooth transitions for interactive elements */
   a, button, [role="button"] {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateZ(0);
+  }
+
+  /* Velocity-based animations */
+  .fast-scroll * {
+    transition-duration: 0.1s !important;
+  }
+  
+  .medium-scroll * {
+    transition-duration: 0.2s !important;
+  }
+  
+  .slow-scroll * {
+    transition-duration: 0.4s !important;
   }
 
   /* Prevent layout shifts during scroll */
@@ -71,6 +92,16 @@
     height: auto;
     max-width: 100%;
     transform: translateZ(0);
+    /* Enhanced image smoothing */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Smooth scroll indicators */
+  .scroll-indicator {
+    opacity: calc(var(--scroll-velocity) / 10);
+    transform: translateY(calc(var(--scroll-progress) * -0.1));
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .dark {
