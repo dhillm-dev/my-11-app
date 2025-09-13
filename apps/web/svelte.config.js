@@ -13,7 +13,8 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: '404.html' // GitHub Pages standard for SPA routing
+			fallback: '404.html', // GitHub Pages standard for SPA routing
+			strict: false
 		}),
 		// If DEPLOY_TARGET is 'github-pages', use the repo name as base
 		// Otherwise, use root for local development or other deployments
