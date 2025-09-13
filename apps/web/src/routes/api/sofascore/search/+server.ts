@@ -39,7 +39,6 @@ export const GET: RequestHandler = async ({ url, request }) => {
 
 		// Rate limiting check (simple implementation)
 		const clientIP = request.headers.get('x-forwarded-for') || 'unknown';
-		const rateLimitKey = `sofascore_search_${clientIP}`;
 		
 		// In production, you'd use Redis or similar for rate limiting
 		// For now, we'll rely on the adapter's built-in rate limiting

@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { isAuthenticated } from '$lib/stores';
-	import { _, locale } from 'svelte-i18n';
 	import '$lib/i18n';
-	import { Button } from '$lib/components/ui';
 
 
 
@@ -16,11 +14,7 @@
 
 
 
-	// Language switching
-	function switchLanguage(lang: string) {
-		$locale = lang;
-		localStorage.setItem('locale', lang);
-	}
+
 
 	const features = [
 		{
@@ -96,23 +90,7 @@
 		}
 	];
 
-	const testimonials = [
-		{
-			name: 'Rahul Sharma',
-			text: 'Amazing platform! Won €50,000 in my first month. The interface is so smooth.',
-			avatar: 'R'
-		},
-		{
-			name: 'Priya Patel',
-			text: 'Love the real-time updates and easy team creation. Best fantasy app I\'ve used!',
-			avatar: 'P'
-		},
-		{
-			name: 'Arjun Kumar',
-			text: 'Quick withdrawals and great contests. Made €25,000 last week!',
-			avatar: 'A'
-		}
-	];
+
 
 	function getIconSvg(icon: string): string {
 		const icons: Record<string, string> = {

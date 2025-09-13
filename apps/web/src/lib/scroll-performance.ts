@@ -43,7 +43,7 @@ export class ScrollPerformanceOptimizer {
 
 		// Detect display refresh rate
 		const detectRefreshRate = () => {
-			let start = performance.now();
+			const start = performance.now();
 			let frameCount = 0;
 
 			const countFrames = () => {
@@ -73,7 +73,7 @@ export class ScrollPerformanceOptimizer {
 
 		let lastScrollY = 0;
 		let scrollVelocity = 0;
-		let momentumDecay = 0.95;
+		const momentumDecay = 0.95;
 
 		this.lenis.on('scroll', ({ scroll }: { scroll: number }) => {
 			scrollVelocity = (scroll - lastScrollY) * 0.1;

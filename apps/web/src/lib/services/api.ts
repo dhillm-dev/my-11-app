@@ -14,7 +14,7 @@ const MOCK_DELAY = 800; // ms
 let mockUser: User | null = null;
 let mockMatches: Match[] = [];
 let mockContests: Contest[] = [];
-let mockTeams: Team[] = [];
+const mockTeams: Team[] = [];
 let mockTransactions: Transaction[] = [];
 
 // Initialize mock data

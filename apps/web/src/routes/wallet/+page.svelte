@@ -1,7 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { walletStore, user } from '$lib/stores';
+	import { walletStore } from '$lib/stores';
 	import { goto } from '$app/navigation';
+
+	interface Transaction {
+		type: 'add_money' | 'contest_entry' | 'contest_win' | 'refund' | 'bonus';
+		description: string;
+		amount?: number;
+		date?: string;
+		id?: string;
+	}
 
 	let showAddMoney = false;
 	let addAmount = '';
@@ -85,7 +93,7 @@
 		}
 	}
 
-	function formatTransactionTitle(transaction: any) {
+	function formatTransactionTitle(transaction: Transaction) {
 		switch (transaction.type) {
 			case 'add_money': return 'Money Added';
 			case 'contest_entry': return `Contest Entry - ${transaction.description}`;
@@ -116,6 +124,7 @@
 			</div>
 			<button 
 				on:click={() => goto('/profile')}
+				aria-label="Go to profile"
 				class="w-10 h-10 bg-white/70 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg shadow-slate-200/50 border border-slate-200/60 text-slate-600 hover:text-slate-900 hover:shadow-slate-300/60 transition-all duration-300 hover:scale-105"
 			>
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,6 +309,7 @@
 					</div>
 					<button 
 						on:click={() => showAddMoney = false}
+						aria-label="Close add money dialog"
 						class="w-10 h-10 bg-white/70 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg shadow-slate-200/50 border border-slate-200/60 text-slate-600 hover:text-slate-900 hover:shadow-slate-300/60 transition-all duration-300 hover:scale-105"
 					>
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -310,10 +320,11 @@
 
 				<!-- Amount Input -->
 				<div class="mb-8">
-					<label class="block text-sm font-black text-slate-700 mb-3">Enter Amount</label>
+					<label for="add-amount" class="block text-sm font-black text-slate-700 mb-3">Enter Amount</label>
 					<div class="relative">
 						<span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-600 font-black text-lg">€</span>
 						<input
+							id="add-amount"
 							type="number"
 							bind:value={addAmount}
 							placeholder="0"
@@ -326,8 +337,8 @@
 				</div>
 
 				<!-- Quick Amount Buttons -->
-				<div class="mb-8">
-					<label class="block text-sm font-black text-slate-700 mb-4">Quick Select</label>
+				<fieldset class="mb-8">
+					<legend class="block text-sm font-black text-slate-700 mb-4">Quick Select</legend>
 					<div class="grid grid-cols-3 gap-3">
 						{#each quickAmounts as amount}
 							<button
@@ -338,11 +349,11 @@
 						</button>
 						{/each}
 					</div>
-				</div>
+				</fieldset>
 
 				<!-- Payment Methods -->
-				<div class="mb-8">
-					<label class="block text-sm font-black text-slate-700 mb-4">Payment Method</label>
+				<fieldset class="mb-8">
+					<legend class="block text-sm font-black text-slate-700 mb-4">Payment Method</legend>
 					<div class="space-y-3">
 						{#each paymentMethods as method}
 							<button
@@ -368,7 +379,7 @@
 							</button>
 					{/each}
 				</div>
-			</div>
+			</fieldset>
 
 				<!-- Add Money Button -->
 				<button
@@ -395,6 +406,7 @@
 					</div>
 					<button 
 						on:click={() => showAddMoney = false}
+						aria-label="Close add money dialog"
 						class="w-10 h-10 bg-white/70 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg shadow-slate-200/50 border border-slate-200/60 text-slate-600 hover:text-slate-900 hover:shadow-slate-300/60 transition-all duration-300 hover:scale-105"
 					>
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

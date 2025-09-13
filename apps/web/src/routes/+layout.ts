@@ -1,6 +1,5 @@
 import { redirect } from '@sveltejs/kit';
 import type { LayoutLoad } from './$types';
-import { get } from 'svelte/store';
 import { browser } from '$app/environment';
 
 // Enable static prerendering for GitHub Pages

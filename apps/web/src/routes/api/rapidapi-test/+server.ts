@@ -6,7 +6,7 @@ import type { RequestHandler } from './$types';
  * Test endpoint for RapidAPI SofaScore integration
  * GET /api/rapidapi-test?query=messi
  */
-export const GET: RequestHandler = async ({ url, request }) => {
+export const GET: RequestHandler = async ({ url }) => {
 	const startTime = Date.now();
 	const query = url.searchParams.get('query') || 'messi';
 	const testType = url.searchParams.get('type') || 'search';

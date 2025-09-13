@@ -48,9 +48,9 @@
 		<div class="text-center mt-8 text-sm text-slate-500">
 			<p>&copy; 2024 PickNWin. All rights reserved.</p>
 			<div class="flex justify-center space-x-4 mt-2">
-				<a href="#" class="hover:text-emerald-600 transition-colors">Privacy</a>
-				<a href="#" class="hover:text-emerald-600 transition-colors">Terms</a>
-				<a href="#" class="hover:text-emerald-600 transition-colors">Support</a>
+				<a href="/privacy" class="hover:text-emerald-600 transition-colors">Privacy</a>
+				<a href="/terms" class="hover:text-emerald-600 transition-colors">Terms</a>
+				<a href="/support" class="hover:text-emerald-600 transition-colors">Support</a>
 			</div>
 		</div>
 	</div>
