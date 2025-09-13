@@ -1,3 +1,3 @@
-import * as universal from "../../../../src/routes/contests/+page.ts";
+import * as universal from "../../../../src/routes/button-demo/+page.ts";
 export { universal };
-export { default as component } from "../../../../src/routes/contests/+page.svelte";
+export { default as component } from "../../../../src/routes/button-demo/+page.svelte";

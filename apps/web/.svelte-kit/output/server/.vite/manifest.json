@@ -26,6 +26,19 @@
       "_app/immutable/assets/LoginModal.BolWeU3G.css"
     ]
   },
+  "_button.js": {
+    "file": "chunks/button.js",
+    "name": "button"
+  },
+  "_button2.js": {
+    "file": "chunks/button2.js",
+    "name": "button",
+    "imports": [
+      "_index2.js",
+      "_utils2.js",
+      "_button.js"
+    ]
+  },
   "_client.js": {
     "file": "chunks/client.js",
     "name": "client",
@@ -206,10 +219,11 @@
       "_utils.js",
       "_state.svelte.js",
       "_runtime.js",
-      "_index3.js"
+      "_index3.js",
+      "_button.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.BUJzzN7T.css"
+      "_app/immutable/assets/_layout.YDGTtzLy.css"
     ]
   },
   "src/routes/+layout.ts": {
@@ -231,6 +245,7 @@
       "_teams.js",
       "_runtime.js",
       "_index3.js",
+      "_button.js",
       "_html.js"
     ]
   },
@@ -359,7 +374,9 @@
       "_exports.js",
       "_utils.js",
       "_state.svelte.js",
-      "_utils2.js"
+      "_button.js",
+      "_utils2.js",
+      "_button2.js"
     ],
     "css": [
       "_app/immutable/assets/_page.tn0RQdqM.css"
@@ -369,6 +386,22 @@
     "file": "entries/pages/auth/reset/_page.ts.js",
     "name": "entries/pages/auth/reset/_page.ts",
     "src": "src/routes/auth/reset/+page.ts",
+    "isEntry": true
+  },
+  "src/routes/button-demo/+page.svelte": {
+    "file": "entries/pages/button-demo/_page.svelte.js",
+    "name": "entries/pages/button-demo/_page.svelte",
+    "src": "src/routes/button-demo/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_button.js",
+      "_button2.js"
+    ]
+  },
+  "src/routes/button-demo/+page.ts": {
+    "file": "entries/pages/button-demo/_page.ts.js",
+    "name": "entries/pages/button-demo/_page.ts",
+    "src": "src/routes/button-demo/+page.ts",
     "isEntry": true
   },
   "src/routes/contests/+page.svelte": {
@@ -450,6 +483,32 @@
     "name": "entries/pages/matches/_page.ts",
     "src": "src/routes/matches/+page.ts",
     "isEntry": true
+  },
+  "src/routes/neo-svelte-demo/+page.svelte": {
+    "file": "entries/pages/neo-svelte-demo/_page.svelte.js",
+    "name": "entries/pages/neo-svelte-demo/_page.svelte",
+    "src": "src/routes/neo-svelte-demo/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BJPN7KNA.css"
+    ]
+  },
+  "src/routes/neumorphic-demo/+page.svelte": {
+    "file": "entries/pages/neumorphic-demo/_page.svelte.js",
+    "name": "entries/pages/neumorphic-demo/_page.svelte",
+    "src": "src/routes/neumorphic-demo/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_button.js",
+      "_button2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B0IvCM9D.css"
+    ]
   },
   "src/routes/profile/+page.svelte": {
     "file": "entries/pages/profile/_page.svelte.js",

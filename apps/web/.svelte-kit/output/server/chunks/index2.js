@@ -11,6 +11,9 @@ var get_prototype_of = Object.getPrototypeOf;
 var is_extensible = Object.isExtensible;
 const noop = () => {
 };
+function run(fn) {
+  return fn();
+}
 function run_all(arr) {
   for (var i = 0; i < arr.length; i++) {
     arr[i]();
@@ -1599,6 +1602,27 @@ const STATUS_MASK = -7169;
 function set_signal_status(signal, status) {
   signal.f = signal.f & STATUS_MASK | status;
 }
+const VOID_ELEMENT_NAMES = [
+  "area",
+  "base",
+  "br",
+  "col",
+  "command",
+  "embed",
+  "hr",
+  "img",
+  "input",
+  "keygen",
+  "link",
+  "meta",
+  "param",
+  "source",
+  "track",
+  "wbr"
+];
+function is_void(name) {
+  return VOID_ELEMENT_NAMES.includes(name) || name.toLowerCase() === "!doctype";
+}
 const DOM_BOOLEAN_ATTRIBUTES = [
   "allowfullscreen",
   "async",
@@ -1636,6 +1660,16 @@ function is_boolean_attribute(name) {
 const PASSIVE_EVENTS = ["touchstart", "touchmove"];
 function is_passive_event(name) {
   return PASSIVE_EVENTS.includes(name);
+}
+const RAW_TEXT_ELEMENTS = (
+  /** @type {const} */
+  ["textarea", "script", "style", "title"]
+);
+function is_raw_text_element(name) {
+  return RAW_TEXT_ELEMENTS.includes(
+    /** @type {typeof RAW_TEXT_ELEMENTS[number]} */
+    name
+  );
 }
 const ATTR_REGEX = /[&"<]/g;
 const CONTENT_REGEX = /[&<]/g;
@@ -1698,18 +1732,108 @@ function to_class(value, hash, directives) {
   }
   return classname === "" ? null : classname;
 }
+function append_styles(styles, important = false) {
+  var separator = important ? " !important;" : ";";
+  var css = "";
+  for (var key in styles) {
+    var value = styles[key];
+    if (value != null && value !== "") {
+      css += " " + key + ": " + value + separator;
+    }
+  }
+  return css;
+}
+function to_css_name(name) {
+  if (name[0] !== "-" || name[1] !== "-") {
+    return name.toLowerCase();
+  }
+  return name;
+}
 function to_style(value, styles) {
+  if (styles) {
+    var new_style = "";
+    var normal_styles;
+    var important_styles;
+    if (Array.isArray(styles)) {
+      normal_styles = styles[0];
+      important_styles = styles[1];
+    } else {
+      normal_styles = styles;
+    }
+    if (value) {
+      value = String(value).replaceAll(/\s*\/\*.*?\*\/\s*/g, "").trim();
+      var in_str = false;
+      var in_apo = 0;
+      var in_comment = false;
+      var reserved_names = [];
+      if (normal_styles) {
+        reserved_names.push(...Object.keys(normal_styles).map(to_css_name));
+      }
+      if (important_styles) {
+        reserved_names.push(...Object.keys(important_styles).map(to_css_name));
+      }
+      var start_index = 0;
+      var name_index = -1;
+      const len = value.length;
+      for (var i = 0; i < len; i++) {
+        var c = value[i];
+        if (in_comment) {
+          if (c === "/" && value[i - 1] === "*") {
+            in_comment = false;
+          }
+        } else if (in_str) {
+          if (in_str === c) {
+            in_str = false;
+          }
+        } else if (c === "/" && value[i + 1] === "*") {
+          in_comment = true;
+        } else if (c === '"' || c === "'") {
+          in_str = c;
+        } else if (c === "(") {
+          in_apo++;
+        } else if (c === ")") {
+          in_apo--;
+        }
+        if (!in_comment && in_str === false && in_apo === 0) {
+          if (c === ":" && name_index === -1) {
+            name_index = i;
+          } else if (c === ";" || i === len - 1) {
+            if (name_index !== -1) {
+              var name = to_css_name(value.substring(start_index, name_index).trim());
+              if (!reserved_names.includes(name)) {
+                if (c !== ";") {
+                  i++;
+                }
+                var property = value.substring(start_index, i).trim();
+                new_style += " " + property + ";";
+              }
+            }
+            start_index = i + 1;
+            name_index = -1;
+          }
+        }
+      }
+    }
+    if (normal_styles) {
+      new_style += append_styles(normal_styles);
+    }
+    if (important_styles) {
+      new_style += append_styles(important_styles, true);
+    }
+    new_style = new_style.trim();
+    return new_style === "" ? null : new_style;
+  }
   return value == null ? null : String(value);
 }
-function subscribe_to_store(store, run, invalidate) {
+function subscribe_to_store(store, run2, invalidate) {
   if (store == null) {
-    run(void 0);
+    run2(void 0);
     if (invalidate) invalidate(void 0);
     return noop;
   }
   const unsub = untrack(
     () => store.subscribe(
-      run,
+      run2,
       // @ts-expect-error
       invalidate
     )
@@ -1762,6 +1886,7 @@ function get_parent_context(component_context2) {
 }
 const BLOCK_OPEN = `<!--${HYDRATION_START}-->`;
 const BLOCK_CLOSE = `<!--${HYDRATION_END}-->`;
+const EMPTY_COMMENT = `<!---->`;
 class HeadPayload {
   /** @type {Set<{ hash: string; code: string }>} */
   css = /* @__PURE__ */ new Set();
@@ -1821,6 +1946,22 @@ function abort() {
   controller = null;
 }
 const INVALID_ATTR_NAME_CHAR_REGEX = /[\s'">/=\u{FDD0}-\u{FDEF}\u{FFFE}\u{FFFF}\u{1FFFE}\u{1FFFF}\u{2FFFE}\u{2FFFF}\u{3FFFE}\u{3FFFF}\u{4FFFE}\u{4FFFF}\u{5FFFE}\u{5FFFF}\u{6FFFE}\u{6FFFF}\u{7FFFE}\u{7FFFF}\u{8FFFE}\u{8FFFF}\u{9FFFE}\u{9FFFF}\u{AFFFE}\u{AFFFF}\u{BFFFE}\u{BFFFF}\u{CFFFE}\u{CFFFF}\u{DFFFE}\u{DFFFF}\u{EFFFE}\u{EFFFF}\u{FFFFE}\u{FFFFF}\u{10FFFE}\u{10FFFF}]/u;
+function element(payload, tag, attributes_fn = noop, children_fn = noop) {
+  payload.out.push("<!---->");
+  if (tag) {
+    payload.out.push(`<${tag}`);
+    attributes_fn();
+    payload.out.push(`>`);
+    if (!is_void(tag)) {
+      children_fn();
+      if (!is_raw_text_element(tag)) {
+        payload.out.push(EMPTY_COMMENT);
+      }
+      payload.out.push(`</${tag}>`);
+    }
+  }
+  payload.out.push("<!---->");
+}
 let on_destroy = [];
 function render(component, options = {}) {
   try {
@@ -1865,8 +2006,14 @@ function head(payload, fn) {
   head_payload.out.push(BLOCK_CLOSE);
 }
 function spread_attributes(attrs, css_hash, classes, styles, flags = 0) {
+  if (styles) {
+    attrs.style = to_style(attrs.style, styles);
+  }
   if (attrs.class) {
     attrs.class = clsx(attrs.class);
+  }
+  if (css_hash || classes) {
+    attrs.class = to_class(attrs.class, css_hash, classes);
   }
   let attr_str = "";
   let name;
@@ -1884,6 +2031,22 @@ function spread_attributes(attrs, css_hash, classes, styles, flags = 0) {
   }
   return attr_str;
 }
+function spread_props(props) {
+  const merged_props = {};
+  let key;
+  for (let i = 0; i < props.length; i++) {
+    const obj = props[i];
+    for (key in obj) {
+      const desc = Object.getOwnPropertyDescriptor(obj, key);
+      if (desc) {
+        Object.defineProperty(merged_props, key, desc);
+      } else {
+        merged_props[key] = obj[key];
+      }
+    }
+  }
+  return merged_props;
+}
 function stringify(value) {
   return typeof value === "string" ? value : value == null ? "" : value + "";
 }
@@ -1892,7 +2055,7 @@ function attr_class(value, hash, directives) {
   return result ? ` class="${escape_html(result, true)}"` : "";
 }
 function attr_style(value, directives) {
-  var result = to_style(value);
+  var result = to_style(value, directives);
   return result ? ` style="${escape_html(result, true)}"` : "";
 }
 function store_get(store_values, store_name, store) {
@@ -1955,8 +2118,18 @@ function ensure_array_like(array_like_or_iterator) {
 function maybe_selected(payload, value) {
   return value === payload.select_value ? " selected" : "";
 }
+function valueless_option(payload, children) {
+  var i = payload.out.length;
+  children();
+  var body = payload.out.slice(i).join("");
+  if (body.replace(/<!---->/g, "") === payload.select_value) {
+    var last_item = payload.out[i - 1];
+    payload.out[i - 1] = last_item.slice(0, -1) + " selected>";
+    payload.out.splice(i, payload.out.length - i, body);
+  }
+}
 export {
-  safe_not_equal as $,
+  element as $,
   push as A,
   setContext as B,
   COMMENT_NODE as C,
@@ -1983,10 +2156,15 @@ export {
   assign_payload as X,
   maybe_selected as Y,
   attr_style as Z,
-  noop as _,
+  current_component as _,
   set_active_effect as a,
-  subscribe_to_store as a0,
-  run_all as a1,
+  spread_props as a0,
+  run as a1,
+  noop as a2,
+  safe_not_equal as a3,
+  subscribe_to_store as a4,
+  run_all as a5,
+  valueless_option as a6,
   active_effect as b,
   active_reaction as c,
   define_property as d,

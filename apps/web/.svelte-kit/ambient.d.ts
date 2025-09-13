@@ -37,7 +37,6 @@ declare module '$env/static/private' {
 	export const CommonProgramW6432: string;
 	export const COMPUTERNAME: string;
 	export const ComSpec: string;
-	export const DEPLOY_TARGET: string;
 	export const DriverData: string;
 	export const EDITOR: string;
 	export const EFC_8340_1592913036: string;
@@ -151,7 +150,6 @@ declare module '$env/dynamic/private' {
 		CommonProgramW6432: string;
 		COMPUTERNAME: string;
 		ComSpec: string;
-		DEPLOY_TARGET: string;
 		DriverData: string;
 		EDITOR: string;
 		EFC_8340_1592913036: string;

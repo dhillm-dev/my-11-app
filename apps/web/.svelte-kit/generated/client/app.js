@@ -17,7 +17,11 @@ export const nodes = [
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
 	() => import('./nodes/15'),
-	() => import('./nodes/16')
+	() => import('./nodes/16'),
+	() => import('./nodes/17'),
+	() => import('./nodes/18'),
+	() => import('./nodes/19'),
+	() => import('./nodes/20')
 ];
 
 export const server_loads = [];
@@ -29,14 +33,18 @@ export const dictionary = {
 		"/auth/login": [6,[2]],
 		"/auth/register": [7,[2]],
 		"/auth/reset": [8,[2]],
-		"/contests": [9],
-		"/dashboard": [10],
-		"/how-to-play": [11],
-		"/matches": [12],
-		"/profile": [13],
-		"/rapidapi-test": [14],
-		"/team-builder": [15],
-		"/wallet": [16]
+		"/button-demo": [9],
+		"/contests": [10],
+		"/dashboard": [11],
+		"/how-to-play": [12],
+		"/lenis-demo": [13],
+		"/matches": [14],
+		"/neo-svelte-demo": [15],
+		"/neumorphic-demo": [16],
+		"/profile": [17],
+		"/rapidapi-test": [18],
+		"/team-builder": [19],
+		"/wallet": [20]
 	};
 
 export const hooks = {

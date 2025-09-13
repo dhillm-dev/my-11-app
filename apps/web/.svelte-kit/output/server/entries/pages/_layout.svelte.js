@@ -8,6 +8,7 @@ import "clsx";
 import "../../chunks/state.svelte.js";
 import { $ as $isLoading, a as $format } from "../../chunks/runtime.js";
 import "../../chunks/index3.js";
+import "../../chunks/button.js";
 function _layout($$payload, $$props) {
   push();
   var $$store_subs;
@@ -60,7 +61,7 @@ function _layout($$payload, $$props) {
   $$payload.out.push(`<div class="min-h-screen bg-white text-slate-900">`);
   if (showHeader) {
     $$payload.out.push("<!--[-->");
-    $$payload.out.push(`<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200/60 shadow-sm"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><a href="/" class="flex items-center space-x-3"><div class="relative"><div class="w-10 h-10 bg-gradient-to-br from-lime-400 to-lime-500 rounded-2xl shadow-lg shadow-lime-400/25 flex items-center justify-center"><span class="text-white font-black text-lg">P</span></div></div> <span class="text-xl font-black text-slate-900 tracking-tight">PickNWin</span></a> <nav class="hidden md:flex items-center space-x-8"><a href="/contests" class="text-slate-600 hover:text-slate-900 font-medium transition-colors">Contests</a> <a href="/how-to-play" class="text-slate-600 hover:text-slate-900 font-medium transition-colors">How to Play</a></nav> <button class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle mobile menu"><svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">`);
+    $$payload.out.push(`<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200/60 shadow-sm"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200 cursor-pointer"><div class="relative"><div class="w-10 h-10 bg-gradient-to-br from-lime-400 to-lime-500 rounded-2xl shadow-lg shadow-lime-400/25 flex items-center justify-center hover:shadow-lime-400/40 transition-shadow duration-200"><span class="text-white font-black text-lg">P</span></div></div> <h1 class="text-xl font-black text-slate-900 tracking-tight hover:text-lime-600 transition-colors duration-200">PickNWin</h1></a> <nav class="hidden md:flex items-center space-x-8"><a href="/contests" class="text-slate-600 hover:text-slate-900 font-medium transition-colors">Contests</a> <a href="/how-to-play" class="text-slate-600 hover:text-slate-900 font-medium transition-colors">How to Play</a></nav> <button class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle mobile menu"><svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">`);
     {
       $$payload.out.push("<!--[!-->");
       $$payload.out.push(`<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>`);

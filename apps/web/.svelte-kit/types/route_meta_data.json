@@ -35,6 +35,10 @@
 		"src/routes/auth/reset/+page.ts",
 		"src/routes/+layout.ts"
 	],
+	"/button-demo": [
+		"src/routes/button-demo/+page.ts",
+		"src/routes/+layout.ts"
+	],
 	"/contests": [
 		"src/routes/contests/+page.ts",
 		"src/routes/+layout.ts"
@@ -47,8 +51,17 @@
 		"src/routes/how-to-play/+page.ts",
 		"src/routes/+layout.ts"
 	],
+	"/lenis-demo": [
+		"src/routes/+layout.ts"
+	],
 	"/matches": [
 		"src/routes/matches/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/neo-svelte-demo": [
+		"src/routes/+layout.ts"
+	],
+	"/neumorphic-demo": [
 		"src/routes/+layout.ts"
 	],
 	"/profile": [

@@ -1,8 +1,10 @@
-/* Radix Colors */
+/* All @import statements must come first */
 @import "@radix-ui/colors/gray.css";
 @import "@radix-ui/colors/blue.css";
 @import "@radix-ui/colors/green.css";
 @import "@radix-ui/colors/orange.css";
+@import "lenis/dist/lenis.css";
+@import './lib/styles/neumorphic-theme.css';
 
 @tailwind base;
 @tailwind components;
@@ -35,7 +37,40 @@
     /* Neumorphic Radius */
     --radius: 1.5rem; /* 24px */
     --radius-sm: 1rem; /* 16px */
-    --radius-lg: 2rem; /* 32px */
+     --radius-lg: 2rem; /* 32px */
+   }
+
+  /* Ultra-smooth scrolling optimizations */
+  html {
+    scroll-behavior: auto; /* Let Lenis handle smooth scrolling */
+  }
+
+  /* Optimize for smooth scrolling performance */
+  body {
+    transform: translateZ(0); /* Force hardware acceleration */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+
+  /* Optimize scroll containers */
+  * {
+    /* Improve scroll performance */
+    will-change: auto;
+    backface-visibility: hidden;
+  }
+
+  /* Smooth transitions for interactive elements */
+  a, button, [role="button"] {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Prevent layout shifts during scroll */
+  img, video {
+    height: auto;
+    max-width: 100%;
+    transform: translateZ(0);
   }
 
   .dark {
@@ -48,10 +83,6 @@
     --muted-foreground: 215 20% 65%;
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-  }
-
-  * {
-    @apply border-gray-200;
   }
 
   body {
@@ -169,6 +200,32 @@
     animation: glow 2s ease-in-out infinite alternate;
   }
   
+  /* Neumorphic Button */
+  .neumorphic-button {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    cursor: pointer;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  }
+  
+  .neumorphic-button:hover {
+    border: 1px solid white;
+  }
+  
+  .neumorphic-button:active {
+    box-shadow: 4px 4px 12px #c5c5c5, -4px -4px 12px #ffffff;
+  }
+  
+  .neumorphic-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   /* Focus States */
   .focus-neumorphic:focus {
     @apply outline-none;

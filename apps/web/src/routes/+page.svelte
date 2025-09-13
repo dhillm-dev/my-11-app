@@ -3,6 +3,7 @@
 	import { isAuthenticated } from '$lib/stores';
 	import { _, locale } from 'svelte-i18n';
 	import '$lib/i18n';
+	import { Button } from '$lib/components/ui';
 
 
 
@@ -162,11 +163,11 @@
 					<div class="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 				</a>
 				<a 
-					href="/auth/login" 
-					class="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-slate-200 text-slate-900 font-bold rounded-2xl shadow-lg shadow-slate-200/50 hover:shadow-slate-300/60 hover:bg-white hover:scale-[1.02] transition-all duration-300 text-center"
-				>
-					Sign In
-				</a>
+				href="/auth/login" 
+				class="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-slate-200 text-slate-900 font-bold rounded-2xl shadow-lg shadow-slate-200/50 hover:shadow-slate-300/60 hover:bg-white hover:scale-[1.02] transition-all duration-300 text-center"
+			>
+				Sign In
+			</a>
 			</div>
 
 			<!-- Bonus Banner -->

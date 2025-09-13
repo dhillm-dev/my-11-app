@@ -27,7 +27,7 @@ export {};
 
 declare module "$app/types" {
 	export interface AppTypes {
-		RouteId(): "/" | "/admin" | "/admin/contests" | "/admin/login" | "/admin/matches" | "/admin/players" | "/admin/unauthorized" | "/admin/users" | "/admin/wallet" | "/api-demo" | "/api" | "/api/rapidapi-test" | "/api/sofascore" | "/api/sofascore/live" | "/api/sofascore/search" | "/auth" | "/auth/forgot" | "/auth/login" | "/auth/register" | "/auth/reset" | "/contests" | "/dashboard" | "/how-to-play" | "/matches" | "/profile" | "/rapidapi-test" | "/team-builder" | "/wallet";
+		RouteId(): "/" | "/admin" | "/admin/contests" | "/admin/login" | "/admin/matches" | "/admin/players" | "/admin/unauthorized" | "/admin/users" | "/admin/wallet" | "/api-demo" | "/api" | "/api/rapidapi-test" | "/api/sofascore" | "/api/sofascore/live" | "/api/sofascore/search" | "/auth" | "/auth/forgot" | "/auth/login" | "/auth/register" | "/auth/reset" | "/button-demo" | "/contests" | "/dashboard" | "/how-to-play" | "/lenis-demo" | "/matches" | "/neo-svelte-demo" | "/neumorphic-demo" | "/profile" | "/rapidapi-test" | "/team-builder" | "/wallet";
 		RouteParams(): {
 			
 		};
@@ -52,16 +52,20 @@ declare module "$app/types" {
 			"/auth/login": Record<string, never>;
 			"/auth/register": Record<string, never>;
 			"/auth/reset": Record<string, never>;
+			"/button-demo": Record<string, never>;
 			"/contests": Record<string, never>;
 			"/dashboard": Record<string, never>;
 			"/how-to-play": Record<string, never>;
+			"/lenis-demo": Record<string, never>;
 			"/matches": Record<string, never>;
+			"/neo-svelte-demo": Record<string, never>;
+			"/neumorphic-demo": Record<string, never>;
 			"/profile": Record<string, never>;
 			"/rapidapi-test": Record<string, never>;
 			"/team-builder": Record<string, never>;
 			"/wallet": Record<string, never>
 		};
-		Pathname(): "/" | "/admin" | "/admin/" | "/admin/contests" | "/admin/contests/" | "/admin/login" | "/admin/login/" | "/admin/matches" | "/admin/matches/" | "/admin/players" | "/admin/players/" | "/admin/unauthorized" | "/admin/unauthorized/" | "/admin/users" | "/admin/users/" | "/admin/wallet" | "/admin/wallet/" | "/api-demo" | "/api-demo/" | "/api" | "/api/" | "/api/rapidapi-test" | "/api/rapidapi-test/" | "/api/sofascore" | "/api/sofascore/" | "/api/sofascore/live" | "/api/sofascore/live/" | "/api/sofascore/search" | "/api/sofascore/search/" | "/auth" | "/auth/" | "/auth/forgot" | "/auth/forgot/" | "/auth/login" | "/auth/login/" | "/auth/register" | "/auth/register/" | "/auth/reset" | "/auth/reset/" | "/contests" | "/contests/" | "/dashboard" | "/dashboard/" | "/how-to-play" | "/how-to-play/" | "/matches" | "/matches/" | "/profile" | "/profile/" | "/rapidapi-test" | "/rapidapi-test/" | "/team-builder" | "/team-builder/" | "/wallet" | "/wallet/";
+		Pathname(): "/" | "/admin" | "/admin/" | "/admin/contests" | "/admin/contests/" | "/admin/login" | "/admin/login/" | "/admin/matches" | "/admin/matches/" | "/admin/players" | "/admin/players/" | "/admin/unauthorized" | "/admin/unauthorized/" | "/admin/users" | "/admin/users/" | "/admin/wallet" | "/admin/wallet/" | "/api-demo" | "/api-demo/" | "/api" | "/api/" | "/api/rapidapi-test" | "/api/rapidapi-test/" | "/api/sofascore" | "/api/sofascore/" | "/api/sofascore/live" | "/api/sofascore/live/" | "/api/sofascore/search" | "/api/sofascore/search/" | "/auth" | "/auth/" | "/auth/forgot" | "/auth/forgot/" | "/auth/login" | "/auth/login/" | "/auth/register" | "/auth/register/" | "/auth/reset" | "/auth/reset/" | "/button-demo" | "/button-demo/" | "/contests" | "/contests/" | "/dashboard" | "/dashboard/" | "/how-to-play" | "/how-to-play/" | "/lenis-demo" | "/lenis-demo/" | "/matches" | "/matches/" | "/neo-svelte-demo" | "/neo-svelte-demo/" | "/neumorphic-demo" | "/neumorphic-demo/" | "/profile" | "/profile/" | "/rapidapi-test" | "/rapidapi-test/" | "/team-builder" | "/team-builder/" | "/wallet" | "/wallet/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
 		Asset(): "/.nojekyll" | "/images/peeps/all-peeps.svg" | "/robots.txt" | string & {};
 	}

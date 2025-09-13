@@ -18,7 +18,7 @@ const config = {
 		// If DEPLOY_TARGET is 'github-pages', use the repo name as base
 		// Otherwise, use root for local development or other deployments
 		paths: {
-			base: process.env.DEPLOY_TARGET === 'github-pages' ? '/my-11-app' : '/'
+			base: process.env.DEPLOY_TARGET === 'github-pages' ? '/my-11-app' : ''
 		}
 	}
 };

@@ -2,18 +2,75 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { user, isAuthenticated } from '$lib/stores';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { userActions } from '$lib/stores';
 	import { _, locale, locales, isLoading } from 'svelte-i18n';
 	import '$lib/i18n';
 	import type { LayoutData } from './$types';
+	import { Button } from '$lib/components/ui';
+	
+	// Lenis smooth scroll integration
+    import { createLenis, startRaf } from '$lib/lenis';
+    import { createScrollOptimizer } from '$lib/scroll-performance';
+    
+    // GSAP ScrollTrigger sync
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
 
 	let { children, data }: { children: any; data: LayoutData } = $props();
+	
+	// Lenis cleanup functions
+    let stopRaf = () => {};
+    let gsapCleanup = () => {};
+    let scrollOptimizer: ReturnType<typeof createScrollOptimizer> | null = null;
 
 	// Check authentication on app load
 	onMount(() => {
 		userActions.loadFromStorage();
+		
+		// Initialize Lenis smooth scroll with ultra-smooth settings
+		const lenis = createLenis({
+			// Ultra-smooth configuration overrides
+			wheelMultiplier: 0.6,
+			lerp: 0.04,
+			duration: 2.2,
+			touchInertiaMultiplier: 40,
+			syncTouchLerp: 0.06
+		});
+		
+		if (lenis) {
+			// Initialize scroll performance optimizer
+			scrollOptimizer = createScrollOptimizer(lenis);
+			
+			// Start custom raf loop
+			stopRaf = startRaf(lenis);
+			
+			// GSAP ScrollTrigger integration
+			lenis.on('scroll', ScrollTrigger.update);
+			
+			// Add GSAP ticker for smooth integration
+			const ticker = (time: number) => {
+				// GSAP gives seconds, Lenis expects ms
+				lenis.raf(time * 1000);
+			};
+			
+			gsap.ticker.add(ticker);
+			gsap.ticker.lagSmoothing(0);
+			
+			// Setup cleanup function
+			gsapCleanup = () => {
+				gsap.ticker.lagSmoothing(1000, 16); // restore defaults
+				gsap.ticker.remove(ticker);
+			};
+		}
+	});
+	
+	onDestroy(() => {
+		stopRaf();
+		gsapCleanup();
+		scrollOptimizer?.destroy();
 	});
 
 	// Language switching
@@ -87,13 +144,13 @@
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex items-center justify-between h-16">
 					<!-- Logo -->
-					<a href="/" class="flex items-center space-x-3">
+					<a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200 cursor-pointer">
 						<div class="relative">
-							<div class="w-10 h-10 bg-gradient-to-br from-lime-400 to-lime-500 rounded-2xl shadow-lg shadow-lime-400/25 flex items-center justify-center">
+							<div class="w-10 h-10 bg-gradient-to-br from-lime-400 to-lime-500 rounded-2xl shadow-lg shadow-lime-400/25 flex items-center justify-center hover:shadow-lime-400/40 transition-shadow duration-200">
 								<span class="text-white font-black text-lg">P</span>
 							</div>
 						</div>
-						<span class="text-xl font-black text-slate-900 tracking-tight">PickNWin</span>
+						<h1 class="text-xl font-black text-slate-900 tracking-tight hover:text-lime-600 transition-colors duration-200">PickNWin</h1>
 					</a>
 
 					<!-- Desktop Navigation -->
