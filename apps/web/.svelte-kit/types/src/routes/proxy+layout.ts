@@ -4,6 +4,10 @@ import type { LayoutLoad } from './$types';
 import { get } from 'svelte/store';
 import { browser } from '$app/environment';
 
+// Enable static prerendering for GitHub Pages
+export const prerender = true;
+export const ssr = false;
+
 // Define public routes that don't require authentication
 const publicRoutes = [
 	'/',

@@ -10,44 +10,15 @@ return {
 	assets: new Set([".nojekyll","images/peeps/all-peeps.svg","robots.txt"]),
 	mimeTypes: {".svg":"image/svg+xml",".txt":"text/plain"},
 	_: {
-		client: {start:"_app/immutable/entry/start.7MLCVo-l.js",app:"_app/immutable/entry/app.DLIF4ftW.js",imports:["_app/immutable/entry/start.7MLCVo-l.js","_app/immutable/chunks/B1N5Esk_.js","_app/immutable/chunks/CeyqlY7M.js","_app/immutable/chunks/BYwdtpf8.js","_app/immutable/chunks/D4e3NgJS.js","_app/immutable/entry/app.DLIF4ftW.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/BYwdtpf8.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/CeyqlY7M.js","_app/immutable/chunks/x2hlQoet.js","_app/immutable/chunks/BlWJXHQh.js","_app/immutable/chunks/DZx-2HU6.js","_app/immutable/chunks/D4e3NgJS.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.D3rpSsEq.js",app:"_app/immutable/entry/app.Cb1bmhLH.js",imports:["_app/immutable/entry/start.D3rpSsEq.js","_app/immutable/chunks/CUwP_rfp.js","_app/immutable/chunks/CeyqlY7M.js","_app/immutable/chunks/BYwdtpf8.js","_app/immutable/chunks/D4e3NgJS.js","_app/immutable/entry/app.Cb1bmhLH.js","_app/immutable/chunks/D9Z9MdNV.js","_app/immutable/chunks/BYwdtpf8.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/CeyqlY7M.js","_app/immutable/chunks/x2hlQoet.js","_app/immutable/chunks/BlWJXHQh.js","_app/immutable/chunks/DZx-2HU6.js","_app/immutable/chunks/D4e3NgJS.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
-			__memo(() => import('./nodes/1.js')),
-			__memo(() => import('./nodes/2.js')),
-			__memo(() => import('./nodes/3.js')),
-			__memo(() => import('./nodes/4.js')),
-			__memo(() => import('./nodes/5.js')),
-			__memo(() => import('./nodes/6.js')),
-			__memo(() => import('./nodes/7.js')),
-			__memo(() => import('./nodes/8.js')),
-			__memo(() => import('./nodes/9.js')),
-			__memo(() => import('./nodes/10.js')),
-			__memo(() => import('./nodes/11.js')),
-			__memo(() => import('./nodes/12.js')),
-			__memo(() => import('./nodes/13.js')),
-			__memo(() => import('./nodes/14.js')),
-			__memo(() => import('./nodes/15.js')),
-			__memo(() => import('./nodes/16.js'))
+			__memo(() => import('./nodes/1.js'))
 		],
 		remotes: {
 			
 		},
 		routes: [
-			{
-				id: "/",
-				pattern: /^\/$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 3 },
-				endpoint: null
-			},
-			{
-				id: "/api-demo",
-				pattern: /^\/api-demo\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 4 },
-				endpoint: null
-			},
 			{
 				id: "/api/rapidapi-test",
 				pattern: /^\/api\/rapidapi-test\/?$/,
@@ -68,93 +39,9 @@ return {
 				params: [],
 				page: null,
 				endpoint: __memo(() => import('./entries/endpoints/api/sofascore/search/_server.ts.js'))
-			},
-			{
-				id: "/auth/forgot",
-				pattern: /^\/auth\/forgot\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 5 },
-				endpoint: null
-			},
-			{
-				id: "/auth/login",
-				pattern: /^\/auth\/login\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 6 },
-				endpoint: null
-			},
-			{
-				id: "/auth/register",
-				pattern: /^\/auth\/register\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 7 },
-				endpoint: null
-			},
-			{
-				id: "/auth/reset",
-				pattern: /^\/auth\/reset\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 8 },
-				endpoint: null
-			},
-			{
-				id: "/contests",
-				pattern: /^\/contests\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
-				endpoint: null
-			},
-			{
-				id: "/dashboard",
-				pattern: /^\/dashboard\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 10 },
-				endpoint: null
-			},
-			{
-				id: "/how-to-play",
-				pattern: /^\/how-to-play\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 11 },
-				endpoint: null
-			},
-			{
-				id: "/matches",
-				pattern: /^\/matches\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 12 },
-				endpoint: null
-			},
-			{
-				id: "/profile",
-				pattern: /^\/profile\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 13 },
-				endpoint: null
-			},
-			{
-				id: "/rapidapi-test",
-				pattern: /^\/rapidapi-test\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 14 },
-				endpoint: null
-			},
-			{
-				id: "/team-builder",
-				pattern: /^\/team-builder\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 15 },
-				endpoint: null
-			},
-			{
-				id: "/wallet",
-				pattern: /^\/wallet\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 16 },
-				endpoint: null
 			}
 		],
-		prerendered_routes: new Set([]),
+		prerendered_routes: new Set(["/my-11-app/","/my-11-app/api-demo","/my-11-app/auth/forgot","/my-11-app/auth/login","/my-11-app/auth/register","/my-11-app/auth/reset","/my-11-app/contests","/my-11-app/dashboard","/my-11-app/how-to-play","/my-11-app/matches","/my-11-app/profile","/my-11-app/rapidapi-test","/my-11-app/team-builder","/my-11-app/wallet"]),
 		matchers: async () => {
 			
 			return {  };

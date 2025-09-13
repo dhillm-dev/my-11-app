@@ -1,5 +1,7 @@
 import { redirect } from "@sveltejs/kit";
 import "clsx";
+const prerender = true;
+const ssr = false;
 const publicRoutes = [
   "/",
   "/how-to-play",
@@ -52,5 +54,7 @@ const load = async ({ url, depends }) => {
   };
 };
 export {
-  load
+  load,
+  prerender,
+  ssr
 };
