@@ -1,6 +1,6 @@
 import { json } from "@sveltejs/kit";
 import { s as sofaScoreAdapter } from "../../../../chunks/sofascoreAdapter.js";
-const GET = async ({ url, request }) => {
+const GET = async ({ url }) => {
   const startTime = Date.now();
   const query = url.searchParams.get("query") || "messi";
   const testType = url.searchParams.get("type") || "search";

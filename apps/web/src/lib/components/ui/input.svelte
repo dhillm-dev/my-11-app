@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
+	import { onMount } from "svelte";
 
 	type $$Props = {
 		value?: string;
@@ -39,9 +40,18 @@
 	export let min: $$Props["min"] = undefined;
 	export let max: $$Props["max"] = undefined;
 	export { className as class };
+
+	let inputElement: HTMLInputElement;
+
+	onMount(() => {
+		if (autofocus && inputElement) {
+			inputElement.focus();
+		}
+	});
 </script>
 
 <input
+	bind:this={inputElement}
 	bind:value
 	{placeholder}
 	{type}
@@ -50,7 +60,6 @@
 	{id}
 	{name}
 	{required}
-	{autofocus}
 	autocomplete={autocomplete as any}
 	{maxlength}
 	{minlength}

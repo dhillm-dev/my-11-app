@@ -269,12 +269,12 @@ function NeoAffix($$payload, $$props) {
     $$payload,
     tag,
     () => {
-      $$payload.out.push(`${spread_attributes({ ...rest }, "svelte-1tpszhp", { "neo-affix-container": true, "neo-skeleton": skeleton }, { "--neo-affix-size": size })}`);
+      $$payload.out.push(`${spread_attributes({ ...rest }, "svelte-1lqzhxe", { "neo-affix-container": true, "neo-skeleton": skeleton }, { "--neo-affix-size": size })}`);
     },
     () => {
       if (loading) {
         $$payload.out.push("<!--[-->");
-        $$payload.out.push(`<span class="neo-affix-loading svelte-1tpszhp">`);
+        $$payload.out.push(`<span class="neo-affix-loading svelte-1lqzhxe">`);
         if (loader) {
           $$payload.out.push("<!--[-->");
           loader($$payload, { size });
@@ -295,7 +295,7 @@ function NeoAffix($$payload, $$props) {
               "aria-label": "clear",
               ...closeProps
             },
-            "svelte-1tpszhp",
+            "svelte-1lqzhxe",
             { "neo-affix-clear": true }
           )}>`);
           if (reset) {
@@ -309,7 +309,7 @@ function NeoAffix($$payload, $$props) {
           $$payload.out.push(`<!--]--></button>`);
         } else {
           $$payload.out.push("<!--[!-->");
-          $$payload.out.push(`<span class="neo-affix-validation svelte-1tpszhp"${attr("data-valid", valid)}>`);
+          $$payload.out.push(`<span class="neo-affix-validation svelte-1lqzhxe"${attr("data-valid", valid)}>`);
           if (valid !== void 0) {
             $$payload.out.push("<!--[-->");
             if (validation) {
@@ -515,7 +515,7 @@ function NeoPill($$payload, $$props) {
     () => {
       $$payload.out.push(`${spread_attributes(
         { "data-type": size, ...rest },
-        "svelte-m6qbjv",
+        "svelte-18d5irj",
         {
           "neo-pill": true,
           "neo-borderless": borderless,
@@ -605,7 +605,7 @@ function NeoBadge($$payload, $$props) {
     $$payload,
     containerTag,
     () => {
-      $$payload.out.push(`${spread_attributes({ "data-placement": placement, ...containerRest }, "svelte-1jvcnx8", { "neo-badge-container": true }, {
+      $$payload.out.push(`${spread_attributes({ "data-placement": placement, ...containerRest }, "svelte-xv6y1b", { "neo-badge-container": true }, {
         "--neo-badge-offset-x": offset2?.x,
         "--neo-badge-offset-y": offset2?.y
       })}`);
@@ -774,7 +774,7 @@ function NeoButton($$payload, $$props) {
           disabled,
           ...rest
         },
-        "svelte-1fhtemq",
+        "svelte-pxz362",
         {
           "neo-button": true,
           "neo-readonly": readonly,
@@ -816,10 +816,10 @@ function NeoButton($$payload, $$props) {
       )}`);
     },
     () => {
-      $$payload.out.push(`<div${attr_class("neo-content svelte-1fhtemq", void 0, { "neo-reverse": reverse })}>`);
+      $$payload.out.push(`<div${attr_class("neo-content svelte-pxz362", void 0, { "neo-reverse": reverse })}>`);
       if (loading || icon) {
         $$payload.out.push("<!--[-->");
-        $$payload.out.push(`<span${attr_class("neo-icon svelte-1fhtemq", void 0, { "neo-only": empty })}>`);
+        $$payload.out.push(`<span${attr_class("neo-icon svelte-pxz362", void 0, { "neo-only": empty })}>`);
         if (loading) {
           $$payload.out.push("<!--[-->");
           IconCircleLoading($$payload, {});
@@ -970,7 +970,7 @@ function NeoCheckboxButton($$payload, $$props) {
       "aria-checked": indeterminate ? "mixed" : checked,
       ...rest
     },
-    "svelte-h9hqkw",
+    "svelte-jmtyg5",
     {
       "neo-checked": checked || indeterminate,
       "neo-rounded": rounded,
@@ -1043,7 +1043,7 @@ function NeoCloseButton($$payload, $$props) {
   let $$settled = true;
   let $$inner_payload;
   function $$render_inner($$payload2) {
-    $$payload2.out.push(`<div class="neo-close-button svelte-b5vnrp">`);
+    $$payload2.out.push(`<div class="neo-close-button svelte-1e0vl0y">`);
     NeoButton($$payload2, spread_props([
       { icon },
       rest,
@@ -1161,7 +1161,7 @@ function NeoRadioButton($$payload, $$props) {
       "aria-checked": checked,
       ...rest
     },
-    "svelte-1wyan4a",
+    "svelte-1fphhcd",
     {
       "neo-radio-button": true,
       "neo-checked": checked,
@@ -1247,7 +1247,7 @@ function NeoSwitchButton($$payload, $$props) {
       "aria-checked": indeterminate ? "mixed" : checked,
       ...rest
     },
-    "svelte-1h59c05",
+    "svelte-1jhalmy",
     {
       "neo-switch-button": true,
       "neo-checked": checked,
@@ -1269,11 +1269,11 @@ function NeoSwitchButton($$payload, $$props) {
     }
   )}>`);
   children?.($$payload);
-  $$payload.out.push(`<!----> <span class="neo-switch-rail svelte-1h59c05"><span${attr_class("neo-switch-on svelte-1h59c05", void 0, { "neo-visible": checked })}>`);
+  $$payload.out.push(`<!----> <span class="neo-switch-rail svelte-1jhalmy"><span${attr_class("neo-switch-on svelte-1jhalmy", void 0, { "neo-visible": checked })}>`);
   label($$payload, on);
-  $$payload.out.push(`<!----></span> <span class="neo-switch-toggle svelte-1h59c05">`);
+  $$payload.out.push(`<!----></span> <span class="neo-switch-toggle svelte-1jhalmy">`);
   label($$payload, handle);
-  $$payload.out.push(`<!----></span> <span${attr_class("neo-switch-off svelte-1h59c05", void 0, { "neo-visible": !checked })}>`);
+  $$payload.out.push(`<!----></span> <span${attr_class("neo-switch-off svelte-1jhalmy", void 0, { "neo-visible": !checked })}>`);
   label($$payload, off);
   $$payload.out.push(`<!----></span></span></button>`);
   bind_props($$props, { checked, indeterminate });
@@ -1320,7 +1320,7 @@ function NeoDivider($$payload, $$props) {
       "data-elevation": elevation,
       ...rest
     },
-    "svelte-t6rruz",
+    "svelte-12i9te3",
     {
       "neo-divider": true,
       "neo-vertical": vertical,
@@ -1450,7 +1450,7 @@ function NeoCard($$payload, $$props) {
   function closeBtn($$payload2) {
     if (close) {
       $$payload2.out.push("<!--[-->");
-      $$payload2.out.push(`<div class="neo-card-close svelte-lor6jk">`);
+      $$payload2.out.push(`<div class="neo-card-close svelte-18r6ppm">`);
       NeoCloseButton($$payload2, spread_props([
         {
           "aria-label": "Close card",
@@ -1470,7 +1470,7 @@ function NeoCard($$payload, $$props) {
   function divider($$payload2) {
     if (segments && typeof segmented === "number") {
       $$payload2.out.push("<!--[-->");
-      $$payload2.out.push(`<div class="neo-card-divider svelte-lor6jk">`);
+      $$payload2.out.push(`<div class="neo-card-divider svelte-18r6ppm">`);
       NeoDivider($$payload2, spread_props([
         {
           vertical: horizontal,
@@ -1493,7 +1493,7 @@ function NeoCard($$payload, $$props) {
     () => {
       $$payload.out.push(`${spread_attributes(
         { role: "none", ...rest },
-        "svelte-lor6jk",
+        "svelte-18r6ppm",
         {
           "neo-card": true,
           "neo-scroll": scrollbar,
@@ -1545,7 +1545,7 @@ function NeoCard($$payload, $$props) {
           $$payload,
           mediaTag,
           () => {
-            $$payload.out.push(`${spread_attributes({ ...mediaRest }, "svelte-lor6jk", {
+            $$payload.out.push(`${spread_attributes({ ...mediaRest }, "svelte-18r6ppm", {
               "neo-card-segment": true,
               "neo-card-media": true,
               "neo-scroll": scrollbar,
@@ -1568,7 +1568,7 @@ function NeoCard($$payload, $$props) {
           $$payload,
           headerTag,
           () => {
-            $$payload.out.push(`${spread_attributes({ ...headerRest }, "svelte-lor6jk", {
+            $$payload.out.push(`${spread_attributes({ ...headerRest }, "svelte-18r6ppm", {
               "neo-card-segment": true,
               "neo-card-header": true,
               "neo-scroll": scrollbar
@@ -1600,7 +1600,7 @@ function NeoCard($$payload, $$props) {
             $$payload,
             contentTag,
             () => {
-              $$payload.out.push(`${spread_attributes({ ...contentRest }, "svelte-lor6jk", {
+              $$payload.out.push(`${spread_attributes({ ...contentRest }, "svelte-18r6ppm", {
                 "neo-card-segment": true,
                 "neo-card-content": true,
                 "neo-scroll": scrollbar
@@ -1636,7 +1636,7 @@ function NeoCard($$payload, $$props) {
           $$payload,
           footerTag,
           () => {
-            $$payload.out.push(`${spread_attributes({ ...footerRest }, "svelte-lor6jk", {
+            $$payload.out.push(`${spread_attributes({ ...footerRest }, "svelte-18r6ppm", {
               "neo-card-segment": true,
               "neo-card-footer": true,
               "neo-scroll": scrollbar
@@ -1659,7 +1659,7 @@ function NeoCard($$payload, $$props) {
           $$payload,
           actionTag,
           () => {
-            $$payload.out.push(`${spread_attributes({ ...actionRest }, "svelte-lor6jk", {
+            $$payload.out.push(`${spread_attributes({ ...actionRest }, "svelte-18r6ppm", {
               "neo-card-segment": true,
               "neo-card-action": true,
               "neo-scroll": scrollbar
@@ -1887,7 +1887,7 @@ function NeoProgress($$payload, $$props) {
           "data-value": value,
           ...rest
         },
-        "svelte-1m8dcqv",
+        "svelte-77o06f",
         {
           "neo-progress": true,
           "neo-indeterminate": indeterminate || status === NeoProgressStatus.Indeterminate,
@@ -1907,7 +1907,7 @@ function NeoProgress($$payload, $$props) {
       )}`);
     },
     () => {
-      $$payload.out.push(`<span class="neo-progress-value svelte-1m8dcqv"${attr_style("", { "--neo-progress-value": valueProgress })}></span> <span class="neo-progress-buffer svelte-1m8dcqv"${attr_style("", { "--neo-progress-buffer": bufferProgress })}></span> `);
+      $$payload.out.push(`<span class="neo-progress-value svelte-77o06f"${attr_style("", { "--neo-progress-value": valueProgress })}></span> <span class="neo-progress-buffer svelte-77o06f"${attr_style("", { "--neo-progress-buffer": bufferProgress })}></span> `);
       children?.($$payload, context);
       $$payload.out.push(`<!---->`);
     }
@@ -2334,7 +2334,7 @@ function NeoBaseInput_1($$payload, $$props) {
         () => {
           $$payload2.out.push(`${spread_attributes(
             { ...displayRest },
-            "svelte-1ecn6if",
+            "svelte-1op53jr",
             {
               "neo-input": true,
               "neo-after": after,
@@ -2358,7 +2358,7 @@ function NeoBaseInput_1($$payload, $$props) {
             $$payload2.out.push(`<!---->`);
           } else {
             $$payload2.out.push("<!--[!-->");
-            $$payload2.out.push(`<input inert tabindex="-1" class="neo-input-display-content svelte-1ecn6if" readonly${attr("value", display)}${attr("placeholder", rest?.placeholder)}${attr("size", rest?.size)}/>`);
+            $$payload2.out.push(`<input inert tabindex="-1" class="neo-input-display-content svelte-1op53jr" readonly${attr("value", display)}${attr("placeholder", rest?.placeholder)}${attr("size", rest?.size)}/>`);
           }
           $$payload2.out.push(`<!--]-->`);
         }
@@ -2375,7 +2375,7 @@ function NeoBaseInput_1($$payload, $$props) {
             focused,
             ...rest
           },
-          "svelte-1ecn6if",
+          "svelte-1op53jr",
           {
             "neo-input": true,
             "neo-hide": hide,
@@ -2414,7 +2414,7 @@ function NeoBaseInput_1($$payload, $$props) {
               focused,
               ...rest
             },
-            "svelte-1ecn6if",
+            "svelte-1op53jr",
             {
               "neo-input": true,
               "neo-hide": hide,
@@ -2429,7 +2429,8 @@ function NeoBaseInput_1($$payload, $$props) {
               height: height?.absolute,
               "min-height": height?.min,
               "max-height": height?.max
-            }
+            },
+            4
           )}/> `);
           children?.($$payload2);
           $$payload2.out.push(`<!---->`);
@@ -2450,7 +2451,7 @@ function NeoBaseInput_1($$payload, $$props) {
                 checked,
                 ...rest
               },
-              "svelte-1ecn6if",
+              "svelte-1op53jr",
               {
                 "neo-input": true,
                 "neo-hide": hide,
@@ -2465,7 +2466,8 @@ function NeoBaseInput_1($$payload, $$props) {
                 height: height?.absolute,
                 "min-height": height?.min,
                 "max-height": height?.max
-              }
+              },
+              4
             )}/> `);
             children?.($$payload2);
             $$payload2.out.push(`<!---->`);
@@ -2484,7 +2486,7 @@ function NeoBaseInput_1($$payload, $$props) {
                   focused,
                   ...rest
                 },
-                "svelte-1ecn6if",
+                "svelte-1op53jr",
                 {
                   "neo-input": true,
                   "neo-hide": hide,
@@ -2499,7 +2501,8 @@ function NeoBaseInput_1($$payload, $$props) {
                   height: height?.absolute,
                   "min-height": height?.min,
                   "max-height": height?.max
-                }
+                },
+                4
               )}/> `);
               children?.($$payload2);
               $$payload2.out.push(`<!---->`);
@@ -2515,7 +2518,7 @@ function NeoBaseInput_1($$payload, $$props) {
                   focused,
                   ...rest
                 },
-                "svelte-1ecn6if",
+                "svelte-1op53jr",
                 {
                   "neo-input": true,
                   "neo-hide": hide,
@@ -2530,7 +2533,8 @@ function NeoBaseInput_1($$payload, $$props) {
                   height: height?.absolute,
                   "min-height": height?.min,
                   "max-height": height?.max
-                }
+                },
+                4
               )}/> `);
               children?.($$payload2);
               $$payload2.out.push(`<!---->`);
@@ -2620,7 +2624,7 @@ function NeoValidation($$payload, $$props) {
       $$payload,
       tag,
       () => {
-        $$payload.out.push(`${spread_attributes({ ...rest }, "svelte-dhfl6f", { "neo-validation-group-wrapper": true }, {
+        $$payload.out.push(`${spread_attributes({ ...rest }, "svelte-1v09iil", { "neo-validation-group-wrapper": true }, {
           flex,
           width: width2?.absolute,
           "min-width": width2?.min,
@@ -2632,14 +2636,14 @@ function NeoValidation($$payload, $$props) {
       },
       () => {
         children?.($$payload, innerContext);
-        $$payload.out.push(`<!----> <div class="neo-validation-message svelte-dhfl6f">`);
+        $$payload.out.push(`<!----> <div class="neo-validation-message svelte-1v09iil">`);
         if (error) {
           $$payload.out.push("<!--[-->");
           element(
             $$payload,
             messageTag,
             () => {
-              $$payload.out.push(`${spread_attributes({ id: messageId, ...messageRest }, "svelte-dhfl6f", { "neo-validation-error": true })}`);
+              $$payload.out.push(`${spread_attributes({ id: messageId, ...messageRest }, "svelte-1v09iil", { "neo-validation-error": true })}`);
             },
             () => {
               if (typeof error === "function") {
@@ -2661,7 +2665,7 @@ function NeoValidation($$payload, $$props) {
               $$payload,
               messageTag,
               () => {
-                $$payload.out.push(`${spread_attributes({ id: messageId, ...messageRest }, "svelte-dhfl6f", { "neo-validation-description": true })}`);
+                $$payload.out.push(`${spread_attributes({ id: messageId, ...messageRest }, "svelte-1v09iil", { "neo-validation-description": true })}`);
               },
               () => {
                 if (typeof message === "function") {
@@ -2783,10 +2787,10 @@ function NeoLabel($$payload, $$props) {
     $$payload,
     containerTag,
     () => {
-      $$payload.out.push(`${spread_attributes({ ...containerRest }, "svelte-1xddlb8", { "neo-label-container": true })}`);
+      $$payload.out.push(`${spread_attributes({ ...containerRest }, "svelte-8e3qke", { "neo-label-container": true })}`);
     },
     () => {
-      $$payload.out.push(`<label${spread_attributes({ ...rest }, "svelte-1xddlb8", {
+      $$payload.out.push(`<label${spread_attributes({ ...rest }, "svelte-8e3qke", {
         "neo-label": true,
         "neo-disabled": disabled,
         "neo-valid": valid === true,
@@ -2990,7 +2994,7 @@ function NeoInput($$payload, $$props) {
         $$payload2,
         beforeTag,
         () => {
-          $$payload2.out.push(`${spread_attributes({ disabled, readonly, ...beforeRest }, "svelte-n0ci60", {
+          $$payload2.out.push(`${spread_attributes({ disabled, readonly, ...beforeRest }, "svelte-19gjna8", {
             "neo-input-before": true,
             "neo-inside": inside,
             "neo-pressed": pressed,
@@ -3050,7 +3054,7 @@ function NeoInput($$payload, $$props) {
         $$payload2,
         afterTag,
         () => {
-          $$payload2.out.push(`${spread_attributes({ disabled, readonly, ...afterRest }, "svelte-n0ci60", {
+          $$payload2.out.push(`${spread_attributes({ disabled, readonly, ...afterRest }, "svelte-19gjna8", {
             "neo-input-after": true,
             "neo-inside": inside,
             "neo-pressed": pressed,
@@ -3204,7 +3208,7 @@ function NeoInput($$payload, $$props) {
             "data-valid": valid,
             ...containerRest
           },
-          "svelte-n0ci60",
+          "svelte-19gjna8",
           {
             "neo-input-group": true,
             "neo-readonly": readonly,
@@ -3536,7 +3540,7 @@ function NeoCheckbox($$payload, $$props) {
             () => {
               $$payload3.out.push(`${spread_attributes(
                 { ...containerRest },
-                "svelte-1lj4t1a",
+                "svelte-1nv5crn",
                 {
                   "neo-checkbox-container": true,
                   "neo-rounded": rounded,
@@ -3678,7 +3682,7 @@ function NeoCheckbox($$payload, $$props) {
               $$payload3.out.push(`<!----> `);
               if (loading !== void 0) {
                 $$payload3.out.push("<!--[-->");
-                $$payload3.out.push(`<span class="neo-checkbox-suffix svelte-1lj4t1a">`);
+                $$payload3.out.push(`<span class="neo-checkbox-suffix svelte-1nv5crn">`);
                 if (loading) {
                   $$payload3.out.push("<!--[-->");
                   $$payload3.out.push(`<span class="neo-checkbox-loading">`);
@@ -3787,7 +3791,7 @@ function NeoRadio($$payload, $$props) {
       () => {
         $$payload2.out.push(`${spread_attributes(
           { ...containerRest },
-          "svelte-1evj64a",
+          "svelte-dfbx0r",
           {
             "neo-radio-container": true,
             "neo-rounded": rounded,
@@ -3920,7 +3924,7 @@ function NeoRadio($$payload, $$props) {
         $$payload2.out.push(`<!----> `);
         if (loading !== void 0) {
           $$payload2.out.push("<!--[-->");
-          $$payload2.out.push(`<span class="neo-radio-suffix svelte-1evj64a">`);
+          $$payload2.out.push(`<span class="neo-radio-suffix svelte-dfbx0r">`);
           if (loading) {
             $$payload2.out.push("<!--[-->");
             $$payload2.out.push(`<span class="neo-radio-loading">`);
@@ -4224,7 +4228,7 @@ function NeoRange($$payload, $$props) {
                   role: "none",
                   ...containerRest
                 },
-                "svelte-mcb15y",
+                "svelte-n1wtxd",
                 { "neo-range-container": true },
                 {
                   flex,
@@ -4246,7 +4250,7 @@ function NeoRange($$payload, $$props) {
                     ...floatingProps,
                     style: toStyle(lowerTooltip.floatingStyles, floatingProps?.style)
                   },
-                  "svelte-mcb15y",
+                  "svelte-n1wtxd",
                   { "neo-range-value": true, "neo-rounded": rounded },
                   { "--neo-range-handler-z-index": 1 }
                 )}>`);
@@ -4270,7 +4274,7 @@ function NeoRange($$payload, $$props) {
                     ...floatingProps,
                     style: toStyle(upperTooltip.floatingStyles, floatingProps?.style)
                   },
-                  "svelte-mcb15y",
+                  "svelte-n1wtxd",
                   { "neo-range-value": true, "neo-rounded": rounded }
                 )}>`);
                 if (tooltip) {
@@ -4298,10 +4302,10 @@ function NeoRange($$payload, $$props) {
                     $$settled = false;
                   },
                   children: ($$payload4) => {
-                    $$payload4.out.push(`<span class="neo-range-label-container svelte-mcb15y">`);
+                    $$payload4.out.push(`<span class="neo-range-label-container svelte-n1wtxd">`);
                     if (before !== void 0) {
                       $$payload4.out.push("<!--[-->");
-                      $$payload4.out.push(`<span class="neo-range-prefix svelte-mcb15y">`);
+                      $$payload4.out.push(`<span class="neo-range-prefix svelte-n1wtxd">`);
                       before($$payload4, context);
                       $$payload4.out.push(`<!----></span>`);
                     } else {
@@ -4309,7 +4313,7 @@ function NeoRange($$payload, $$props) {
                     }
                     $$payload4.out.push(`<!--]--> <span${spread_attributes(
                       { ...rest },
-                      "svelte-mcb15y",
+                      "svelte-n1wtxd",
                       {
                         "neo-range-slider": true,
                         "neo-rounded": rounded,
@@ -4328,32 +4332,32 @@ function NeoRange($$payload, $$props) {
                         "--neo-range-progress": `${stringify(lowerProgress)}%`,
                         "--neo-range-array-progress": `${stringify(upperProgress)}%`
                       }
-                    )}><span role="region" class="neo-range-rail svelte-mcb15y"${attr_style("", { "--neo-range-color": getColorVariable(color) })}><span${attr_class("neo-range-handle-before svelte-mcb15y", void 0, { "neo-array": isArray })}></span> <button${spread_attributes(
+                    )}><span role="region" class="neo-range-rail svelte-n1wtxd"${attr_style("", { "--neo-range-color": getColorVariable(color) })}><span${attr_class("neo-range-handle-before svelte-n1wtxd", void 0, { "neo-array": isArray })}></span> <button${spread_attributes(
                       {
                         type: "button",
                         class: "neo-range-handle",
                         "aria-label": `Drag to set ${stringify(isArray ? "lower " : "")}value`,
                         ...handler
                       },
-                      "svelte-mcb15y",
+                      "svelte-n1wtxd",
                       void 0,
                       { "--neo-range-handler-z-index": 1 }
                     )}></button> `);
                     if (isArray) {
                       $$payload4.out.push("<!--[-->");
-                      $$payload4.out.push(`<span class="neo-range-handle-before neo-range svelte-mcb15y"></span> <button${spread_attributes(
+                      $$payload4.out.push(`<span class="neo-range-handle-before neo-range svelte-n1wtxd"></span> <button${spread_attributes(
                         {
                           type: "button",
                           class: "neo-range-handle",
                           "aria-label": "Drag to set upper value",
                           ...progressHandler
                         },
-                        "svelte-mcb15y"
+                        "svelte-n1wtxd"
                       )}></button>`);
                     } else {
                       $$payload4.out.push("<!--[!-->");
                     }
-                    $$payload4.out.push(`<!--]--> <span class="neo-range-handle-after svelte-mcb15y"></span> `);
+                    $$payload4.out.push(`<!--]--> <span class="neo-range-handle-after svelte-n1wtxd"></span> `);
                     if (steps > 1) {
                       $$payload4.out.push("<!--[-->");
                       const each_array = ensure_array_like({ length: (steps ?? 0) + 1 });
@@ -4363,14 +4367,14 @@ function NeoRange($$payload, $$props) {
                         if (showTick(i)) {
                           $$payload4.out.push("<!--[-->");
                           const filled = isFilled(i);
-                          $$payload4.out.push(`<div class="neo-range-tick svelte-mcb15y"${attr_style("", { "--neo-range-tick-index": i })}>`);
+                          $$payload4.out.push(`<div class="neo-range-tick svelte-n1wtxd"${attr_style("", { "--neo-range-tick-index": i })}>`);
                           if (mark) {
                             $$payload4.out.push("<!--[-->");
                             mark($$payload4, { index: i, filled }, context);
                             $$payload4.out.push(`<!---->`);
                           } else {
                             $$payload4.out.push("<!--[!-->");
-                            $$payload4.out.push(`<span${attr_class("neo-range-tick-mark svelte-mcb15y", void 0, { "neo-filled": filled })}></span>`);
+                            $$payload4.out.push(`<span${attr_class("neo-range-tick-mark svelte-n1wtxd", void 0, { "neo-filled": filled })}></span>`);
                           }
                           $$payload4.out.push(`<!--]--></div>`);
                         } else {
@@ -4385,7 +4389,7 @@ function NeoRange($$payload, $$props) {
                     $$payload4.out.push(`<!--]--></span></span> `);
                     if (loading !== void 0 || after !== void 0) {
                       $$payload4.out.push("<!--[-->");
-                      $$payload4.out.push(`<span class="neo-range-suffix svelte-mcb15y">`);
+                      $$payload4.out.push(`<span class="neo-range-suffix svelte-n1wtxd">`);
                       if (after) {
                         $$payload4.out.push("<!--[-->");
                         after($$payload4, context);
@@ -4396,7 +4400,7 @@ function NeoRange($$payload, $$props) {
                       $$payload4.out.push(`<!--]--> `);
                       if (loading) {
                         $$payload4.out.push("<!--[-->");
-                        $$payload4.out.push(`<span class="neo-range-loading svelte-mcb15y">`);
+                        $$payload4.out.push(`<span class="neo-range-loading svelte-n1wtxd">`);
                         IconCircleLoading($$payload4, { size: "1rem" });
                         $$payload4.out.push(`<!----></span>`);
                       } else {
@@ -4585,7 +4589,7 @@ function NeoSwitch($$payload, $$props) {
             $$payload3,
             containerTag,
             () => {
-              $$payload3.out.push(`${spread_attributes({ ...containerRest }, "svelte-1j26don", { "neo-switch-container": true, "neo-flat": !elevation }, {
+              $$payload3.out.push(`${spread_attributes({ ...containerRest }, "svelte-104psf6", { "neo-switch-container": true, "neo-flat": !elevation }, {
                 flex,
                 width: width2?.absolute,
                 "min-width": width2?.min,
@@ -4723,7 +4727,7 @@ function NeoSwitch($$payload, $$props) {
               $$payload3.out.push(`<!----> `);
               if (loading !== void 0) {
                 $$payload3.out.push("<!--[-->");
-                $$payload3.out.push(`<span class="neo-switch-suffix svelte-1j26don">`);
+                $$payload3.out.push(`<span class="neo-switch-suffix svelte-104psf6">`);
                 if (loading) {
                   $$payload3.out.push("<!--[-->");
                   $$payload3.out.push(`<span class="neo-switch-loading">`);

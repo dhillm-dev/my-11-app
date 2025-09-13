@@ -31,10 +31,11 @@
 {#if isOpen}
 	<div 
 		class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+		role="button"
+		tabindex="0"
 		on:click={closeModal}
-		on:keydown={(e) => e.key === 'Escape' && closeModal()}
-		tabindex="-1"
-		role="dialog"
+		on:keydown={(e) => (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') && closeModal()}
+		aria-label="Close modal"
 		aria-modal="true"
 	>
 		<!-- Modal Content -->
@@ -44,7 +45,9 @@
 		>
 			<!-- Close Button -->
 			<button 
+				type="button"
 				on:click={closeModal}
+				aria-label="Close modal"
 				class="absolute top-4 right-4 w-8 h-8 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors duration-200"
 			>
 				<svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +72,9 @@
 			<!-- Action Buttons -->
 			<div class="space-y-3">
 				<button 
+					type="button"
 					on:click={goToRegister}
+					aria-label="Create account and get €1200 bonus"
 					class="w-full bg-gradient-to-r from-lime-500 to-emerald-500 hover:from-lime-600 hover:to-emerald-600 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg shadow-lime-400/25 hover:shadow-lime-500/30 hover:scale-[1.02] flex items-center justify-center space-x-2"
 				>
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -79,7 +84,9 @@
 				</button>
 
 				<button 
+					type="button"
 					on:click={goToLogin}
+					aria-label="Login to existing account"
 					class="w-full bg-white/80 backdrop-blur-sm border-2 border-slate-200/60 hover:border-slate-300/60 text-slate-700 font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg shadow-slate-200/50 hover:shadow-slate-300/60 hover:scale-[1.02] flex items-center justify-center space-x-2"
 				>
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

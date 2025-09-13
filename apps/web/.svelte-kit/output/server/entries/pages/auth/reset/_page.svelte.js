@@ -3,10 +3,9 @@ import "@sveltejs/kit/internal";
 import "../../../../chunks/exports.js";
 import "../../../../chunks/utils.js";
 import "../../../../chunks/state.svelte.js";
-import "../../../../chunks/button.js";
+import { B as Button } from "../../../../chunks/button.js";
 import { c as cn } from "../../../../chunks/utils2.js";
 import "clsx";
-import { B as Button } from "../../../../chunks/button2.js";
 function Input($$payload, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const $$restProps = rest_props($$sanitized_props, [
@@ -56,7 +55,6 @@ function Input($$payload, $$props) {
       id,
       name,
       required,
-      autofocus,
       autocomplete,
       maxlength,
       minlength,
@@ -67,7 +65,10 @@ function Input($$payload, $$props) {
       class: clsx(cn("flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50", className)),
       ...$$restProps
     },
-    null
+    null,
+    void 0,
+    void 0,
+    4
   )}/>`);
   bind_props($$props, {
     class: className,

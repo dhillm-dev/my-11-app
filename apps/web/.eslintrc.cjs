@@ -1,33 +1,25 @@
 module.exports = {
 	root: true,
-	extends: [
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:svelte/recommended',
-		'prettier'
-	],
-	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint'],
-	parserOptions: {
-		sourceType: 'module',
-		ecmaVersion: 2020,
-		extraFileExtensions: ['.svelte']
-	},
-	env: {
-		browser: true,
-		es6: true,
-		node: true
-	},
+	env: { browser: true, es2022: true },
+	extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:svelte/recommended"],
+	parser: "@typescript-eslint/parser",
+	parserOptions: { ecmaVersion: 2022, sourceType: "module", extraFileExtensions: [".svelte"] },
 	overrides: [
 		{
-			files: ['*.svelte'],
-			parser: 'svelte-eslint-parser',
+			files: ["*.svelte"],
+			parser: "svelte-eslint-parser",
 			parserOptions: {
-				parser: '@typescript-eslint/parser'
+				parser: "@typescript-eslint/parser"
 			}
 		}
 	],
-	settings: {
-		'svelte3/typescript': () => require('typescript')
+	ignorePatterns: ["build/**", ".svelte-kit/**", "dist/**", "node_modules/**", "_app/**", "**/immutable/**"],
+	globals: { Temporal: "readonly" },
+	rules: {
+		"no-empty": "off",
+		"no-self-assign": "error",
+		"@typescript-eslint/no-explicit-any": ["warn", { "ignoreRestArgs": true }],
+		"@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+		"svelte/no-at-html-tags": "error"
 	}
 };

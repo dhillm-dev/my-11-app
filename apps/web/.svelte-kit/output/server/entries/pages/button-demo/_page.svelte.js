@@ -1,6 +1,5 @@
 import "clsx";
-import "../../../chunks/button.js";
-import { B as Button } from "../../../chunks/button2.js";
+import { B as Button } from "../../../chunks/button.js";
 function _page($$payload) {
   $$payload.out.push(`<div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-8"><div class="max-w-4xl mx-auto"><h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Button Style Demo</h1> <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"><div class="bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-200/50 shadow-lg"><h3 class="text-lg font-semibold text-gray-700 mb-4">Neumorphic Style</h3> <div class="space-y-4">`);
   Button($$payload, {

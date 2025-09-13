@@ -505,15 +505,13 @@ const formatNumber = (n, options2) => {
 const getJSON = (id, locale = getCurrentLocale()) => {
   return lookup(id, locale);
 };
-const $format = derived([$locale, $dictionary], () => formatMessage);
+derived([$locale, $dictionary], () => formatMessage);
 derived([$locale], () => formatTime);
 derived([$locale], () => formatDate);
 derived([$locale], () => formatNumber);
 derived([$locale, $dictionary], () => getJSON);
 export {
-  $isLoading as $,
-  $format as a,
-  $locale as b,
+  $locale as $,
   init as i,
   registerLocaleLoader as r
 };

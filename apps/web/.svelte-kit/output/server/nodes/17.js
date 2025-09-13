@@ -8,6 +8,6 @@ export const universal = {
   "ssr": false
 };
 export const universal_id = "src/routes/profile/+page.ts";
-export const imports = ["_app/immutable/nodes/17.zW8mHvE_.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/ChqFZlOs.js","_app/immutable/chunks/sn2bgj-Z.js","_app/immutable/chunks/DMB6SNds.js","_app/immutable/chunks/Cs-2xr4_.js","_app/immutable/chunks/DJXJUQSZ.js","_app/immutable/chunks/DBzOBDMn.js","_app/immutable/chunks/DMbMFB8t.js","_app/immutable/chunks/BLn6UD4w.js","_app/immutable/chunks/B-dksMZM.js","_app/immutable/chunks/DzVJhIJV.js","_app/immutable/chunks/CdEA5IGF.js","_app/immutable/chunks/D3otL7Td.js","_app/immutable/chunks/Bz204FB1.js","_app/immutable/chunks/BQeg1LcY.js","_app/immutable/chunks/CLBNl_2r.js","_app/immutable/chunks/9ek7rKyT.js","_app/immutable/chunks/BKmK1l5b.js"];
+export const imports = ["_app/immutable/nodes/17.oskgjpCo.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/6GZusgt_.js","_app/immutable/chunks/BxP-Bn-J.js","_app/immutable/chunks/8x6lrutn.js","_app/immutable/chunks/52Mq0XaK.js","_app/immutable/chunks/CHs-BGr5.js","_app/immutable/chunks/rXCQzQ71.js","_app/immutable/chunks/hoSVDtOQ.js","_app/immutable/chunks/B3R9TjWp.js","_app/immutable/chunks/DbKgpfrA.js","_app/immutable/chunks/CdEA5IGF.js","_app/immutable/chunks/gfEskGUc.js","_app/immutable/chunks/CvLP8CsF.js","_app/immutable/chunks/DgBB4vLp.js","_app/immutable/chunks/DVvRPRmo.js","_app/immutable/chunks/H-dD8ZBy.js"];
 export const stylesheets = [];
 export const fonts = [];

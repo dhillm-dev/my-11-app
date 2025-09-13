@@ -1,5 +1,4 @@
 import { redirect } from "@sveltejs/kit";
-import "clsx";
 const prerender = true;
 const ssr = false;
 const publicRoutes = [

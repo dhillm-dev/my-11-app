@@ -110,6 +110,7 @@ const HYDRATION_END = "]";
 const HYDRATION_ERROR = {};
 const ELEMENT_IS_NAMESPACED = 1;
 const ELEMENT_PRESERVE_ATTRIBUTE_CASE = 1 << 1;
+const ELEMENT_IS_INPUT = 1 << 2;
 const UNINITIALIZED = Symbol();
 let tracing_mode_flag = false;
 let component_context = null;
@@ -197,14 +198,26 @@ function apply_adjustments(error) {
 let micro_tasks = [];
 let idle_tasks = [];
 function run_micro_tasks() {
-  var tasks2 = micro_tasks;
+  var tasks = micro_tasks;
   micro_tasks = [];
-  run_all(tasks2);
+  run_all(tasks);
 }
 function run_idle_tasks() {
-  var tasks2 = idle_tasks;
+  var tasks = idle_tasks;
   idle_tasks = [];
-  run_all(tasks2);
+  run_all(tasks);
+}
+function has_pending_tasks() {
+  return micro_tasks.length > 0 || idle_tasks.length > 0;
+}
+function queue_micro_task(fn) {
+  if (micro_tasks.length === 0 && !is_flushing_sync) {
+    var tasks = micro_tasks;
+    queueMicrotask(() => {
+      if (tasks === micro_tasks) run_micro_tasks();
+    });
+  }
+  micro_tasks.push(fn);
 }
 function flush_tasks() {
   if (micro_tasks.length > 0) {
@@ -270,17 +283,6 @@ function update_derived(derived) {
 const batches = /* @__PURE__ */ new Set();
 let current_batch = null;
 let effect_pending_updates = /* @__PURE__ */ new Set();
-let tasks = [];
-function dequeue() {
-  const task = (
-    /** @type {() => void} */
-    tasks.shift()
-  );
-  if (tasks.length > 0) {
-    queueMicrotask(dequeue);
-  }
-  task();
-}
 let queued_root_effects = [];
 let last_scheduled_effect = null;
 let is_flushing = false;
@@ -424,7 +426,7 @@ class Batch {
           this.#effects.push(effect);
         } else if ((flags & CLEAN) === 0) {
           if ((flags & ASYNC) !== 0) {
-            var effects = effect.b?.pending ? this.#boundary_async_effects : this.#async_effects;
+            var effects = effect.b?.is_pending() ? this.#boundary_async_effects : this.#async_effects;
             effects.push(effect);
           } else if (is_dirty(effect)) {
             if ((effect.f & BLOCK_EFFECT) !== 0) this.#block_effects.push(effect);
@@ -554,10 +556,7 @@ class Batch {
   }
   /** @param {() => void} task */
   static enqueue(task) {
-    if (tasks.length === 0) {
-      queueMicrotask(dequeue);
-    }
-    tasks.unshift(task);
+    queue_micro_task(task);
   }
 }
 function flushSync(fn) {
@@ -568,7 +567,7 @@ function flushSync(fn) {
     if (fn) ;
     while (true) {
       flush_tasks();
-      if (queued_root_effects.length === 0) {
+      if (queued_root_effects.length === 0 && !has_pending_tasks()) {
         current_batch?.flush();
         if (queued_root_effects.length === 0) {
           last_scheduled_effect = null;
@@ -2019,6 +2018,7 @@ function spread_attributes(attrs, css_hash, classes, styles, flags = 0) {
   let name;
   const is_html = (flags & ELEMENT_IS_NAMESPACED) === 0;
   const lowercase = (flags & ELEMENT_PRESERVE_ATTRIBUTE_CASE) === 0;
+  const is_input = (flags & ELEMENT_IS_INPUT) !== 0;
   for (name in attrs) {
     if (typeof attrs[name] === "function") continue;
     if (name[0] === "$" && name[1] === "$") continue;
@@ -2026,6 +2026,12 @@ function spread_attributes(attrs, css_hash, classes, styles, flags = 0) {
     var value = attrs[name];
     if (lowercase) {
       name = name.toLowerCase();
+    }
+    if (is_input) {
+      if (name === "defaultvalue" || name === "defaultchecked") {
+        name = name === "defaultvalue" ? "value" : "checked";
+        if (attrs[name]) continue;
+      }
     }
     attr_str += attr(name, value, is_html && is_boolean_attribute(name));
   }

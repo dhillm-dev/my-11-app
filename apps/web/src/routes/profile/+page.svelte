@@ -312,8 +312,9 @@
 
 			<form on:submit|preventDefault={saveProfile} class="space-y-6">
 				<div>
-					<label class="block text-sm font-bold text-slate-800 mb-3">Full Name</label>
+					<label for="profile-name" class="block text-sm font-bold text-slate-800 mb-3">Full Name</label>
 					<input
+						id="profile-name"
 						type="text"
 						bind:value={editForm.name}
 						required
@@ -322,8 +323,9 @@
 				</div>
 
 				<div>
-					<label class="block text-sm font-bold text-slate-800 mb-3">Email</label>
+					<label for="profile-email" class="block text-sm font-bold text-slate-800 mb-3">Email</label>
 					<input
+						id="profile-email"
 						type="email"
 						bind:value={editForm.email}
 						required
@@ -332,8 +334,9 @@
 				</div>
 
 				<div>
-					<label class="block text-sm font-bold text-slate-800 mb-3">Phone Number</label>
+					<label for="profile-phone" class="block text-sm font-bold text-slate-800 mb-3">Phone Number</label>
 					<input
+						id="profile-phone"
 						type="tel"
 						bind:value={editForm.phone}
 						class="w-full p-4 bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl shadow-lg shadow-slate-200/30 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 focus:shadow-xl focus:shadow-emerald-500/10 transition-all duration-300 font-medium text-slate-900 placeholder-slate-500"
@@ -341,8 +344,9 @@
 				</div>
 
 				<div>
-					<label class="block text-sm font-bold text-slate-800 mb-3">Date of Birth</label>
+					<label for="profile-dob" class="block text-sm font-bold text-slate-800 mb-3">Date of Birth</label>
 					<input
+						id="profile-dob"
 						type="date"
 						bind:value={editForm.dateOfBirth}
 						class="w-full p-4 bg-white/60 backdrop-blur-sm border border-white/40 rounded-2xl shadow-lg shadow-slate-200/30 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 focus:shadow-xl focus:shadow-emerald-500/10 transition-all duration-300 font-medium text-slate-900 placeholder-slate-500"

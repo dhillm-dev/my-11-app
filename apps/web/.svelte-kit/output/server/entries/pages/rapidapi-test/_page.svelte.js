@@ -104,7 +104,7 @@ function _page($$payload, $$props) {
           $$payload.out.push(`<!--]--></div>`);
         } else {
           $$payload.out.push("<!--[!-->");
-          $$payload.out.push(`<div><h4 class="font-medium text-gray-900 mb-2">API Response:</h4> <pre class="bg-gray-50 p-4 rounded-md text-sm overflow-x-auto max-h-96 svelte-o2o5dx">${escape_html(formatJson(result.result))}</pre></div>`);
+          $$payload.out.push(`<div><h4 class="font-medium text-gray-900 mb-2">API Response:</h4> <pre class="bg-gray-50 p-4 rounded-md text-sm overflow-x-auto max-h-96 svelte-1aysd6i">${escape_html(formatJson(result.result))}</pre></div>`);
         }
         $$payload.out.push(`<!--]-->`);
       } else {
@@ -112,7 +112,7 @@ function _page($$payload, $$props) {
         $$payload.out.push(`<div class="space-y-3"><div class="bg-red-50 border border-red-200 rounded-md p-4"><h4 class="font-medium text-red-800 mb-2">Error Details:</h4> <p class="text-red-700"><strong>Type:</strong> ${escape_html(result.error?.type)}</p> <p class="text-red-700"><strong>Message:</strong> ${escape_html(result.error?.message)}</p> `);
         if (result.error?.stack) {
           $$payload.out.push("<!--[-->");
-          $$payload.out.push(`<details class="mt-2"><summary class="cursor-pointer text-red-600 hover:text-red-800">Stack Trace</summary> <pre class="mt-2 text-xs text-red-600 whitespace-pre-wrap svelte-o2o5dx">${escape_html(result.error.stack)}</pre></details>`);
+          $$payload.out.push(`<details class="mt-2"><summary class="cursor-pointer text-red-600 hover:text-red-800">Stack Trace</summary> <pre class="mt-2 text-xs text-red-600 whitespace-pre-wrap svelte-1aysd6i">${escape_html(result.error.stack)}</pre></details>`);
         } else {
           $$payload.out.push("<!--[!-->");
         }

@@ -160,7 +160,7 @@ const MOCK_DELAY = 800;
 let mockUser = null;
 let mockMatches = [];
 let mockContests = [];
-let mockTeams = [];
+const mockTeams = [];
 let mockTransactions = [];
 function initializeMockData() {
   if (mockMatches.length === 0) {

@@ -7,57 +7,20 @@ import "../../chunks/exports.js";
 import "../../chunks/utils.js";
 import "clsx";
 import "../../chunks/state.svelte.js";
-import { $ as $isLoading, a as $format } from "../../chunks/runtime.js";
+import "../../chunks/runtime.js";
 import "../../chunks/index3.js";
-import "../../chunks/button.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 function _layout($$payload, $$props) {
   push();
   var $$store_subs;
   gsap.registerPlugin(ScrollTrigger);
-  let { children, data } = $$props;
+  let { children } = $$props;
   onDestroy(() => {
   });
   let isAuthPage = store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/auth");
-  store_get($$store_subs ??= {}, "$page", page).url.pathname === "/";
   let showMobileNavigation = store_get($$store_subs ??= {}, "$isAuthenticated", isAuthenticated) && !isAuthPage;
   let showHeader = !isAuthPage;
-  !store_get($$store_subs ??= {}, "$isLoading", $isLoading) ? [
-    {
-      path: "/dashboard",
-      label: store_get($$store_subs ??= {}, "$_", $format)("nav.home") || "Home",
-      icon: "home"
-    },
-    { path: "/matches", label: "Matches", icon: "calendar" },
-    {
-      path: "/contests",
-      label: store_get($$store_subs ??= {}, "$_", $format)("nav.contests") || "Contests",
-      icon: "trophy"
-    },
-    {
-      path: "/my-teams",
-      label: store_get($$store_subs ??= {}, "$_", $format)("nav.my_teams") || "My Teams",
-      icon: "users"
-    },
-    {
-      path: "/wallet",
-      label: store_get($$store_subs ??= {}, "$_", $format)("nav.wallet") || "Wallet",
-      icon: "wallet"
-    },
-    {
-      path: "/profile",
-      label: store_get($$store_subs ??= {}, "$_", $format)("nav.profile") || "Profile",
-      icon: "user"
-    }
-  ] : [
-    { path: "/dashboard", label: "Home", icon: "home" },
-    { path: "/matches", label: "Matches", icon: "calendar" },
-    { path: "/contests", label: "Contests", icon: "trophy" },
-    { path: "/my-teams", label: "My Teams", icon: "users" },
-    { path: "/wallet", label: "Wallet", icon: "wallet" },
-    { path: "/profile", label: "Profile", icon: "user" }
-  ];
   function isActiveRoute(path) {
     return store_get($$store_subs ??= {}, "$page", page).url.pathname === path || store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith(path + "/");
   }

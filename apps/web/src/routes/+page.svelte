@@ -213,10 +213,11 @@
 			{#each features as feature}
 				<div class="group bg-white p-8 rounded-xl border border-slate-200 hover:shadow-md transition-all duration-300">
 					<div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
-						<svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							{@html getIconSvg(feature.icon)}
-						</svg>
-					</div>
+				<svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<!-- svelte-ignore a11y-no-at-html-tags -->
+					{@html getIconSvg(feature.icon)}
+				</svg>
+			</div>
 					<h3 class="text-xl font-semibold text-slate-900 mb-3">{feature.title}</h3>
 					<p class="text-slate-600 leading-relaxed">{feature.description}</p>
 				</div>
@@ -254,10 +255,11 @@
 			{#each trustBadges as badge}
 				<div class="text-center">
 					<div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-						<svg class="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							{@html getIconSvg(badge.icon)}
-						</svg>
-					</div>
+				<svg class="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<!-- svelte-ignore a11y-no-at-html-tags -->
+					{@html getIconSvg(badge.icon)}
+				</svg>
+			</div>
 					<h3 class="text-lg font-semibold text-slate-900 mb-1">{badge.title}</h3>
 					<p class="text-sm text-slate-600">{badge.subtitle}</p>
 				</div>

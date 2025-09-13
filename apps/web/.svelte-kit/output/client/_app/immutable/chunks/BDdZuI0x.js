@@ -1,1 +1,0 @@
-import{x as b,y as h,z as k,A as x,S as A}from"./sn2bgj-Z.js";function u(r,i){return r===i||r?.[A]===i}function c(r={},i,a,S){return b(()=>{var f,s;return h(()=>{f=s,s=S?.()||[],k(()=>{r!==a(...s)&&(i(r,...s),f&&u(a(...f),r)&&i(null,...f))})}),()=>{x(()=>{s&&u(a(...s),r)&&i(null,...s)})}}),r}export{c as b};

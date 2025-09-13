@@ -24,7 +24,6 @@ const GET = async ({ url, request }) => {
       );
     }
     const clientIP = request.headers.get("x-forwarded-for") || "unknown";
-    const rateLimitKey = `sofascore_search_${clientIP}`;
     const startTime = Date.now();
     const results = await sofaScoreAdapter.search(
       query.trim(),

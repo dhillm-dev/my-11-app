@@ -202,10 +202,11 @@
 								<!-- Step Number & Icon -->
 								<div class="bg-gradient-to-br from-lime-400 to-lime-500 p-8 md:w-64 flex flex-col items-center justify-center text-center">
 									<div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
-										<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											{@html getIconSvg(step.icon)}
-										</svg>
-									</div>
+							<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<!-- svelte-ignore a11y-no-at-html-tags -->
+								{@html getIconSvg(step.icon)}
+							</svg>
+						</div>
 									<div class="text-3xl font-black text-white mb-2">Step {step.step}</div>
 									<div class="text-lg font-semibold text-white">{step.title}</div>
 								</div>
@@ -302,8 +303,9 @@
 				<div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6">
 					<div class="flex items-center space-x-3 mb-4">
 						<svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							{@html getIconSvg('crown')}
-						</svg>
+						<!-- svelte-ignore a11y-no-at-html-tags -->
+						{@html getIconSvg('crown')}
+					</svg>
 						<h3 class="text-xl font-bold text-amber-900">Captain & Vice-Captain Multipliers</h3>
 					</div>
 					<div class="grid md:grid-cols-2 gap-4">
@@ -337,10 +339,11 @@
 						<div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300">
 							<div class="flex items-center space-x-4 mb-4">
 								<div class="w-12 h-12 bg-gradient-to-br from-lime-400 to-lime-500 rounded-xl flex items-center justify-center">
-									<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										{@html getIconSvg(contest.icon)}
-									</svg>
-								</div>
+						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<!-- svelte-ignore a11y-no-at-html-tags -->
+							{@html getIconSvg(contest.icon)}
+						</svg>
+					</div>
 								<div>
 									<h3 class="text-xl font-bold text-slate-900">{contest.type}</h3>
 									<div class="text-lime-600 font-semibold">{contest.entry}</div>
@@ -399,10 +402,11 @@
 						<div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300">
 							<div class="flex items-start space-x-4">
 								<div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0">
-									<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										{@html getIconSvg(tip.icon)}
-									</svg>
-								</div>
+					<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<!-- svelte-ignore a11y-no-at-html-tags -->
+						{@html getIconSvg(tip.icon)}
+					</svg>
+				</div>
 								<div class="flex-1">
 									<h3 class="text-xl font-bold text-slate-900 mb-3">{tip.title}</h3>
 									<p class="text-slate-600 leading-relaxed">{tip.description}</p>
