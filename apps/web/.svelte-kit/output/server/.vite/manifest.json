@@ -355,6 +355,12 @@
       "_LoginModal.js"
     ]
   },
+  "src/routes/contests/+page.ts": {
+    "file": "entries/pages/contests/_page.ts.js",
+    "name": "entries/pages/contests/_page.ts",
+    "src": "src/routes/contests/+page.ts",
+    "isEntry": true
+  },
   "src/routes/dashboard/+page.svelte": {
     "file": "entries/pages/dashboard/_page.svelte.js",
     "name": "entries/pages/dashboard/_page.svelte",

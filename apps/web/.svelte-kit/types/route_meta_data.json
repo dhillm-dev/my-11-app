@@ -31,6 +31,7 @@
 		"src/routes/+layout.ts"
 	],
 	"/contests": [
+		"src/routes/contests/+page.ts",
 		"src/routes/+layout.ts"
 	],
 	"/dashboard": [
